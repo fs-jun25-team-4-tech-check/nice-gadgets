@@ -1,7 +1,100 @@
 @use './variables';
+@use './mixins';
+
+html {
+  font-size: variables.$default-font-size;
+}
 
 body {
   font-family: 'Mont', sans-serif;
   background-color: variables.$dark-black;
   color: variables.$dark-white;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 41px;
+  letter-spacing: -0.01em;
+
+  @include mixins.on-md {
+    font-size: 48px;
+    line-height: 56px;
+  }
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 31px;
+  letter-spacing: 0;
+
+  @include mixins.on-md {
+    font-size: 32px;
+    line-height: 41px;
+    letter-spacing: -0.01em;
+  }
+}
+
+h3 {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 26px;
+  letter-spacing: 0;
+
+  @include mixins.on-md {
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 31px;
+    letter-spacing: 0;
+  }
+}
+
+h4 {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
+
+  @include mixins.on-md {
+    font-size: 20px;
+    line-height: 26px;
+    letter-spacing: 0;
+  }
+}
+
+small {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 0;
+}
+
+button,
+input[type='button'],
+input[type='submit'],
+input[type='reset'],
+.button-text {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0;
+}
+
+p,
+.body-text {
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0;
+}
+
+.uppercase-text {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 11px;
+  letter-spacing: 0.04em;
 }
