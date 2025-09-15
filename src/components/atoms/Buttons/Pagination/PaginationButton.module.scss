@@ -1,0 +1,16 @@
+.paginationButton {
+  background-color: $dark-surface-1;
+  color: $dark-white;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+
+  &:hover {
+    background-color: $dark-elements;
+  }
+}
+
+.isSelected {
+  background-color: $dark-accent;
+}
