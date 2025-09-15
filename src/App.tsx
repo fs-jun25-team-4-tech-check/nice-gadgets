@@ -1,10 +1,10 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import './styles/main.scss';
 import { HomePage } from './pages';
 
 function App() {
   return (
-    <Router basename="/nice-gadgets">
+    <Router>
       <Routes>
         <Route
           index
