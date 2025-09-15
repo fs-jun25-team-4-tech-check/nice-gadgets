@@ -1,20 +1,20 @@
 @font-face {
   font-family: 'Mont';
-  src: url('Mont-Regular.otf') format('opentype');
+  src: url('../assets/fonts/Mont-Regular.otf') format('opentype'); // assuming you have a regular weight
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Mont';
-  src: url('Mont-SemiBold.otf') format('opentype');
+  src: url('../assets/fonts/Mont-SemiBold.otf') format('opentype');
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Mont';
-  src: url('Mont-Bold.otf') format('opentype');
+  src: url('../assets/fonts/Mont-Bold.otf') format('opentype');
   font-weight: bold;
   font-style: normal;
 }
