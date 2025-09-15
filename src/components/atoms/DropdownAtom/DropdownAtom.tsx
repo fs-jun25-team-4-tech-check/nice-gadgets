@@ -27,7 +27,7 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { useState } from 'react';
 import styles from './DropdownAtom.module.scss';
 import classNames from 'classnames';
-import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
+import { PiCaretDownBold, PiCaretUpBold } from 'react-icons/pi';
 
 interface DropdownAtomProps {
   label?: string;
@@ -73,8 +73,8 @@ export const DropdownAtom = ({
         </span>
         <span className={styles.dropdownIconWrapper}>
           {open ?
-            <FiChevronUp className={styles.dropdownIcon} />
-          : <FiChevronDown className={styles.dropdownIcon} />}
+            <PiCaretUpBold />
+          : <PiCaretDownBold />}
         </span>
       </DropdownMenu.Trigger>
 
