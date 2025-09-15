@@ -1,0 +1,13 @@
+.sliderButton {
+  box-sizing: border-box;
+  background-color: $dark-surface-2;
+  border: 0;
+  padding: 8px;
+  &:hover {
+    background-color: $dark-icons;
+  }
+  &:disabled {
+    border: 1px solid $dark-elements;
+    background-color: $dark-surface-1;
+  }
+}
