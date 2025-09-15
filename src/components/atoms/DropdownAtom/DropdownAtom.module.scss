@@ -36,17 +36,28 @@
   padding: 10px 12px;
   background-color: $dark-surface-2;
   border: 1px solid $dark-surface-2;
-  color: $dark-white;
   cursor: pointer;
+
+  .dropdownPlaceholder {
+    color: $dark-white;
+  }
+
+  .dropdownIconWrapper {
+    color: $dark-secondary;
+  }
 
   &:hover {
     border-color: $dark-icons;
+
+    .dropdownIconWrapper {
+      color: $dark-icons;
+    }
   }
 
   &:focus,
   &[data-state='open'] {
     outline: none;
-    border-color: $accent;
+    border-color: $dark-accent;
   }
 
   .dropdownIcon {
@@ -58,13 +69,11 @@
 
 .dropdownContent {
   box-sizing: border-box;
-  min-width: 176px;
   background-color: $dark-black;
   border: 1px solid $dark-elements;
   margin-top: 4px;
   padding: 8px 0;
   box-shadow: 0 2px 15px 0 #0000000d;
-
   min-width: 136px;
 
   &.dropdownSort {
@@ -86,6 +95,7 @@
 
 .dropdownItem {
   @extend .button-text;
+  font-weight: 600;
   display: block;
   width: 100%;
   padding: 8px 12px;

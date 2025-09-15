@@ -1,4 +1,4 @@
-// Приклад використання
+// Example usage:
 // const HomeLayout = () => {
 //   const [selectedSort, setSelectedSort] = useState('Newest');
 //   const [selectedPageSize, setSelectedPageSize] = useState('16');
@@ -24,11 +24,10 @@
 // };
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import ChevronDown from '../../../assets/icons/navigation/chevron-arrow-down.svg';
-import ChevronUp from '../../../assets/icons/navigation/chevron-arrow-up.svg';
 import { useState } from 'react';
 import styles from './DropdownAtom.module.scss';
 import classNames from 'classnames';
+import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 
 interface DropdownAtomProps {
   label?: string;
@@ -72,11 +71,11 @@ export const DropdownAtom = ({
         <span className={styles.dropdownPlaceholder}>
           {selectedItem ?? placeholder ?? ''}
         </span>
-        <img
-          src={open ? ChevronUp : ChevronDown}
-          alt="Chevron"
-          className={styles.dropdownIcon}
-        />
+        <span className={styles.dropdownIconWrapper}>
+          {open ?
+            <FiChevronUp className={styles.dropdownIcon} />
+          : <FiChevronDown className={styles.dropdownIcon} />}
+        </span>
       </DropdownMenu.Trigger>
 
       <DropdownMenu.Content
