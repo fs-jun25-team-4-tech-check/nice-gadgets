@@ -4,7 +4,7 @@ import { HomePage } from './pages';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/nice-gadgets">
       <Routes>
         <Route
           index
