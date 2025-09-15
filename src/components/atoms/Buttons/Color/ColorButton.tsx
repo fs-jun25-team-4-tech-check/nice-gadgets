@@ -4,11 +4,13 @@ import cn from 'classnames';
 
 type Props = {
   isSelected?: boolean;
+  color?: string;
 };
 
-export const ColorButton: React.FC<Props> = ({ isSelected = false }) => {
+export const ColorButton: React.FC<Props> = ({ isSelected = false, color }) => {
   return (
     <button
+      style={{ backgroundColor: color }}
       className={cn(styles.colorButton, { [styles.isSelected]: isSelected })}
       type="button"
     ></button>
