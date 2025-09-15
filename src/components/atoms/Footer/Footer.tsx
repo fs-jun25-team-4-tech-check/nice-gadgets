@@ -13,6 +13,7 @@ export const Footer: React.FC = () => {
           <img
             src="src\assets\icons\brand\logo.svg"
             className={styles.footer__img}
+            alt="logo"
           />
         </div>
 
@@ -40,7 +41,10 @@ export const Footer: React.FC = () => {
         <div className={styles.footer__backToTop}>
           <span className="small">Back to top</span>
           <button onClick={scrollToTop}>
-            <img src="src\assets\icons\navigation\chevron-arrow-up.svg"></img>
+            <img
+              src="src\assets\icons\navigation\chevron-arrow-up.svg"
+              alt="Back to top"
+            ></img>
           </button>
         </div>
       </div>
