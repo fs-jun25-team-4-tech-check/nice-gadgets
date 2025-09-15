@@ -31,7 +31,7 @@
   a {
     color: variables.$dark-white;
     text-decoration: none;
-  } // чи варто так робити?
+  }
 }
 .footer__backToTop {
   display: flex;
@@ -40,10 +40,9 @@
   color: variables.$dark-secondary;
 }
 
-@media (max-width: 639px) {
+@media (max-width: $breakpoint-sm) {
   .footer {
     height: auto;
-    // теж не зрозуміло
     padding: 32px 16px;
   }
 

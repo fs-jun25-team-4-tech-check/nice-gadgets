@@ -19,7 +19,6 @@ export const Footer: React.FC = () => {
         </div>
 
         <nav className={styles.footer__nav}>
-          {/* чи можемо ми використовувати className="uppercase-text" так? */}
           <a
             className="uppercase-text"
             href="https://github.com/fs-jun25-team-4-tech-check/nice-gadgets"
