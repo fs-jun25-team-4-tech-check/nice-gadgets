@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Footer.module.scss';
+import { NavLink } from 'react-router-dom';
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -25,18 +26,18 @@ export const Footer: React.FC = () => {
           >
             Github
           </a>
-          <a
+          <NavLink
+            to="/contacts"
             className="uppercase-text"
-            href="/contacts"
           >
             Contacts
-          </a>
-          <a
+          </NavLink>
+          <NavLink
+            to="/rights"
             className="uppercase-text"
-            href="/rights"
           >
             Rights
-          </a>
+          </NavLink>
         </nav>
         <div className={styles.footer__backToTop}>
           <span className="small">Back to top</span>
