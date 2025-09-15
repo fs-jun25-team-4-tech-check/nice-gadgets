@@ -1,5 +1,7 @@
+@use './variables';
+
 body {
   font-family: 'Mont', sans-serif;
-  background-color: $dark-black;
-  color: $dark-white;
+  background-color: variables.$dark-black;
+  color: variables.$dark-white;
 }
