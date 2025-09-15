@@ -1,74 +1,62 @@
-@import '../../../styles/variables.scss';
+@use '../../../styles/global' as *;
 
-.dropdown-variant-sort {
-  min-width: 176px;
+.dropdownSort {
+  min-width: 136px;
 
-  @media (max-width: 1199px) and (min-width: 640px) {
+  @include on-md {
     min-width: 187px;
   }
 
-  @media (max-width: 639px) {
-    min-width: 136px;
+  @include on-lg {
+    min-width: 176px;
   }
 }
 
-.dropdown-variant-pagination {
-  min-width: 128px;
+.dropdownPagination {
+  min-width: 136px;
 
-  @media (max-width: 1199px) and (min-width: 640px) {
-    min-width: 136px;
-  }
-
-  @media (max-width: 639px) {
-    min-width: 136px;
+  @include on-lg {
+    min-width: 128px;
   }
 }
 
-.dropdown-label {
-  font-size: 12px;
-  font-weight: bold;
+.dropdownLabel {
+  @extend small;
   color: $dark-secondary;
-  font-family: Mont;
-  line-height: 15px;
   margin-bottom: 4px;
 }
 
-.dropdown-trigger {
+.dropdownTrigger {
+  @extend .button-text;
   display: flex;
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  min-width: 176px;
   height: 40px;
   padding: 10px 12px;
   background-color: $dark-surface-2;
   border: 1px solid $dark-surface-2;
   color: $dark-white;
-  font-size: 14px;
-  font-family: Mont;
-  font-weight: bold;
-  line-height: 21px;
-
   cursor: pointer;
 
   &:hover {
-    border: 1px solid $dark-icons;
+    border-color: $dark-icons;
   }
 
   &:focus,
   &[data-state='open'] {
     outline: none;
-    border: 1px solid $accent;
+    border-color: $accent;
   }
 
-  .dropdown-icon {
+  .dropdownIcon {
     margin-left: 8px;
     width: 16px;
     height: 16px;
   }
 }
 
-.dropdown-content {
+.dropdownContent {
   box-sizing: border-box;
   min-width: 176px;
   background-color: $dark-black;
@@ -76,14 +64,31 @@
   margin-top: 4px;
   padding: 8px 0;
   box-shadow: 0 2px 15px 0 #0000000d;
+
+  min-width: 136px;
+
+  &.dropdownSort {
+    @include on-md {
+      min-width: 187px;
+    }
+
+    @include on-lg {
+      min-width: 176px;
+    }
+  }
+
+  &.dropdownPagination {
+    @include on-lg {
+      min-width: 128px;
+    }
+  }
 }
 
-.dropdown-item {
+.dropdownItem {
+  @extend .button-text;
   display: block;
   width: 100%;
   padding: 8px 12px;
-  font-size: 14px;
-  line-height: 21px;
   color: $dark-secondary;
   cursor: pointer;
 

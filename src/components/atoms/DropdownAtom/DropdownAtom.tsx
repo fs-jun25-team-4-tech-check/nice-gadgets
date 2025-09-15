@@ -1,8 +1,7 @@
-//  Приклад використання у верстці:
-// export const PageWithDropdown = () => {
+// Приклад використання
+// const HomeLayout = () => {
 //   const [selectedSort, setSelectedSort] = useState('Newest');
 //   const [selectedPageSize, setSelectedPageSize] = useState('16');
-
 //   return (
 //     <div>
 //       <DropdownAtom
@@ -28,14 +27,14 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import ChevronDown from '../../../assets/icons/navigation/chevron-arrow-down.svg';
 import ChevronUp from '../../../assets/icons/navigation/chevron-arrow-up.svg';
 import { useState } from 'react';
-import './DropdownAtom.scss';
+import styles from './DropdownAtom.module.scss';
 import classNames from 'classnames';
 
 interface DropdownAtomProps {
   label?: string;
   placeholder?: string;
   items: string[];
-  onSelect?: (item: string) => void; // Callback типу handleSortSelect / handlePaginationSelect, який додамо у компоненті, що використовує DropdownAtom.
+  onSelect?: (item: string) => void;
   variant?: 'sort' | 'pagination';
 }
 
@@ -51,10 +50,10 @@ export const DropdownAtom = ({
     placeholder,
   );
 
-  const triggerClass = classNames('dropdown-trigger', {
-    'dropdown-sort': variant === 'sort',
-    'dropdown-pagination': variant === 'pagination',
-  });
+  const variantClass = {
+    [styles.dropdownSort]: variant === 'sort',
+    [styles.dropdownPagination]: variant === 'pagination',
+  };
 
   const handleSelect = (item: string) => {
     setSelectedItem(item);
@@ -66,23 +65,27 @@ export const DropdownAtom = ({
       open={open}
       onOpenChange={setOpen}
     >
-      {label && <div className="dropdown-label">{label}</div>}
-      <DropdownMenu.Trigger className={triggerClass}>
-        <span className="dropdown-placeholder">
+      {label && <div className={styles.dropdownLabel}>{label}</div>}
+      <DropdownMenu.Trigger
+        className={classNames(styles.dropdownTrigger, variantClass)}
+      >
+        <span className={styles.dropdownPlaceholder}>
           {selectedItem ?? placeholder ?? ''}
         </span>
         <img
           src={open ? ChevronUp : ChevronDown}
           alt="Chevron"
-          className="dropdown-icon"
+          className={styles.dropdownIcon}
         />
       </DropdownMenu.Trigger>
 
-      <DropdownMenu.Content className="dropdown-content">
-        {items.map((item, idx) => (
+      <DropdownMenu.Content
+        className={classNames(styles.dropdownContent, variantClass)}
+      >
+        {items.map((item) => (
           <DropdownMenu.Item
-            key={idx}
-            className="dropdown-item"
+            key={item}
+            className={styles.dropdownItem}
             onSelect={() => handleSelect(item)}
           >
             {item}
