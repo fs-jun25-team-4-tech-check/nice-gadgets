@@ -1,0 +1,55 @@
+@mixin on-sm {
+  @media (min-width: $breakpoint-sm) {
+    @content;
+  }
+}
+
+@mixin on-md {
+  @media (min-width: $breakpoint-md) {
+    @content;
+  }
+}
+
+@mixin on-lg {
+  @media (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
+
+@mixin on-xl {
+  @media (min-width: $breakpoint-xl) {
+    @content;
+  }
+}
+
+@mixin page-grid {
+  --columns: 4;
+
+  display: grid;
+  column-gap: 16px;
+  grid-template-columns: repeat(var(--columns), 1fr);
+
+  @include on-md {
+    --columns: 12;
+  }
+
+  @include on-xl {
+    --columns: 24;
+  }
+}
+
+@mixin content-container {
+  max-width: $max-container-width;
+  overflow: hidden;
+
+  margin-inline: auto;
+  padding-inline: 16px;
+
+  @include on-sm {
+    padding-inline: 24px;
+  }
+
+  @include on-xl {
+    padding-inline: 0;
+  }
+}
