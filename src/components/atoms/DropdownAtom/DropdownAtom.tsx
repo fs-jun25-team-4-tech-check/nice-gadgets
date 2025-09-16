@@ -1,30 +1,5 @@
-// Example usage:
-// const HomeLayout = () => {
-//   const [selectedSort, setSelectedSort] = useState('Newest');
-//   const [selectedPageSize, setSelectedPageSize] = useState('16');
-//   return (
-//     <div>
-//       <DropdownAtom
-//         label="Sort by"
-//         placeholder={selectedSort}
-//         items={['Newest', 'Oldest', 'Popular']}
-//         onSelect={(item) => setSelectedSort(item)}
-//         variant="sort"
-//       />
-
-//       <DropdownAtom
-//         label="Items on page"
-//         placeholder={selectedPageSize}
-//         items={['8', '16', '32']}
-//         onSelect={(item) => setSelectedPageSize(item)}
-//         variant="pagination"
-//       />
-//     </div>
-//   );
-// };
-
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import styles from './DropdownAtom.module.scss';
 import classNames from 'classnames';
 import { PiCaretDownBold, PiCaretUpBold } from 'react-icons/pi';
@@ -33,6 +8,7 @@ interface DropdownAtomProps {
   label?: string;
   placeholder?: string;
   items: string[];
+  value?: string;
   onSelect?: (item: string) => void;
   variant?: 'sort' | 'pagination';
 }
@@ -42,20 +18,19 @@ export const DropdownAtom = ({
   items,
   placeholder,
   onSelect,
+  value,
   variant = 'sort',
 }: DropdownAtomProps) => {
   const [open, setOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<string | undefined>(
-    placeholder,
-  );
 
   const variantClass = {
     [styles.dropdownSort]: variant === 'sort',
     [styles.dropdownPagination]: variant === 'pagination',
   };
 
+  const triggerId = useId();
+
   const handleSelect = (item: string) => {
-    setSelectedItem(item);
     onSelect?.(item);
   };
 
@@ -64,12 +39,20 @@ export const DropdownAtom = ({
       open={open}
       onOpenChange={setOpen}
     >
-      {label && <div className={styles.dropdownLabel}>{label}</div>}
+      {label && (
+        <label
+          htmlFor={triggerId}
+          className={styles.dropdownLabel}
+        >
+          {label}
+        </label>
+      )}
       <DropdownMenu.Trigger
+        id={triggerId}
         className={classNames(styles.dropdownTrigger, variantClass)}
       >
         <span className={styles.dropdownPlaceholder}>
-          {selectedItem ?? placeholder ?? ''}
+          {value ?? placeholder ?? ''}
         </span>
         <span className={styles.dropdownIconWrapper}>
           {open ?
