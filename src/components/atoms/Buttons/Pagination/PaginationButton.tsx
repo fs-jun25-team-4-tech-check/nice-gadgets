@@ -1,24 +1,23 @@
 import type React from 'react';
 import styles from './PaginationButton.module.scss';
 import cn from 'classnames';
-
-type Props = {
-  children: React.ReactNode;
-  isSelected?: boolean;
-};
+import SearchLink from '../../Links/SearchLink';
+import type { LinkButtonProps as Props } from '../../../../types/ButtonPropsTypes';
 
 export const PaginationButton: React.FC<Props> = ({
   children,
   isSelected = false,
+  params,
+  className = '',
 }) => {
   return (
-    <button
-      type="button"
-      className={cn(styles.paginationButton, {
+    <SearchLink
+      params={params}
+      className={cn(styles.paginationButton, className, {
         [styles.isSelected]: isSelected,
       })}
     >
       {children}
-    </button>
+    </SearchLink>
   );
 };

@@ -1,18 +1,17 @@
-/* eslint-disable react/prop-types */
+ 
 import { PiCaretLeft as LeftArrow } from 'react-icons/pi';
 import styles from './BackButton.module.scss';
-type Props = {
-  children: React.ReactNode;
-};
+import SearchLink from '../../Links/SearchLink';
+import type { LinkButtonProps as Props } from '../../../../types/ButtonPropsTypes';
 
-export const BackButton: React.FC<Props> = ({ children }) => {
+export const BackButton: React.FC<Props> = ({ children, params }) => {
   return (
-    <button
-      type="button"
+    <SearchLink
+      params={params}
       className={styles.backButton}
     >
       <LeftArrow />
       {children}
-    </button>
+    </SearchLink>
   );
 };

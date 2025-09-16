@@ -1,8 +1,7 @@
-$dark-accent-hover: #a378ff;
-
 .primaryButton {
+  display: block;
   background-color: $dark-accent;
-  color: #f1f2f9;
+  color: $dark-white;
   font-size: 14px;
   padding-inline: 60px;
   padding-block: 9px;
