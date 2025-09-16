@@ -30,6 +30,8 @@ export default tseslint.config(
 
       'react/react-in-jsx-scope': 'off', // This rule is included in "recommended", but since React 17 it is not needed!
 
+      'react/prop-types': 'off',
+
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
