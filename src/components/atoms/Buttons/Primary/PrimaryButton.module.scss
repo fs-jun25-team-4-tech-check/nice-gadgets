@@ -1,0 +1,26 @@
+.primaryButton {
+  display: block;
+  background-color: $dark-accent;
+  color: $dark-white;
+  font-size: 14px;
+  padding-inline: 60px;
+  padding-block: 9px;
+  border: 0;
+  cursor: pointer;
+  width: 100%;
+
+  &:hover {
+    background-color: $dark-accent-hover;
+  }
+
+  &:disabled {
+    border: 1px solid $dark-elements;
+    background-color: $dark-surface-1;
+    color: $dark-surface-2;
+    cursor: default;
+  }
+}
+
+.isSelected {
+  background-color: $dark-surface-2;
+}
