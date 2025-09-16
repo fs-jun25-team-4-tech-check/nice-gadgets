@@ -2,14 +2,16 @@
   background-color: $dark-surface-1;
   border-top: 1px solid $dark-elements;
   color: $dark-white;
-  height: 96px;
+  height: auto;
   display: flex;
   align-items: center;
-  padding: 32px;
+  padding: 32px 16px;
 
   .container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
+    gap: 32px;
+    text-align: center;
     align-items: center;
     width: 100%;
     max-width: $max-container-width;
@@ -23,8 +25,9 @@
 
   .nav {
     display: flex;
-    width: 100%;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 13.5px;
 
     a {
       color: $dark-white;
@@ -34,31 +37,41 @@
 
   .backToTop {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .backToTopButton {
+    display: flex;
+    align-items: center;
     gap: 16px;
+    background-color: $dark-surface-1;
+    border: 0px;
     color: $dark-secondary;
   }
-}
 
-@media (max-width: $breakpoint-sm) {
-  .footer {
-    height: auto;
-    padding: 32px 16px;
+  .chevronIcon {
+    background-color: $dark-surface-2;
+    color: $dark-white;
+    padding: 4px;
+  }
+
+  @include on-sm {
+    height: 96px;
+    padding: 32px;
 
     .container {
-      grid-template-columns: 1fr;
-      gap: 32px;
-      text-align: center;
+      grid-template-columns: repeat(3, 1fr);
     }
 
     .nav {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 16px;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .backToTop {
-      justify-content: center;
+      justify-content: flex-end;
       align-items: center;
     }
   }

@@ -38,12 +38,16 @@ export const Footer: React.FC = () => {
           </NavLink>
         </nav>
         <div className={styles.backToTop}>
-          <span className="small">Back to top</span>
-          <button onClick={scrollToTop}>
+          <button
+            onClick={scrollToTop}
+            className={styles.backToTopButton}
+          >
+            <small>Back to top</small>
             <img
+              className={styles.chevronIcon}
               src="src\assets\icons\navigation\chevron-arrow-up.svg"
               alt="Back to top"
-            ></img>
+            />
           </button>
         </div>
       </div>
