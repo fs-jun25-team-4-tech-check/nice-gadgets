@@ -15,7 +15,7 @@ function App() {
             index
             element={<HomePage />}
           />
-          <Route path="catalog/:sortBy?/:itemsPerPage?" />
+          <Route path="catalog/:category/:sortBy?/:itemsPerPage?" />
           <Route path="item/:productId" />
           <Route path="favourites" />
           <Route path="cart" />
