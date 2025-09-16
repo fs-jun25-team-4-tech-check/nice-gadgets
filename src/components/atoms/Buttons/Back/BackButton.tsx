@@ -1,4 +1,3 @@
- 
 import { PiCaretLeft as LeftArrow } from 'react-icons/pi';
 import styles from './BackButton.module.scss';
 import SearchLink from '../../Links/SearchLink';

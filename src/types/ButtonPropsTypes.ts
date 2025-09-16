@@ -7,14 +7,15 @@ export interface BaseButtonProps {
   isSelected?: boolean;
 }
 
-export interface SliderButtonProps extends Omit<BaseButtonProps, 'isSelected'> {
-  direction: 'left' | 'right';
-  disabled?: boolean;
-}
-
 export interface LinkButtonProps extends BaseButtonProps {
   params: SearchParams;
 }
 export interface ColorButtonProps extends BaseButtonProps {
   color?: string;
+}
+export interface ActionButtonProps extends BaseButtonProps {
+  direction?: 'left' | 'right';
+  disabled?: boolean;
+  params?: SearchParams;
+  variant: 'pagination' | 'favourites' | 'slider';
 }
