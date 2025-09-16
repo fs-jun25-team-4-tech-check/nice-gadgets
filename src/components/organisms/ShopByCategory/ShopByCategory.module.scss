@@ -22,7 +22,6 @@
     object-position: 60px 60px;
 
     &Wrapper {
-      overflow: hidden;
       background-color: $dark-secondary;
       margin-bottom: 24px;
     }
@@ -37,5 +36,6 @@
 
   &_modelsNumber {
     color: $dark-secondary;
+    cursor: default;
   }
 }

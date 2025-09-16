@@ -41,16 +41,22 @@ export const ShopByCategory = () => {
               key={category.name}
               className={styles.categories_card}
             >
-              <div
+              <Link
                 style={{ backgroundColor: backgroundColors[i] }}
                 className={styles.categories_imageWrapper}
+                to={`/catalog/${category.slug}`}
               >
-                <img
-                  className={styles.categories_image}
-                  src={category.imgLink}
-                  alt={category.name}
-                />
-              </div>
+                <div
+                  style={{ backgroundColor: backgroundColors[i] }}
+                  className={styles.categories_imageWrapper}
+                >
+                  <img
+                    className={styles.categories_image}
+                    src={category.imgLink}
+                    alt={category.name}
+                  />
+                </div>
+              </Link>
               <Link
                 className={styles.categories_link}
                 to={`/catalog/${category.slug}`}
