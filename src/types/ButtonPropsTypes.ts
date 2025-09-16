@@ -10,12 +10,18 @@ export interface BaseButtonProps {
 export interface LinkButtonProps extends BaseButtonProps {
   params: SearchParams;
 }
-export interface ColorButtonProps extends BaseButtonProps {
+export interface PrimaryButtonProps extends BaseButtonProps {
+  disabled?: boolean;
   color?: string;
 }
+
 export interface ActionButtonProps extends BaseButtonProps {
   direction?: 'left' | 'right';
   disabled?: boolean;
   params?: SearchParams;
   variant: 'pagination' | 'favourites' | 'slider';
+}
+
+export interface ColorButtonProps extends BaseButtonProps {
+  color?: string;
 }

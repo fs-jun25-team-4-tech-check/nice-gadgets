@@ -6,6 +6,7 @@
   border-radius: 50%;
   border: 2px solid $dark-black;
   outline: 1px solid $dark-elements;
+  cursor: pointer;
 
   &:hover {
     outline-color: $dark-secondary;

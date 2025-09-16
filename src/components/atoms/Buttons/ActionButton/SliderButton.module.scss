@@ -9,9 +9,12 @@
   background-color: $dark-surface-2;
   border: 0;
   color: $dark-white;
+  cursor: pointer;
+
   &:hover {
     background-color: $dark-icons;
   }
+
   &:disabled {
     border: 1px solid $dark-elements;
     background-color: $dark-surface-1;

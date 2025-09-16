@@ -1,6 +1,6 @@
 import SearchLink from '../../Links/SearchLink';
 import cn from 'classnames';
-import pagintionStyles from './PaginationButton.module.scss';
+import paginationStyles from './PaginationButton.module.scss';
 import toFavoriteStyles from './ToFavorites.module.scss';
 import sliderStyles from './SliderButton.module.scss';
 import { VscHeart as HeartIcon } from 'react-icons/vsc';
@@ -9,7 +9,7 @@ import { PiCaretLeft as LeftArrow } from 'react-icons/pi';
 import { PiCaretRight as RightArrow } from 'react-icons/pi';
 import type { ActionButtonProps as Props } from '../../../../types/ButtonPropsTypes';
 
-export const ActionButton: React.FC<Props> = ({
+const ActionButton: React.FC<Props> = ({
   variant,
   children,
   params = {},
@@ -24,8 +24,8 @@ export const ActionButton: React.FC<Props> = ({
       {variant === 'pagination' && (
         <SearchLink
           params={params}
-          className={cn(pagintionStyles.paginationButton, className, {
-            [pagintionStyles.isSelected]: isSelected,
+          className={cn(paginationStyles.paginationButton, className, {
+            [paginationStyles.isSelected]: isSelected,
           })}
         >
           {children}
@@ -60,3 +60,5 @@ export const ActionButton: React.FC<Props> = ({
     </>
   );
 };
+
+export default ActionButton;
