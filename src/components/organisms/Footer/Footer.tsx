@@ -9,16 +9,15 @@ export const Footer: React.FC = () => {
 
   return (
     <footer className={styles.footer}>
-      <div className={styles.footer__container}>
-        <div className={styles.footer__logo}>
+      <div className={styles.container}>
+        <div className={styles.logo}>
           <img
             src="src\assets\icons\brand\logo.svg"
-            className={styles.footer__img}
             alt="logo"
           />
         </div>
 
-        <nav className={styles.footer__nav}>
+        <nav className={styles.nav}>
           <a
             className="uppercase-text"
             href="https://github.com/fs-jun25-team-4-tech-check/nice-gadgets"
@@ -38,7 +37,7 @@ export const Footer: React.FC = () => {
             Rights
           </NavLink>
         </nav>
-        <div className={styles.footer__backToTop}>
+        <div className={styles.backToTop}>
           <span className="small">Back to top</span>
           <button onClick={scrollToTop}>
             <img
