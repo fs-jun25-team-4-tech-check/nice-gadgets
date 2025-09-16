@@ -1,0 +1,18 @@
+.backButton {
+  display: flex;
+  color: $dark-white;
+  font-size: 12px;
+  background: none;
+  border: 0;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+
+  &:hover {
+    color: $dark-accent;
+  }
+
+  .textSpan {
+    padding-top: 2px;
+  }
+}

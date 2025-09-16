@@ -1,0 +1,18 @@
+.colorButton {
+  box-sizing: border-box;
+  background-color: #fcdbc1;
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  border: 2px solid $dark-black;
+  outline: 1px solid $dark-elements;
+  cursor: pointer;
+
+  &:hover {
+    outline-color: $dark-secondary;
+  }
+}
+
+.isSelected {
+  outline-color: $dark-white;
+}

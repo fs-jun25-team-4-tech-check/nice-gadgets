@@ -1,0 +1,27 @@
+.toFavoritesButton {
+  width: 40px;
+  height: 40px;
+  background-color: $dark-surface-2;
+  border: 0;
+  padding: 12px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $dark-icons;
+  }
+}
+
+.toFavoritesButtonSelected {
+  background-color: $dark-black;
+  border: 1px solid $dark-elements;
+}
+
+.toFavoritesSelectedIcon {
+  fill: $dark-red;
+  font-size: 16px;
+}
+
+.toFavoritesIcon {
+  fill: $dark-white;
+  font-size: 16px;
+}
