@@ -1,0 +1,28 @@
+.sliderWrapper {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+.sliderContent {
+  display: flex;
+  justify-content: space-between;
+}
+.sliderButtons {
+  display: flex;
+  justify-content: end;
+  gap: 16px;
+}
+.cardsWrapper {
+  display: flex;
+}
+.cardMock {
+  width: 272px;
+  height: 576px;
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

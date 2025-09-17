@@ -1,0 +1,52 @@
+.sliderInnerWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  gap: 16px;
+}
+
+.slideImage {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  display: block;
+}
+
+.prev,
+.next {
+  flex: 0 0 32px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paginationContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.paginationBullet {
+  display: inline-block;
+  width: 14px;
+  height: 4px;
+  margin: 0 4px;
+  border-radius: 2px;
+  background-color: #3a3a3a;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+:global(.swiper-pagination-bullet-active).paginationBullet {
+  background-color: #fff;
+}
+
+@media (max-width: 639px) {
+  .prev,
+  .next {
+    display: none;
+  }
+}

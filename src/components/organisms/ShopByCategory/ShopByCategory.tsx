@@ -12,6 +12,7 @@ export const ShopByCategory: React.FC<Props> = ({ categories }) => {
 
   return (
     <>
+      <h2 className={styles.header}>Shop by category</h2>
       <section className={styles.categories}>
         {categories.map((category) => {
           return (
