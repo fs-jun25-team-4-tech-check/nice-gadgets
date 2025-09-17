@@ -13,8 +13,6 @@ export type ProductDetails = Phone | Tablet | Accessory;
 // TODO: Move somewhere else or make a better solution
 export type ProductCategory = 'phones' | 'tablets' | 'accessories';
 
-let allProductsCache: Product[] | null = null;
-
 function paginateData<T>(
   data: T[],
   page: number = 1,
@@ -69,19 +67,10 @@ async function fetchData<T>(endpoint: string): Promise<T> {
   return res.json();
 }
 
-export function clearProductsCache(): void {
-  allProductsCache = null;
-}
-
 export async function getAllProducts(): Promise<Product[]> {
-  if (allProductsCache) {
-    return [...allProductsCache];
-  }
-
   const products = await fetchData<Product[]>(API_ENDPOINTS.PRODUCTS);
-  allProductsCache = addFullImagePaths(products);
 
-  return [...allProductsCache];
+  return addFullImagePaths(products);
 }
 
 // TODO: make better fetch? `/products?page=1&perPage=12`
