@@ -14,23 +14,25 @@
   .logo {
     width: 128px;
     padding: 18px 24px;
-    display: flex;
-    align-items: center;
   }
 
   .nav {
-    display: flex;
+    display: none;
     align-items: center;
     gap: 64px;
     width: 425px;
 
-    a {
-      position: relative;
-      color: $dark-secondary;
-      text-decoration: none;
+    @include on-md {
+      display: flex;
 
-      &:hover {
-        color: $dark-white;
+      a {
+        position: relative;
+        color: $dark-secondary;
+        text-decoration: none;
+
+        &:hover {
+          color: $dark-white;
+        }
       }
     }
   }
@@ -55,19 +57,37 @@
     align-items: center;
     flex-grow: 1;
     gap: 0;
+  }
+  .iconLink {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 64px;
+    width: 64px;
+    border-left: 1px solid $dark-elements;
 
-    a {
-      position: relative;
+    .icon {
+      color: $dark-white;
+      font-size: 16px;
+    }
+  }
+
+  .desktopIcons {
+    display: none;
+
+    @include on-md {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 64px;
-      width: 64px;
+    }
+  }
 
-      &:first-child {
-        border-right: 1px solid $dark-elements;
-        border-left: 1px solid $dark-elements;
-      }
+  .burgerButton {
+    border: 0;
+    background: none;
+    border-left: 1px solid $dark-elements;
+
+    @include on-md {
+      display: none;
     }
   }
 }

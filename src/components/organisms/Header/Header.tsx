@@ -1,8 +1,9 @@
 import styles from './Header.module.scss';
 import { NavLink } from 'react-router-dom';
 import logo from './../../../assets/icons/brand/logo.svg';
-import cartIcon from './../../../assets/icons/ecommerce/shopping-cart.svg';
-import favoritesIcon from './../../../assets/icons/ecommerce/heart.svg';
+import { VscHeart } from 'react-icons/vsc';
+import { FiShoppingBag } from 'react-icons/fi';
+import { RxHamburgerMenu } from 'react-icons/rx';
 
 const Header = () => {
   return (
@@ -52,22 +53,19 @@ const Header = () => {
       <div className={styles.icons}>
         <NavLink
           to="/favorites"
-          className={styles.iconLink}
+          className={`${styles.iconLink} ${styles.desktopIcons}`}
         >
-          <img
-            src={favoritesIcon}
-            alt="Favorites"
-          />
+          <VscHeart className={styles.icon} />
         </NavLink>
         <NavLink
           to="/cart"
-          className={styles.iconLink}
+          className={`${styles.iconLink} ${styles.desktopIcons}`}
         >
-          <img
-            src={cartIcon}
-            alt="Cart"
-          />
+          <FiShoppingBag className={styles.icon} />
         </NavLink>
+        <button className={`${styles.iconLink} ${styles.burgerButton}`}>
+          <RxHamburgerMenu className={styles.icon} />
+        </button>
       </div>
     </header>
   );
