@@ -3,11 +3,18 @@ import { FiShoppingBag } from 'react-icons/fi';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { NavLink } from 'react-router-dom';
 import styles from './HeaderButton.module.scss';
+import cn from 'classnames';
 
 type Props = {
   variant: 'cart' | 'favourites' | 'burger';
   onClick?: () => void;
   notifCount?: number;
+};
+
+const getHeaderLinkClass = ({ isActive }: { isActive: boolean }) => {
+  return cn(`${styles.iconLink} ${styles.desktopIcons}`, {
+    [styles.activeLink]: isActive,
+  });
 };
 
 export const HeaderButton: React.FC<Props> = ({
@@ -19,7 +26,7 @@ export const HeaderButton: React.FC<Props> = ({
       {variant === 'cart' && (
         <NavLink
           to="/cart"
-          className={`${styles.iconLink} ${styles.desktopIcons}`}
+          className={getHeaderLinkClass}
         >
           <FiShoppingBag className={styles.icon} />
         </NavLink>
@@ -27,7 +34,7 @@ export const HeaderButton: React.FC<Props> = ({
       {variant === 'favourites' && (
         <NavLink
           to="/favorites"
-          className={`${styles.iconLink} ${styles.desktopIcons}`}
+          className={getHeaderLinkClass}
         >
           <VscHeart className={styles.icon} />
         </NavLink>
