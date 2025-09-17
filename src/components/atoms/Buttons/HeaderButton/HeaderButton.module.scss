@@ -1,0 +1,33 @@
+.iconLink {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+  width: 64px;
+  border-left: 1px solid $dark-elements;
+
+  .icon {
+    color: $dark-white;
+    font-size: 16px;
+  }
+}
+
+.desktopIcons {
+  display: none;
+
+  @include on-md {
+    display: flex;
+  }
+}
+
+.burgerButton {
+  padding: 0;
+  border: 0;
+  background: none;
+  border-left: 1px solid $dark-elements;
+
+  @include on-md {
+    display: none;
+  }
+}
