@@ -1,0 +1,41 @@
+.categories {
+  @include page-grid;
+  row-gap: 32px;
+  margin-top: 24px;
+
+  &_card {
+    grid-column: span 4;
+
+    @include on-md {
+      grid-column: span 4;
+    }
+
+    @include on-xl {
+      grid-column: span 8;
+    }
+  }
+
+  &_image {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    object-position: 60px 60px;
+
+    &Wrapper {
+      background-color: $dark-secondary;
+      margin-bottom: 24px;
+    }
+  }
+
+  &_link {
+    @extend h4;
+    text-decoration: none;
+    color: $dark-white;
+    font-weight: normal;
+  }
+
+  &_modelsNumber {
+    color: $dark-secondary;
+    cursor: default;
+  }
+}
