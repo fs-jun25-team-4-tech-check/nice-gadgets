@@ -1,3 +1,11 @@
+export interface PaginatedResponse<T> {
+  data: T[];
+  totalPages: number;
+  totalItems: number;
+  currentPage: number;
+  perPage: number;
+}
+
 export interface Product {
   id: number;
   category: string;

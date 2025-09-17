@@ -1,0 +1,64 @@
+.iconLink {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+  width: 64px;
+  border-left: 1px solid $dark-elements;
+  .iconWrapper {
+    position: relative;
+
+    .notifCount {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      right: -8px;
+      top: -8px;
+      background-color: $dark-red;
+      color: $dark-white;
+      border-radius: 50%;
+      font-size: 10px;
+      width: 17px;
+      height: 17px;
+      line-height: 1;
+      border: 2px solid black;
+    }
+  }
+}
+.icon {
+  color: $dark-white;
+  font-size: 16px;
+}
+
+.activeLink {
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: $dark-white;
+  }
+}
+
+.desktopIcons {
+  display: none;
+
+  @include on-md {
+    display: flex;
+  }
+}
+
+.burgerButton {
+  padding: 0;
+  border: 0;
+  background: none;
+  border-left: 1px solid $dark-elements;
+
+  @include on-md {
+    display: none;
+  }
+}
