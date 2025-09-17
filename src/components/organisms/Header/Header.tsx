@@ -26,7 +26,7 @@ const Header = () => {
           Home
         </NavLink>
         <NavLink
-          to="/phones"
+          to="/catalog/phones"
           className={({ isActive }) =>
             `uppercase-text ${styles.navLink} ${isActive ? styles.active : ''}`
           }
@@ -34,7 +34,7 @@ const Header = () => {
           Phones
         </NavLink>
         <NavLink
-          to="/tablets"
+          to="/catalog/tablets"
           className={({ isActive }) =>
             `uppercase-text ${styles.navLink} ${isActive ? styles.active : ''}`
           }
@@ -42,7 +42,7 @@ const Header = () => {
           Tablets
         </NavLink>
         <NavLink
-          to="/accessories"
+          to="/catalog/accesories"
           className={({ isActive }) =>
             `uppercase-text ${styles.navLink} ${isActive ? styles.active : ''}`
           }
