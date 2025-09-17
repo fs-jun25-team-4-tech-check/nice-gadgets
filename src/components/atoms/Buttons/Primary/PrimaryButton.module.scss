@@ -2,12 +2,10 @@
   display: block;
   background-color: $dark-accent;
   color: $dark-white;
-  font-size: 14px;
-  padding-inline: 60px;
-  padding-block: 9px;
+  padding: 0;
   border: 0;
   cursor: pointer;
-  width: 100%;
+  flex-grow: 1;
 
   &:hover {
     background-color: $dark-accent-hover;
