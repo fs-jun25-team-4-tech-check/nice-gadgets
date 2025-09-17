@@ -1,53 +1,31 @@
 import { Link } from 'react-router-dom';
-import type { Category } from '../../../types/Category';
 import styles from './ShopByCategory.module.scss';
+import type { CategoryBanner } from '../../../types/Category';
+import type React from 'react';
 
-const categories: Category[] = [
-  {
-    name: 'Mobile Phones',
-    imgLink: 'src/assets/images/categories/category-phones.png',
-    numberOfModels: 95,
-    slug: 'phones',
-  },
-  {
-    name: 'Tablets',
-    imgLink: 'src/assets/images/categories/category-tablets.png',
-    numberOfModels: 24,
-    slug: 'tablets',
-  },
-  {
-    name: 'Accesories',
-    imgLink: 'src/assets/images/categories/category-accessories.png',
-    numberOfModels: 100,
-    slug: 'accesories',
-  },
-];
-
-const colors = {
-  grey: '#75767f',
-  spaceGrey: '#3b3e4a',
-  darkRed: '#8b1d1dff',
+type Props = {
+  categories: CategoryBanner[];
 };
 
-export const ShopByCategory = () => {
-  const backgroundColors = [colors.grey, colors.spaceGrey, colors.darkRed];
+export const ShopByCategory: React.FC<Props> = ({ categories }) => {
+  const baseCategoryUrl = '/catalog';
+
   return (
     <>
-      <h2>Shop by category</h2>
       <section className={styles.categories}>
-        {categories.map((category, i) => {
+        {categories.map((category) => {
           return (
             <div
-              key={category.name}
+              key={category.categorySlug}
               className={styles.categories_card}
             >
               <Link
-                style={{ backgroundColor: backgroundColors[i] }}
+                style={{ backgroundColor: category.backgroundColor }}
                 className={styles.categories_imageWrapper}
-                to={`/catalog/${category.slug}`}
+                to={`${baseCategoryUrl}/${category.categorySlug}`}
               >
                 <div
-                  style={{ backgroundColor: backgroundColors[i] }}
+                  style={{ backgroundColor: category.backgroundColor }}
                   className={styles.categories_imageWrapper}
                 >
                   <img
@@ -57,14 +35,16 @@ export const ShopByCategory = () => {
                   />
                 </div>
               </Link>
+
               <Link
                 className={styles.categories_link}
-                to={`/catalog/${category.slug}`}
+                to={`${baseCategoryUrl}/${category.categorySlug}`}
               >
                 {category.name}
               </Link>
+
               <p className={styles.categories_modelsNumber}>
-                {category.numberOfModels} models
+                {category.productCount} models
               </p>
             </div>
           );
