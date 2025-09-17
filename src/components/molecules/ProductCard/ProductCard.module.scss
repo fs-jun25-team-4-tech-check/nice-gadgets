@@ -96,21 +96,6 @@
     gap: 8px;
     margin-top: auto;
   }
-
-  .addButton {
-    padding: 8px 12px;
-    background-color: $dark-accent;
-    color: $dark-white;
-    font-weight: 500;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.2s ease;
-
-    @include on-md {
-      width: 100%;
-    }
-  }
 }
 
 .image {
