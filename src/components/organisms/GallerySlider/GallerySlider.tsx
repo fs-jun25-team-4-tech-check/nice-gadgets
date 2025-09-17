@@ -1,13 +1,20 @@
+// src/components/organisms/GallerySlider/GallerySlider.tsx
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import { ActionButton } from '../../atoms';
+import { SCREEN_WIDTH } from '../../../constants/screenWidth';
+
+import type { GallerySliderItem } from '../../../types/GallerySliderItem.ts';
 
 import 'swiper/swiper.css';
+import styles from './GallerySlider.module.scss';
 
-import styles from './MainSlider.module.scss';
+interface GallerySliderProps {
+  slides: GallerySliderItem[];
+}
 
-export const MainSlider: React.FC = () => {
+export const GallerySlider: React.FC<GallerySliderProps> = ({ slides }) => {
   return (
     <div className={styles.sliderWrapper}>
       <div className={styles.sliderInnerWrapper}>
@@ -32,31 +39,21 @@ export const MainSlider: React.FC = () => {
               `<span class="${className} ${styles.paginationBullet}"></span>`,
           }}
           breakpoints={{
-            640: { slidesPerView: 1 },
-            1200: { slidesPerView: 1 },
+            [SCREEN_WIDTH.SLIDER_TABLET]: { slidesPerView: 1 },
+            [SCREEN_WIDTH.SLIDER_DESKTOP]: { slidesPerView: 1 },
           }}
         >
-          <SwiperSlide>
-            <img
-              src="/img/phones/apple-iphone-14-slider/slider-image-iphone-14.webp"
-              alt="iPhone 14"
-              className={styles.slideImage}
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img
-              src="/img/phones/apple-iphone-14-slider/slider-image-iphone-14.webp"
-              alt="iPhone 14"
-              className={styles.slideImage}
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img
-              src="/img/phones/apple-iphone-14-slider/slider-image-iphone-14.webp"
-              alt="iPhone 14"
-              className={styles.slideImage}
-            />
-          </SwiperSlide>
+          {slides.map((slide, index) => (
+            <SwiperSlide key={index}>
+              <a href={slide.linkUrl}>
+                <img
+                  src={slide.imgUrl}
+                  alt={slide.alt}
+                  className={styles.slideImage}
+                />
+              </a>
+            </SwiperSlide>
+          ))}
         </Swiper>
 
         <ActionButton

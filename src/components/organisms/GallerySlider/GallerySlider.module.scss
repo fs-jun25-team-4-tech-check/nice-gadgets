@@ -1,3 +1,4 @@
+@use '../../../styles/variables';
 .sliderInnerWrapper {
   display: flex;
   justify-content: center;
@@ -21,6 +22,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: #{$breakpoint-md-slider}) {
+    display: none;
+  }
 }
 
 .paginationContainer {
@@ -44,9 +49,6 @@
   background-color: #fff;
 }
 
-@media (max-width: 639px) {
-  .prev,
-  .next {
-    display: none;
-  }
+.prev,
+.next {
 }
