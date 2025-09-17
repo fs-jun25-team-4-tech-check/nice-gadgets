@@ -13,6 +13,11 @@ export interface Product {
   image: string;
 }
 
+export interface PaginatedProducts {
+  products: Product[];
+  totalPages: number;
+}
+
 export interface PhoneDescription {
   title: string;
   text: string[];

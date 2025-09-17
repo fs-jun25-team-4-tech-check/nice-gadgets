@@ -1,7 +1,18 @@
-import type { Product, Phone, Tablet, Accessory } from '../types';
+import type {
+  // Product,
+  Phone,
+  Tablet,
+  Accessory,
+  PaginatedProducts,
+} from '../types';
 import { BASE_URL, API_ENDPOINTS } from '../constants';
 
-async function fetchData<T>(endpoint: string): Promise<T[]> {
+// type CategoryPaginationProps = {
+//   page: number;
+//   perPage: number | 'all';
+// };
+
+async function fetchData<T>(endpoint: string): Promise<T> {
   const res = await fetch(`${BASE_URL}/${endpoint}`);
   if (!res.ok) {
     throw new Error(`Failed to fetch ${endpoint}`);
@@ -9,13 +20,30 @@ async function fetchData<T>(endpoint: string): Promise<T[]> {
   return res.json();
 }
 
-export async function getProducts(): Promise<Product[]> {
-  const products = await fetchData<Product>(API_ENDPOINTS.PRODUCTS);
+export async function getProducts(
+  page: number,
+  perPage: number | 'all',
+): Promise<PaginatedProducts> {
+  const urlParams = new URLSearchParams();
+  urlParams.append('page', String(page));
 
-  return products.map((product) => ({
+  if (perPage !== 'all') {
+    urlParams.append('perPage', String(perPage));
+  }
+
+  const url = `${API_ENDPOINTS.PRODUCTS}?${urlParams.toString()}`;
+
+  const data = await fetchData<PaginatedProducts>(url);
+
+  const productsWithFullImagePaths = data.products.map((product) => ({
     ...product,
     image: `${BASE_URL}/${product.image}`,
   }));
+
+  return {
+    ...data,
+    products: productsWithFullImagePaths,
+  };
 }
 
 export async function getPhones(): Promise<Phone[]> {
