@@ -52,7 +52,7 @@ export const Footer: React.FC = () => {
         </nav>
 
         <div className={styles.backToTop}>
-          <small>Back to top</small>
+          <small onClick={scrollToTop}>Back to top</small>
           <ActionButton
             variant="slider"
             onClick={scrollToTop}
