@@ -24,12 +24,18 @@
   }
 
   .nav {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 13.5px;
+    .list {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 13.5px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
 
-    a {
+    a,
+    .list a {
       color: $dark-white;
       text-decoration: none;
     }
@@ -39,22 +45,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-
-  .backToTopButton {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    background-color: $dark-surface-1;
-    border: 0px;
     color: $dark-secondary;
-    cursor: pointer;
-  }
-
-  .chevronIcon {
-    background-color: $dark-surface-2;
-    color: $dark-white;
-    padding: 4px;
+    gap: 16px;
   }
 
   @include on-sm {
@@ -64,11 +56,12 @@
     .container {
       grid-template-columns: repeat(3, 1fr);
     }
-
     .nav {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
+      .list {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
     }
 
     .backToTop {

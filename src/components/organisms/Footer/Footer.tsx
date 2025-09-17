@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Footer.module.scss';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { ActionButton } from '../../atoms';
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -11,44 +12,52 @@ export const Footer: React.FC = () => {
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.logo}>
-          <img
-            src="src\assets\icons\brand\logo.svg"
-            alt="logo"
-          />
+          <Link to="/">
+            <img
+              src="src/assets/icons/brand/logo.svg"
+              alt="Nice Gadgets logo"
+            />
+          </Link>
         </div>
 
         <nav className={styles.nav}>
-          <a
-            className="uppercase-text"
-            href="https://github.com/fs-jun25-team-4-tech-check/nice-gadgets"
-          >
-            Github
-          </a>
-          <NavLink
-            to="/contacts"
-            className="uppercase-text"
-          >
-            Contacts
-          </NavLink>
-          <NavLink
-            to="/rights"
-            className="uppercase-text"
-          >
-            Rights
-          </NavLink>
+          <ul className={styles.list}>
+            <li>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                className="uppercase-text"
+                href="https://github.com/fs-jun25-team-4-tech-check/nice-gadgets"
+              >
+                Github
+              </a>
+            </li>
+            <li>
+              <Link
+                to="/contacts"
+                className="uppercase-text"
+              >
+                Contacts
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/rights"
+                className="uppercase-text"
+              >
+                Rights
+              </Link>
+            </li>
+          </ul>
         </nav>
+
         <div className={styles.backToTop}>
-          <button
+          <small>Back to top</small>
+          <ActionButton
+            variant="slider"
             onClick={scrollToTop}
-            className={styles.backToTopButton}
-          >
-            <small>Back to top</small>
-            <img
-              className={styles.chevronIcon}
-              src="src\assets\icons\navigation\chevron-arrow-up.svg"
-              alt="Back to top"
-            />
-          </button>
+            direction="up"
+          ></ActionButton>
         </div>
       </div>
     </footer>

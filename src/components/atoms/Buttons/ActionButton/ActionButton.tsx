@@ -7,6 +7,7 @@ import { VscHeart as HeartIcon } from 'react-icons/vsc';
 import { VscHeartFilled as FilledHeartIcon } from 'react-icons/vsc';
 import { PiCaretLeft as LeftArrow } from 'react-icons/pi';
 import { PiCaretRight as RightArrow } from 'react-icons/pi';
+import { PiCaretUpBold as UpArrow } from 'react-icons/pi';
 import type { ActionButtonProps as Props } from '../../../../types/ButtonPropsTypes';
 
 const ActionButton: React.FC<Props> = ({
@@ -54,6 +55,8 @@ const ActionButton: React.FC<Props> = ({
         >
           {direction === 'left' ?
             <LeftArrow />
+          : direction === 'up' ?
+            <UpArrow />
           : <RightArrow />}
         </button>
       )}
