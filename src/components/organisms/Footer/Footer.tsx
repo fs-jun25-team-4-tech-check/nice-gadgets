@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Footer.module.scss';
+import logo from '../../../assets/icons/brand/logo.svg';
 import { Link } from 'react-router-dom';
 import { ActionButton } from '../../atoms';
 
@@ -14,7 +15,7 @@ export const Footer: React.FC = () => {
         <div className={styles.logo}>
           <Link to="/">
             <img
-              src="src/assets/icons/brand/logo.svg"
+              src={logo}
               alt="Nice Gadgets logo"
             />
           </Link>
