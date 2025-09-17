@@ -16,7 +16,7 @@ export interface PrimaryButtonProps extends BaseButtonProps {
 }
 
 export interface ActionButtonProps extends BaseButtonProps {
-  direction?: 'left' | 'right';
+  direction?: 'left' | 'right' | 'up';
   disabled?: boolean;
   params?: SearchParams;
   variant: 'pagination' | 'favourites' | 'slider';
