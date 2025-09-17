@@ -9,10 +9,11 @@ type Props = {
   variant: 'cart' | 'favourites' | 'burger';
   onClick?: () => void;
   notifCount?: number;
+  className?: string;
 };
 
 const getHeaderLinkClass = ({ isActive }: { isActive: boolean }) => {
-  return cn(`${styles.iconLink} ${styles.desktopIcons}`, {
+  return cn(styles.iconLink, styles.desktopIcons, {
     [styles.activeLink]: isActive,
   });
 };
@@ -20,33 +21,37 @@ const getHeaderLinkClass = ({ isActive }: { isActive: boolean }) => {
 export const HeaderButton: React.FC<Props> = ({
   variant,
   onClick = () => {},
+  notifCount = 0,
 }) => {
-  return (
-    <>
-      {variant === 'cart' && (
-        <NavLink
-          to="/cart"
-          className={getHeaderLinkClass}
-        >
-          <FiShoppingBag className={styles.icon} />
-        </NavLink>
-      )}
-      {variant === 'favourites' && (
-        <NavLink
-          to="/favorites"
-          className={getHeaderLinkClass}
-        >
-          <VscHeart className={styles.icon} />
-        </NavLink>
-      )}
-      {variant === 'burger' && (
-        <button
-          onClick={onClick}
-          className={`${styles.iconLink} ${styles.burgerButton}`}
-        >
-          <RxHamburgerMenu className={styles.icon} />
-        </button>
-      )}
-    </>
-  );
+  const toShowNotifCount = notifCount > 0;
+  const displayCount = notifCount > 99 ? '99' : notifCount;
+
+  if (variant === 'cart' || variant === 'favourites') {
+    const Icon = variant === 'cart' ? FiShoppingBag : VscHeart;
+    const route = `/${variant}`;
+
+    return (
+      <NavLink
+        to={route}
+        className={getHeaderLinkClass}
+      >
+        <div className={styles.iconWrapper}>
+          <Icon className={styles.icon} />
+          {toShowNotifCount && (
+            <span className={styles.notifCount}>{displayCount}</span>
+          )}
+        </div>
+      </NavLink>
+    );
+  }
+  if (variant === 'burger') {
+    return (
+      <button
+        onClick={onClick}
+        className={`${styles.iconLink} ${styles.burgerButton}`}
+      >
+        <RxHamburgerMenu className={styles.icon} />
+      </button>
+    );
+  }
 };
