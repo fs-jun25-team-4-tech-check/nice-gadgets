@@ -107,10 +107,6 @@
     border-radius: 4px;
     transition: background-color 0.2s ease;
 
-    &:hover {
-      background-color: lighten($dark-accent, 5%);
-    }
-
     @include on-md {
       width: 100%;
     }
@@ -126,13 +122,13 @@
 .card.grid-item {
   width: 100%;
   height: auto;
+  max-width: 224px;
 
   .imageWrapper {
     width: 100%;
-    max-width: 208px;
 
     @include on-md {
-      max-width: 173px;
+      max-width: 224px;
     }
 
     @include on-lg {

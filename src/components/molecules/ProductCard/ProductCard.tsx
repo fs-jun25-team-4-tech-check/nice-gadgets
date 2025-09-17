@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import styles from './ProductCard.module.scss';
 import { ActionButton, PrimaryButton } from '../../atoms';
 
@@ -12,6 +11,8 @@ interface ProductCardProps {
   ram: string;
   onAddToCart?: () => void;
   onAddToFavorites?: () => void;
+  isInCart: boolean;
+  isFavorite: boolean;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -24,17 +25,14 @@ const ProductCard: React.FC<ProductCardProps> = ({
   ram,
   onAddToCart,
   onAddToFavorites,
+  isInCart,
+  isFavorite,
 }) => {
-  const [isInCart, setIsInCart] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(false);
-
   const handleAddToCart = () => {
-    setIsInCart(true);
     onAddToCart?.();
   };
 
   const handleAddToFavorites = () => {
-    setIsFavorite((prev) => !prev); // toggle
     onAddToFavorites?.();
   };
 
