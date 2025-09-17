@@ -8,12 +8,15 @@ import { RxHamburgerMenu } from 'react-icons/rx';
 const Header = () => {
   return (
     <header className={styles.header}>
-      <div className={styles.logo}>
+      <NavLink
+        to={'/'}
+        className={styles.logo}
+      >
         <img
           src={logo}
           alt="Nice Gadgets Logo"
         />
-      </div>
+      </NavLink>
 
       <nav className={styles.nav}>
         <NavLink
