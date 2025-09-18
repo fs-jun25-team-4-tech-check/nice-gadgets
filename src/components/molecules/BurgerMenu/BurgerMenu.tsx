@@ -50,9 +50,9 @@ export const BurgerMenu: React.FC<Props> = ({ isOpen, setIsOpen }) => {
             className={({ isActive }) =>
               `${styles.menuLink} ${isActive && styles.isActive}`
             }
-            to={'/catalog/accesories'}
+            to={'/catalog/accessories'}
           >
-            Accesories
+            Accessories
           </NavLink>
         </li>
       </ul>
