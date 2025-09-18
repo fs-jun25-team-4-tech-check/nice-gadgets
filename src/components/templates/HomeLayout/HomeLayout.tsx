@@ -5,15 +5,22 @@ import styles from './HomeLayout.module.scss';
 
 type Props = {
   shopByCategoryBanners: CategoryBanner[];
+  isLoadingCateogriesCount: boolean;
 };
 
-const HomeLayout: React.FC<Props> = ({ shopByCategoryBanners }) => {
+const HomeLayout: React.FC<Props> = ({
+  shopByCategoryBanners,
+  isLoadingCateogriesCount,
+}) => {
   return (
     <>
       <h1 className={styles.homeTitleExample}>Home Page</h1>
 
       <h2>Shop by category</h2>
-      <ShopByCategory categories={shopByCategoryBanners} />
+      <ShopByCategory
+        isLoading={isLoadingCateogriesCount}
+        categories={shopByCategoryBanners}
+      />
     </>
   );
 };

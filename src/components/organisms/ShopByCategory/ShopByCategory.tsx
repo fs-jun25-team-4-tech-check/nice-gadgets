@@ -5,9 +5,10 @@ import type React from 'react';
 
 type Props = {
   categories: CategoryBanner[];
+  isLoading: boolean;
 };
 
-export const ShopByCategory: React.FC<Props> = ({ categories }) => {
+export const ShopByCategory: React.FC<Props> = ({ categories, isLoading }) => {
   const baseCategoryUrl = '/catalog';
 
   return (
@@ -44,7 +45,7 @@ export const ShopByCategory: React.FC<Props> = ({ categories }) => {
               </Link>
 
               <p className={styles.categories_modelsNumber}>
-                {category.productCount} models
+                {isLoading ? 'Loading...' : `${category.productCount} models`}
               </p>
             </div>
           );

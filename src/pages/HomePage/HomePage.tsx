@@ -4,7 +4,7 @@ import type { CategoryBanner } from '../../types/Category';
 import { useProductCountsByCategory } from '../../hooks';
 
 const HomePage = () => {
-  const { data: counts } = useProductCountsByCategory();
+  const { data: counts, isLoading } = useProductCountsByCategory();
 
   const shopByCategoryBanners: CategoryBanner[] = staticCategoryData.map(
     (category) => ({
@@ -13,7 +13,12 @@ const HomePage = () => {
     }),
   );
 
-  return <HomeLayout shopByCategoryBanners={shopByCategoryBanners} />;
+  return (
+    <HomeLayout
+      isLoadingCateogriesCount={isLoading}
+      shopByCategoryBanners={shopByCategoryBanners}
+    />
+  );
 };
 
 export default HomePage;
