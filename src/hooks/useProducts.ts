@@ -79,25 +79,3 @@ export const useProductDetails = (
     enabled: !!itemId && !!category,
   });
 };
-
-export const useProductCountsByCategory = () => {
-  return useQuery<Product[], Error, Record<ProductCategory, number>>({
-    queryKey: ['products', 'all'],
-    queryFn: getAllProducts,
-    staleTime,
-    select: (products) => {
-      const counts = products.reduce(
-        (acc, product) => {
-          const category = product.category as ProductCategory;
-          if (!acc[category]) {
-            acc[category] = 0;
-          }
-          acc[category]++;
-          return acc;
-        },
-        {} as Record<ProductCategory, number>,
-      );
-      return counts;
-    },
-  });
-};
