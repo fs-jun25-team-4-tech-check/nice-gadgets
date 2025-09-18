@@ -1,13 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import { ActionButton } from '../../atoms';
 
+import type { GallerySliderItem } from '../../../types/GallerySliderItem';
+
 import 'swiper/swiper.css';
 import 'swiper/swiper-bundle.css';
 
-import styles from './MainSlider.module.scss';
-export const MainSlider: React.FC = () => {
+interface GallerySliderProps {
+  gallerySlides: GallerySliderItem[];
+}
+
+import styles from './GallerySlider.module.scss';
+export const GallerySlider: React.FC<GallerySliderProps> = ({
+  gallerySlides,
+}) => {
   return (
     <div className={styles.sliderWrapper}>
       <div className={styles.sliderInnerWrapper}>
@@ -31,27 +40,17 @@ export const MainSlider: React.FC = () => {
             1200: { slidesPerView: 1 },
           }}
         >
-          <SwiperSlide>
-            <img
-              src="/img/phones/apple-iphone-14-slider/slider-image-iphone-14.webp"
-              alt="iPhone 14"
-              className={styles.slideImage}
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img
-              src="/img/phones/apple-iphone-14-slider/slider-image-iphone-14.webp"
-              alt="iPhone 14"
-              className={styles.slideImage}
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img
-              src="/img/phones/apple-iphone-14-slider/slider-image-iphone-14.webp"
-              alt="iPhone 14"
-              className={styles.slideImage}
-            />
-          </SwiperSlide>
+          {gallerySlides.map((slide, index) => (
+            <SwiperSlide key={index}>
+              <Link to={slide.linkUrl}>
+                <img
+                  src={slide.imgUrl}
+                  alt={slide.alt}
+                  className={styles.slideImage}
+                />
+              </Link>
+            </SwiperSlide>
+          ))}
         </Swiper>
 
         <ActionButton

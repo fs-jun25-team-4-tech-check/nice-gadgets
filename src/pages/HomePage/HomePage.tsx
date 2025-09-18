@@ -1,16 +1,14 @@
+import { useAllProducts } from '../../hooks/useProducts';
+import { staticGallerySlides } from '../../services/staticGallerySlides';
 import { HomeLayout } from '../../components/templates';
 import { staticCategoryData } from '../../data';
-
-import { useState, useEffect } from 'react';
-import { getProducts } from '../../services';
 
 import type { CategoryBanner } from '../../types/Category';
 import type { Slide } from '../../types/Slide';
 import type { Product } from '../../types/api.types';
 
 const HomePage = () => {
-  const [brandNewSlides, setBrandNewSlides] = useState<Slide[]>([]);
-  const [hotPriceSlides, setHotPriceSlides] = useState<Slide[]>([]);
+  const { data: products = [], isLoading, error } = useAllProducts();
 
   const productToSlide = (product: Product): Slide => ({
     id: product.id,
@@ -26,21 +24,18 @@ const HomePage = () => {
     isFavorite: false,
   });
 
-  useEffect(() => {
-    getProducts().then((products) => {
-      const newModels = products
-        .filter((p) => p.year >= 2022)
-        .map(productToSlide);
+  const brandNewSlides = products
+    .filter((p) => p.year >= 2022)
+    .map(productToSlide);
 
-      const hotPrices = products
-        .filter((p) => p.price < p.fullPrice)
-        .map(productToSlide)
-        .map((slide) => ({ ...slide, oldPrice: undefined }));
+  const hotPriceSlides = products
+    .filter((p) => p.price < p.fullPrice)
+    .map(productToSlide)
+    .map((slide) => ({
+      ...slide,
+      oldPrice: undefined,
+    }));
 
-      setBrandNewSlides(newModels);
-      setHotPriceSlides(hotPrices);
-    });
-  }, []);
   const mockModelsCount = [100, 95, 100];
 
   const shopByCategoryBanners: CategoryBanner[] = staticCategoryData.map(
@@ -50,11 +45,20 @@ const HomePage = () => {
     }),
   );
 
+  if (isLoading) {
+    return <p>Loading products...</p>;
+  }
+
+  if (error) {
+    return <p>Failed to load products</p>;
+  }
+
   return (
     <HomeLayout
       shopByCategoryBanners={shopByCategoryBanners}
       brandNewSlides={brandNewSlides}
       hotPriceSlides={hotPriceSlides}
+      staticGallerySlides={staticGallerySlides}
     />
   );
 };

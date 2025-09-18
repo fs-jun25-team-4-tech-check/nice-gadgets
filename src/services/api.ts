@@ -1,46 +1,74 @@
-import type { Product, Phone, Tablet, Accessory } from '../types';
-import { BASE_URL, API_ENDPOINTS } from '../constants';
+import {
+  mockGetAllProducts,
+  mockGetProductCategoryCounts,
+  mockGetProductDetails,
+  mockGetProducts,
+  mockGetProductsByCategory,
+} from './mockApi';
+import type {
+  PaginatedResponse,
+  Product,
+  ProductCategory,
+  ProductDetails,
+} from '../types';
 
-async function fetchData<T>(endpoint: string): Promise<T[]> {
+export async function getAllProducts(): Promise<Product[]> {
+  return mockGetAllProducts();
+}
+
+export async function getProducts(
+  page: number = 1,
+  perPage: number = 12,
+  query: string = '',
+  sortBy: keyof Product = 'name',
+  sortOrder: 'asc' | 'desc' = 'asc',
+): Promise<PaginatedResponse<Product>> {
+  return mockGetProducts(page, perPage, query, sortBy, sortOrder);
+}
+
+export async function getProductsByCategory(
+  category: ProductCategory,
+  page: number = 1,
+  perPage: number = 12,
+  query: string = '',
+  sortBy: keyof Product = 'name',
+  sortOrder: 'asc' | 'desc' = 'asc',
+): Promise<PaginatedResponse<Product>> {
+  return mockGetProductsByCategory(
+    category,
+    page,
+    perPage,
+    query,
+    sortBy,
+    sortOrder,
+  );
+}
+
+export async function getProductDetails(
+  itemId: string,
+  category: ProductCategory,
+): Promise<ProductDetails | undefined> {
+  return mockGetProductDetails(itemId, category);
+}
+
+export async function getProductCategoryCounts(): Promise<
+  Record<ProductCategory, number>
+> {
+  return mockGetProductCategoryCounts();
+}
+
+// This function will be used when switching to real API
+/*
+async function fetchData<T>(endpoint: string): Promise<T> {
   const res = await fetch(`${BASE_URL}/${endpoint}`);
   if (!res.ok) {
-    throw new Error(`Failed to fetch ${endpoint}`);
+    throw new Error(`Failed to fetch ${endpoint}: ${res.status} ${res.statusText}`);
   }
   return res.json();
 }
+*/
 
-export async function getProducts(): Promise<Product[]> {
-  const products = await fetchData<Product>(API_ENDPOINTS.PRODUCTS);
+// And convert all other functions to have fetch
+// `return fetchData<PaginatedResponse<Product>>(`/products?category=${category}&page=${page}...`);`
 
-  return products.map((product) => ({
-    ...product,
-    image: `${BASE_URL}/${product.image}`,
-  }));
-}
-
-export async function getPhones(): Promise<Phone[]> {
-  const phones = await fetchData<Phone>(API_ENDPOINTS.PHONES);
-
-  return phones.map((phone) => ({
-    ...phone,
-    images: phone.images.map((imagePath) => `${BASE_URL}/${imagePath}`),
-  }));
-}
-
-export async function getTablets(): Promise<Tablet[]> {
-  const tablets = await fetchData<Tablet>(API_ENDPOINTS.TABLETS);
-
-  return tablets.map((tablet) => ({
-    ...tablet,
-    images: tablet.images.map((imagePath) => `${BASE_URL}/${imagePath}`),
-  }));
-}
-
-export async function getAccessories(): Promise<Accessory[]> {
-  const accesories = await fetchData<Accessory>(API_ENDPOINTS.ACCESSORIES);
-
-  return accesories.map((accessory) => ({
-    ...accessory,
-    images: accessory.images.map((imagePath) => `${BASE_URL}/${imagePath}`),
-  }));
-}
+export type { ProductCategory, ProductDetails };

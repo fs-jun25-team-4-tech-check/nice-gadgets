@@ -45,23 +45,19 @@ export const CardsSlider: React.FC<Props> = ({ id, headerText, slides }) => {
         >
           {slides.map((slide) => (
             <SwiperSlide key={slide.id}>
-              <a href={slide.link}>
-                <ProductCard
-                  image={slide.image}
-                  title={slide.title}
-                  price={slide.price}
-                  oldPrice={slide.oldPrice}
-                  screen={slide.screen}
-                  capacity={slide.capacity}
-                  ram={slide.ram}
-                  isInCart={slide.isInCart}
-                  isFavorite={slide.isFavorite}
-                  onAddToCart={() => console.log(`Add to cart: ${slide.id}`)}
-                  onAddToFavorites={() =>
-                    console.log(`Add to fav: ${slide.id}`)
-                  }
-                />
-              </a>
+              <ProductCard
+                image={slide.image}
+                title={slide.title}
+                price={slide.price}
+                oldPrice={slide.oldPrice}
+                screen={slide.screen}
+                capacity={slide.capacity}
+                ram={slide.ram}
+                isInCart={slide.isInCart}
+                isFavorite={slide.isFavorite}
+                onAddToCart={() => console.log(`Add to cart: ${slide.id}`)}
+                onAddToFavorites={() => console.log(`Add to fav: ${slide.id}`)}
+              />
             </SwiperSlide>
           ))}
         </Swiper>
