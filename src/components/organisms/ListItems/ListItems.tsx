@@ -1,19 +1,16 @@
 import React from 'react';
 import ProductCard from '../../molecules/ProductCard/ProductCard';
-import { useProductsByCategory } from '../../../hooks/useProducts';
-import type { ProductCategory } from '../../../services/api';
+import type { Product } from '../../../types/api.types';
 import styles from './ListItems.module.scss';
 
 interface ListItemsProps {
-  category: ProductCategory;
+  products: Product[] | undefined;
 }
 
-export const ListItems: React.FC<ListItemsProps> = ({ category }) => {
-  const { data } = useProductsByCategory(category);
-
+export const ListItems: React.FC<ListItemsProps> = ({ products }) => {
   return (
     <div className={styles.listContainer}>
-      {data?.data.map((product) => (
+      {products?.map((product) => (
         <ProductCard
           key={product.id}
           image={product.image}
