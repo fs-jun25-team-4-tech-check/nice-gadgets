@@ -1,3 +1,15 @@
+export type ProductDetails = Phone | Tablet | Accessory;
+export type ProductCategory = 'phones' | 'tablets' | 'accessories';
+
+export interface PaginatedResponse<T> {
+  data: T[];
+  totalPages: number;
+  totalItems: number;
+  currentPage: number;
+  perPage: number;
+}
+
+// #region API Data Interfaces
 export interface Product {
   id: number;
   category: string;
@@ -88,3 +100,4 @@ export interface Accessory {
   ram: string;
   cell: string[];
 }
+// #endregion
