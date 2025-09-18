@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import { ActionButton } from '../../atoms';
+import { SCREEN_WIDTH } from '../../../constants/screenWidth';
 
 import type { GallerySliderItem } from '../../../types/GallerySliderItem';
 
@@ -14,6 +15,7 @@ interface GallerySliderProps {
 }
 
 import styles from './GallerySlider.module.scss';
+
 export const GallerySlider: React.FC<GallerySliderProps> = ({
   gallerySlides,
 }) => {
@@ -36,8 +38,8 @@ export const GallerySlider: React.FC<GallerySliderProps> = ({
           }}
           pagination={{ clickable: true }}
           breakpoints={{
-            640: { slidesPerView: 1 },
-            1200: { slidesPerView: 1 },
+            [SCREEN_WIDTH.SLIDER_TABLET]: { slidesPerView: 1 },
+            [SCREEN_WIDTH.SLIDER_DESKTOP]: { slidesPerView: 1 },
           }}
         >
           {gallerySlides.map((slide, index) => (

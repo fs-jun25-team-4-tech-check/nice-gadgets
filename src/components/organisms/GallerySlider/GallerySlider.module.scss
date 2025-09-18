@@ -21,6 +21,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: #{$breakpoint-md-slider}) {
+    display: none;
+  }
 }
 
 .paginationContainer {
@@ -42,11 +46,4 @@
 
 :global(.swiper-pagination-bullet-active).paginationBullet {
   background-color: #fff;
-}
-
-@media (max-width: 639px) {
-  .prev,
-  .next {
-    display: none;
-  }
 }

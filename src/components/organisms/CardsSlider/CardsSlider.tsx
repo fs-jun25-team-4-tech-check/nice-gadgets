@@ -3,8 +3,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import { ActionButton } from '../../atoms';
 import ProductCard from '../../molecules/ProductCard/ProductCard';
-import type { Slide } from '../../../types/Slide';
-
+import type { Product } from '../../../types';
+import { SCREEN_WIDTH } from '../../../constants/screenWidth';
 import styles from './CardsSlider.module.scss';
 
 import 'swiper/swiper.css';
@@ -12,7 +12,7 @@ import 'swiper/swiper.css';
 type Props = {
   id: number;
   headerText: string;
-  slides: Slide[];
+  slides: Product[] | undefined;
 };
 
 export const CardsSlider: React.FC<Props> = ({ id, headerText, slides }) => {
@@ -36,30 +36,46 @@ export const CardsSlider: React.FC<Props> = ({ id, headerText, slides }) => {
       <div className={styles.cardsWrapper}>
         <Swiper
           modules={[Navigation]}
-          spaceBetween={16}
-          slidesPerView={4}
+          breakpoints={{
+            [SCREEN_WIDTH.SLIDER_DESKTOP]: {
+              slidesPerView: 4,
+              spaceBetween: 16,
+            },
+            [SCREEN_WIDTH.SLIDER_TABLET]: {
+              slidesPerView: 3,
+              spaceBetween: 16,
+            },
+            [SCREEN_WIDTH.SLIDER_PHONE]: {
+              slidesPerView: 3,
+              spaceBetween: 4,
+            },
+            0: { slidesPerView: 3, spaceBetween: 1 },
+          }}
           navigation={{
             prevEl: `.prev-${id}`,
             nextEl: `.next-${id}`,
           }}
         >
-          {slides.map((slide) => (
-            <SwiperSlide key={slide.id}>
-              <ProductCard
-                image={slide.image}
-                title={slide.title}
-                price={slide.price}
-                oldPrice={slide.oldPrice}
-                screen={slide.screen}
-                capacity={slide.capacity}
-                ram={slide.ram}
-                isInCart={slide.isInCart}
-                isFavorite={slide.isFavorite}
-                onAddToCart={() => console.log(`Add to cart: ${slide.id}`)}
-                onAddToFavorites={() => console.log(`Add to fav: ${slide.id}`)}
-              />
-            </SwiperSlide>
-          ))}
+          {slides &&
+            slides.map((slide) => (
+              <SwiperSlide key={slide.id}>
+                <ProductCard
+                  image={slide.image}
+                  title={slide.name}
+                  price={slide.price}
+                  oldPrice={slide.fullPrice}
+                  screen={slide.screen}
+                  capacity={slide.capacity}
+                  ram={slide.ram}
+                  isInCart={false}
+                  isFavorite={false}
+                  onAddToCart={() => console.log(`Add to cart: ${slide.id}`)}
+                  onAddToFavorites={() =>
+                    console.log(`Add to fav: ${slide.id}`)
+                  }
+                />
+              </SwiperSlide>
+            ))}
         </Swiper>
       </div>
     </div>

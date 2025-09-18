@@ -16,6 +16,7 @@
 }
 .cardsWrapper {
   display: flex;
+  justify-content: space-between;
 }
 .cardMock {
   width: 272px;
@@ -25,4 +26,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.swiper-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+
+.sliderButtons {
+  @include on-sm {
+    gap: 12px;
+  }
+
+  @include on-md {
+    gap: 16px;
+  }
 }

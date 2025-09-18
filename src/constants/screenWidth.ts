@@ -1,4 +1,5 @@
 export const SCREEN_WIDTH = {
-  SLIDER_TABLET: 640,
+  SLIDER_PHONE: 640,
+  SLIDER_TABLET: 992,
   SLIDER_DESKTOP: 1200,
 } as const;
