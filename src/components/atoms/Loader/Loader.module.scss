@@ -8,26 +8,6 @@
   -webkit-mask-composite: source-out;
   mask-composite: subtract;
   animation: l3 1s infinite linear;
-
-  &--sm {
-    width: 30px;
-    padding: 6px;
-  }
-
-  &--md {
-    width: 50px;
-    padding: 8px;
-  }
-
-  &--lg {
-    width: 70px;
-    padding: 10px;
-  }
-
-  &--xl {
-    width: 100px;
-    padding: 12px;
-  }
 }
 
 @keyframes l3 {
