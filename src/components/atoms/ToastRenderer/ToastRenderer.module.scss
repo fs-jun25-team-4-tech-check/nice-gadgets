@@ -11,14 +11,25 @@
 }
 
 .ToastRoot {
-  background-color: #333;
-  color: #fff;
+  background-color: $dark-surface-2;
+  color: $dark-white;
   padding: 16px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   gap: 4px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border: 1px solid $dark-secondary;
+  position: relative;
+
+  &.info {
+    border-color: $dark-accent;
+  }
+
+  &.error {
+    color: $dark-red;
+    border-color: $dark-red;
+  }
 
   &[data-state='open'] {
     animation: slideIn 150ms ease-out;
@@ -42,15 +53,32 @@
   }
 }
 
+.ToastHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ToastInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
 .ToastTitle {
   font-weight: bold;
-  font-size: 16px;
   margin-bottom: 4px;
+  margin: 0;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .ToastDescription {
-  font-size: 14px;
-  line-height: 1.4;
+  color: $dark-secondary;
 }
 
 .CloseButton {
@@ -59,9 +87,12 @@
   right: 8px;
   background: transparent;
   border: none;
-  color: #ccc;
+  color: $dark-icons;
   cursor: pointer;
-  font-size: 16px;
+
+  &:hover {
+    color: $dark-white;
+  }
 }
 
 @keyframes hide {

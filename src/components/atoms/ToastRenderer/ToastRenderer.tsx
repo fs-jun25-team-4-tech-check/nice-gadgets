@@ -1,33 +1,47 @@
 import * as Toast from '@radix-ui/react-toast';
-import { PiXBold } from 'react-icons/pi';
+import {
+  PiCheckCircleBold,
+  PiWarningCircleBold,
+  PiXBold,
+} from 'react-icons/pi';
 import styles from './ToastRenderer.module.scss';
 import { useToastContext } from '../../../contexts/ToastContext';
 
-export const ToastRenderer = () => {
-  const { open, message, type, setOpen } = useToastContext();
+const ToastRenderer = () => {
+  const { open, title, description, type, setOpen } = useToastContext();
+
+  const toastClass = `${styles.ToastRoot} ${type === 'error' ? styles.error : styles.info}`;
+
+  const Icon = type === 'error' ? PiWarningCircleBold : PiCheckCircleBold;
 
   return (
     <Toast.Provider swipeDirection="right">
       <Toast.Root
         open={open}
         onOpenChange={setOpen}
-        className={styles.ToastRoot}
+        className={toastClass}
       >
-        <Toast.Close asChild>
-          <button
-            className={styles.CloseButton}
-            aria-label="Close"
-          >
-            <PiXBold size={20} />
-          </button>
-        </Toast.Close>
+        <div className={styles.ToastHeader}>
+          <div className={styles.ToastInfo}>
+            <Icon
+              size={20}
+              className={styles.Icon}
+            />
+            <Toast.Title className={styles.ToastTitle}>{title}</Toast.Title>
+          </div>
 
-        <Toast.Title className={styles.ToastTitle}>
-          {type === 'cart' ? 'Added to cart' : 'Added to favorites'}
-        </Toast.Title>
+          <Toast.Close asChild>
+            <button
+              className={styles.CloseButton}
+              aria-label="Close"
+            >
+              <PiXBold size={20} />
+            </button>
+          </Toast.Close>
+        </div>
 
         <Toast.Description className={styles.ToastDescription}>
-          {message}
+          {description}
         </Toast.Description>
       </Toast.Root>
 
@@ -35,3 +49,5 @@ export const ToastRenderer = () => {
     </Toast.Provider>
   );
 };
+
+export default ToastRenderer;

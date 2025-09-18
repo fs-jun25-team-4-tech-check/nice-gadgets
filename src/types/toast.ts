@@ -1,11 +1,15 @@
+export type ToastType = 'info' | 'error';
+
 export interface ToastContextType {
   showToast: (
-    message: string,
-    type?: 'cart' | 'favorites',
+    description: string,
+    type?: ToastType,
+    title?: string,
     duration?: number,
   ) => void;
   open: boolean;
-  message: string;
-  type: 'cart' | 'favorites';
+  title?: string;
+  description: string;
+  type: ToastType;
   setOpen: (value: boolean) => void;
 }

@@ -1,28 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { ToastContext } from '../contexts/ToastContext';
+import type { ToastType } from '../types/toast';
 
-export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
+const ToastProvider = ({ children }: { children: React.ReactNode }) => {
   const [open, setOpen] = useState(false);
-  const [message, setMessage] = useState('');
-  const [type, setType] = useState<'cart' | 'favorites'>('cart');
+  const [type, setType] = useState<ToastType>('info');
+  const [title, setTitle] = useState<string | undefined>(undefined);
+  const [description, setDescription] = useState('');
+  const timeoutRef = useRef<number | null>(null);
 
   const showToast = (
-    msg: string,
-    toastType: 'cart' | 'favorites' = 'cart',
+    desc: string,
+    toastType: ToastType = 'info',
+    customTitle?: string,
     duration: number = 5000,
   ) => {
-    setMessage(msg);
+    if (timeoutRef.current !== null) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    setDescription(desc);
     setType(toastType);
+    setTitle(customTitle || (toastType === 'error' ? 'Error' : 'Info'));
     setOpen(true);
 
-    setTimeout(() => {
+    timeoutRef.current = window.setTimeout(() => {
       setOpen(false);
+      timeoutRef.current = null;
     }, duration);
   };
 
   return (
-    <ToastContext.Provider value={{ showToast, open, message, type, setOpen }}>
+    <ToastContext.Provider
+      value={{
+        showToast,
+        open,
+        title,
+        description,
+        type,
+        setOpen,
+      }}
+    >
       {children}
     </ToastContext.Provider>
   );
 };
+
+export default ToastProvider;
