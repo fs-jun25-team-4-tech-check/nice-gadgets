@@ -1,14 +1,15 @@
 import { HomeLayout } from '../../components/templates';
 import { staticCategoryData } from '../../data';
 import type { CategoryBanner } from '../../types/Category';
+import { useProductCountsByCategory } from '../../hooks';
 
 const HomePage = () => {
-  const mockModelsCount = [100, 95, 100];
+  const { data: counts } = useProductCountsByCategory();
 
   const shopByCategoryBanners: CategoryBanner[] = staticCategoryData.map(
-    (category, i) => ({
+    (category) => ({
       ...category,
-      productCount: mockModelsCount[i],
+      productCount: counts?.[category.categorySlug] || 0,
     }),
   );
 
