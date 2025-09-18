@@ -1,7 +1,7 @@
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import {
   getAllProducts,
-  getProductById,
+  getProductCategoryCounts,
   getProductDetails,
   getProducts,
   getProductsByCategory,
@@ -23,10 +23,16 @@ export const useAllProducts = () => {
   });
 };
 
-export const useProducts = (page: number = 1, perPage: number = 12) => {
+export const useProducts = (
+  page: number = 1,
+  perPage: number = 12,
+  query: string = '',
+  sortBy: keyof Product = 'name',
+  sortOrder: 'asc' | 'desc' = 'asc',
+) => {
   return useQuery<PaginatedResponse<Product>, Error>({
-    queryKey: ['products', { page, perPage }],
-    queryFn: () => getProducts(page, perPage),
+    queryKey: ['products', { page, perPage, query, sortBy, sortOrder }],
+    queryFn: () => getProducts(page, perPage, query, sortBy, sortOrder),
     staleTime,
     placeholderData: keepPreviousData,
   });
@@ -36,22 +42,29 @@ export const useProductsByCategory = (
   category: ProductCategory,
   page: number = 1,
   perPage: number = 12,
+  query: string = '',
+  sortBy: keyof Product = 'name',
+  sortOrder: 'asc' | 'desc' = 'asc',
 ) => {
   return useQuery<PaginatedResponse<Product>, Error>({
-    queryKey: ['products', { category, page, perPage }],
-    queryFn: () => getProductsByCategory(category, page, perPage),
+    queryKey: [
+      'products',
+      { category, page, perPage, query, sortBy, sortOrder },
+    ],
+    queryFn: () =>
+      getProductsByCategory(category, page, perPage, query, sortBy, sortOrder),
     staleTime,
     enabled: !!category,
     placeholderData: keepPreviousData,
   });
 };
 
-export const useProductById = (itemId: string) => {
-  return useQuery<Product | undefined, Error>({
-    queryKey: ['product', itemId],
-    queryFn: () => getProductById(itemId),
+export const useProductCategoryCounts = () => {
+  return useQuery<Record<ProductCategory, number>, Error>({
+    queryKey: ['products', 'category', 'counts'],
+    queryFn: getProductCategoryCounts,
     staleTime,
-    enabled: !!itemId,
+    placeholderData: keepPreviousData,
   });
 };
 
