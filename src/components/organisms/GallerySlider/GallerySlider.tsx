@@ -1,5 +1,6 @@
 // src/components/organisms/GallerySlider/GallerySlider.tsx
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import { ActionButton } from '../../atoms';
@@ -45,13 +46,13 @@ export const GallerySlider: React.FC<GallerySliderProps> = ({ slides }) => {
         >
           {slides.map((slide, index) => (
             <SwiperSlide key={index}>
-              <a href={slide.linkUrl}>
+              <Link to={slide.linkUrl}>
                 <img
                   src={slide.imgUrl}
                   alt={slide.alt}
                   className={styles.slideImage}
                 />
-              </a>
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>

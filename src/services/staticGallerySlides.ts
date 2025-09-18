@@ -1,6 +1,6 @@
 import type { GallerySliderItem } from '../types/GallerySliderItem';
 
-export const mockGallerySlides: GallerySliderItem[] = [
+export const staticGallerySlides: GallerySliderItem[] = [
   {
     imgUrl: '/img/phones/apple-iphone-14-slider/slider-image-iphone-14.webp',
     linkUrl: '/phones/iphone-14',
