@@ -44,14 +44,6 @@
   }
 }
 
-.desktopIcons {
-  display: none;
-
-  @include on-md {
-    display: flex;
-  }
-}
-
 .burgerButton {
   padding: 0;
   border: 0;
