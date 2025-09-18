@@ -47,39 +47,49 @@ const Header = () => {
           />
         </NavLink>
 
-        <nav className={styles.nav}>
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              `uppercase-text ${styles.navLink} ${isActive ? styles.active : ''}`
-            }
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/catalog/phones"
-            className={({ isActive }) =>
-              `uppercase-text ${styles.navLink} ${isActive ? styles.active : ''}`
-            }
-          >
-            Phones
-          </NavLink>
-          <NavLink
-            to="/catalog/tablets"
-            className={({ isActive }) =>
-              `uppercase-text ${styles.navLink} ${isActive ? styles.active : ''}`
-            }
-          >
-            Tablets
-          </NavLink>
-          <NavLink
-            to="/catalog/accesories"
-            className={({ isActive }) =>
-              `uppercase-text ${styles.navLink} ${isActive ? styles.active : ''}`
-            }
-          >
-            Accessories
-          </NavLink>
+        <nav>
+          <ul className={styles.nav}>
+            <li>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  `uppercase-text ${styles.navLink} ${isActive ? styles.active : ''}`
+                }
+              >
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/catalog/phones"
+                className={({ isActive }) =>
+                  `uppercase-text ${styles.navLink} ${isActive ? styles.active : ''}`
+                }
+              >
+                Phones
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/catalog/tablets"
+                className={({ isActive }) =>
+                  `uppercase-text ${styles.navLink} ${isActive ? styles.active : ''}`
+                }
+              >
+                Tablets
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/catalog/accesories"
+                className={({ isActive }) =>
+                  `uppercase-text ${styles.navLink} ${isActive ? styles.active : ''}`
+                }
+              >
+                Accessories
+              </NavLink>
+            </li>
+          </ul>
         </nav>
 
         <div className={styles.icons}>
