@@ -25,12 +25,8 @@ export interface Product {
   image: string;
 }
 
-export interface PhoneDescription {
-  title: string;
-  text: string[];
-}
-
 export interface Phone {
+  category: 'phones';
   id: string;
   namespaceId: string;
   name: string;
@@ -41,7 +37,7 @@ export interface Phone {
   colorsAvailable: string[];
   color: string;
   images: string[];
-  description: PhoneDescription[];
+  description: Description[];
   screen: string;
   resolution: string;
   processor: string;
@@ -49,14 +45,10 @@ export interface Phone {
   camera: string;
   zoom: string;
   cell: string[];
-}
-
-export interface TabletDescription {
-  title: string;
-  text: string[];
 }
 
 export interface Tablet {
+  category: 'tablets';
   id: string;
   namespaceId: string;
   name: string;
@@ -67,7 +59,7 @@ export interface Tablet {
   colorsAvailable: string[];
   color: string;
   images: string[];
-  description: TabletDescription[];
+  description: Description[];
   screen: string;
   resolution: string;
   processor: string;
@@ -77,12 +69,8 @@ export interface Tablet {
   cell: string[];
 }
 
-export interface AccessoryDescription {
-  title: string;
-  text: string[];
-}
-
 export interface Accessory {
+  category: 'accessories';
   id: string;
   namespaceId: string;
   name: string;
@@ -93,11 +81,16 @@ export interface Accessory {
   colorsAvailable: string[];
   color: string;
   images: string[];
-  description: AccessoryDescription[];
+  description: Description[];
   screen: string;
   resolution: string;
   processor: string;
   ram: string;
   cell: string[];
+}
+
+export interface Description {
+  title: string;
+  text: string[];
 }
 // #endregion
