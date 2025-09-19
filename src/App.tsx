@@ -2,6 +2,7 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import './styles/main.scss';
 import { HomePage } from './pages';
 import { MainLayout } from './components/templates';
+import ItemCardPage from './pages/ItemCard/ItemCardPage';
 
 function App() {
   return (
@@ -16,7 +17,10 @@ function App() {
             element={<HomePage />}
           />
           <Route path="catalog/:category/:sortBy?/:itemsPerPage?" />
-          <Route path="item/:productId" />
+          <Route
+            path="item/:productId"
+            element={<ItemCardPage />}
+          />
           <Route path="favourites" />
           <Route path="cart" />
           <Route path="*" />
