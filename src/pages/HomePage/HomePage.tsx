@@ -1,19 +1,15 @@
-import { CardsSlider } from '../../components/organisms/CardsSlider/CardsSlider';
-// import { GallerySlider } from '../../components/organisms/GallerySlider/GallerySlider';
-// import { ShopByCategory } from '../../components/organisms/ShopByCategory';
+import { CardsSlider } from '../../components/organisms/ProductCardSlider/ProductCardsSlider';
+import { GallerySlider } from '../../components/organisms/GallerySlider/GallerySlider';
+import { ShopByCategory } from '../../components/organisms/ShopByCategory';
 import { HomeLayout } from '../../components/templates';
-// import { staticGallerySliderData } from '../../data/gallerySliderData';
+import { staticGallerySliderData } from '../../data/gallerySliderData';
 
 const HomePage = () => {
-  // const gallerySlides = staticGallerySliderData;
-
-  // <GallerySlider gallerySlides={gallerySlides} />
-
-  // <ShopByCategory />
+  const gallerySlides = staticGallerySliderData;
 
   return (
     <HomeLayout
-      bannerSliderSection={<></>}
+      bannerSliderSection={<GallerySlider gallerySlides={gallerySlides} />}
       brandNewModelsSection={
         <CardsSlider
           id="brandNewModelsSlider"
@@ -21,7 +17,7 @@ const HomePage = () => {
           headerText="Brand new models"
         />
       }
-      shopByCategorySection={<></>}
+      shopByCategorySection={<ShopByCategory />}
       hotPricesSection={
         <CardsSlider
           id="hotPricesSlider"

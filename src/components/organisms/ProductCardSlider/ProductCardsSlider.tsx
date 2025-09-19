@@ -1,14 +1,9 @@
 import React from 'react';
-import { CardsSliderUI } from './CardSliderUI';
+import { CardsSliderUI } from './ProductCardSliderUI';
 import type { Product } from '../../../types';
 import { useProducts } from '../../../hooks';
-import Loader from '../../atoms/Loader/Loader';
 
 export type CardsSliderType = 'newestModels' | 'hotPrices';
-
-const SliderError = () => (
-  <p>Error loading products. Please try again later.</p>
-);
 
 type Props = {
   id: string;
@@ -42,19 +37,13 @@ export const CardsSlider: React.FC<Props> = ({
     isError,
   } = useProducts(1, productCount, '', sortBy, sortOrder);
 
-  if (isLoading) {
-    return <Loader size={500} />;
-  }
-
-  if (isError || !products) {
-    return <SliderError />;
-  }
-
   return (
     <CardsSliderUI
       id={id}
       headerText={headerText}
-      products={products.data}
+      products={products?.data}
+      isLoading={isLoading}
+      isError={isError}
     />
   );
 };

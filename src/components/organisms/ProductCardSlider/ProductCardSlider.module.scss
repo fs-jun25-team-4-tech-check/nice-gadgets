@@ -6,17 +6,6 @@
   width: 100%;
   overflow: hidden;
 
-  .sliderContent {
-    display: flex;
-    justify-content: space-between;
-
-    .sliderButtons {
-      display: flex;
-      justify-content: end;
-      gap: 16px;
-    }
-  }
-
   .cardsWrapper {
     display: flex;
     width: 100%;
