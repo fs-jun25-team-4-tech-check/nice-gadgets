@@ -4,46 +4,26 @@
   flex-direction: column;
   gap: 16px;
   width: 100%;
-}
-.sliderContent {
-  display: flex;
-  justify-content: space-between;
-}
-.sliderButtons {
-  display: flex;
-  justify-content: end;
-  gap: 16px;
-}
-.cardsWrapper {
-  display: flex;
-  justify-content: space-between;
-}
-.cardMock {
-  width: 272px;
-  height: 576px;
-  background-color: #333;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  overflow: hidden;
 
-.swiper-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-}
+  .sliderContent {
+    display: flex;
+    justify-content: space-between;
 
-.sliderButtons {
-  @include on-sm {
-    gap: 12px;
+    .sliderButtons {
+      display: flex;
+      justify-content: end;
+      gap: 16px;
+    }
   }
 
-  @include on-md {
-    gap: 16px;
+  .cardsWrapper {
+    display: flex;
+    width: 100%;
+
+    .swiperSlide {
+      width: auto;
+      flex: 0 0 auto;
+    }
   }
 }

@@ -10,11 +10,11 @@ import type { GallerySliderItem } from '../../../types/GallerySliderItem';
 import 'swiper/swiper.css';
 import 'swiper/swiper-bundle.css';
 
+import styles from './GallerySlider.module.scss';
+
 interface GallerySliderProps {
   gallerySlides: GallerySliderItem[];
 }
-
-import styles from './GallerySlider.module.scss';
 
 export const GallerySlider: React.FC<GallerySliderProps> = ({
   gallerySlides,

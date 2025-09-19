@@ -7,24 +7,14 @@
   background-color: $dark-surface-1;
   box-sizing: border-box;
 
-  @include on-sm {
-    width: 250px;
-    height: 512px;
-  }
-
   @include on-md {
-    width: 320px;
+    width: 237px;
     height: 512px;
   }
 
   @include on-lg {
-    width: 320px;
-    height: 506px;
-  }
-
-  @include on-xl {
     width: 272px;
-    height: 439px;
+    height: 506px;
   }
 
   .imageWrapper {
