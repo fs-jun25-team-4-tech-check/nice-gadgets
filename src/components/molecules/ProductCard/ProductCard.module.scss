@@ -24,15 +24,15 @@
     align-items: center;
     margin-bottom: 8px;
     min-height: 129px;
-
+    width: 100%;
     @include on-md {
-      width: 173px;
+      max-width: 224px;
       height: 202px;
     }
 
     @include on-lg {
-      width: 208px;
       height: 196px;
+      max-width: 208px;
     }
   }
 

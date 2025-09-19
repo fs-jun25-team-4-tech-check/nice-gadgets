@@ -1,19 +1,11 @@
 .listContainer {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 40px 16px;
-  padding: 0 16px;
+  grid-template-columns: repeat(auto-fit, minmax(229px, 1fr));
+  column-gap: 16px;
+  row-gap: 40px;
+  align-items: stretch;
 
-  @include on-md {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 0;
-  }
-
-  @include on-lg {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  @include on-xl {
-    grid-template-columns: repeat(4, 1fr);
+  .listItem {
+    width: 100%;
   }
 }
