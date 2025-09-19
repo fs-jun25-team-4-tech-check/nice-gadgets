@@ -1,6 +1,8 @@
 import { NavLink } from 'react-router-dom';
 import styles from './BurgerMenu.module.scss';
 import { HeaderButton } from '../../atoms/Buttons/HeaderButton';
+import { useCart } from '../../../hooks/useCart';
+import { useFavs } from '../../../hooks/useFavs';
 
 type Props = {
   isOpen: boolean;
@@ -8,6 +10,8 @@ type Props = {
 };
 
 export const BurgerMenu: React.FC<Props> = ({ isOpen, setIsOpen }) => {
+  const { count: cartCount } = useCart();
+  const { count: favsCount } = useFavs();
   return (
     <div className={`${styles.burgerMenu} ${isOpen && styles.open}`}>
       <ul className={styles.menuList}>
@@ -62,11 +66,13 @@ export const BurgerMenu: React.FC<Props> = ({ isOpen, setIsOpen }) => {
           variant="favourites"
           onClick={() => setIsOpen(false)}
           className={styles.button}
+          notifCount={favsCount}
         />
         <HeaderButton
           variant="cart"
           onClick={() => setIsOpen(false)}
           className={styles.button}
+          notifCount={cartCount}
         />
       </div>
     </div>
