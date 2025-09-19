@@ -1,0 +1,271 @@
+@use '../../../styles/variables';
+@use '../../../styles/mixins';
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 100%;
+
+  @include on-md {
+    gap: 36px;
+  }
+}
+
+.selectorGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 600;
+  color: $dark-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+.colorOptions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.colorCircle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  background-color: transparent;
+  padding: 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-radius: 50%;
+    background-color: inherit;
+  }
+
+  &.active {
+    border-color: $dark-white;
+  }
+
+  &:hover:not(.active) {
+    border-color: $dark-elements;
+  }
+}
+
+.capacityOptions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.capacityBtn {
+  padding: 7px 8px;
+  min-width: 60px;
+  border: 1px solid $dark-elements;
+  border-radius: 4px;
+  background: transparent;
+  color: $dark-secondary;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+
+  &.active {
+    background-color: $dark-white;
+    border-color: $dark-white;
+    color: $dark-black;
+    font-weight: 700;
+  }
+
+  &:hover:not(.active) {
+    border-color: $dark-secondary;
+    color: $dark-white;
+  }
+
+  @include on-md {
+    padding: 8px 12px;
+  }
+}
+
+.priceBlock {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.newPrice {
+  font-size: 32px;
+  font-weight: 800;
+  color: $dark-white;
+  line-height: 1;
+
+  @include on-md {
+    font-size: 36px;
+  }
+}
+
+.oldPrice {
+  font-size: 22px;
+  font-weight: 500;
+  color: $dark-secondary;
+  text-decoration: line-through;
+  margin-left: 4px;
+
+  @include on-md {
+    font-size: 24px;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+  margin: 8px 0;
+}
+
+.addToCart {
+  flex: 1;
+  padding: 12px 24px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, $dark-accent 0%, #7c4dff 100%);
+  color: $dark-white;
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  &:hover {
+    background: linear-gradient(135deg, $dark-accent-hover 0%, #8e61ff 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(144, 91, 255, 0.3);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  @include on-md {
+    padding: 14px 24px;
+    font-size: 14px;
+  }
+}
+
+.favourite {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  border: 1px solid $dark-elements;
+  background: transparent;
+  color: $dark-secondary;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  &:hover {
+    border-color: $dark-white;
+    color: $dark-white;
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  @include on-md {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+.specs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid $dark-elements;
+}
+
+.specRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  padding: 2px 0;
+
+  @include on-md {
+    font-size: 14px;
+    padding: 4px 0;
+  }
+}
+
+.specName {
+  color: $dark-secondary;
+  font-weight: 500;
+}
+
+.specValue {
+  font-weight: 600;
+  color: $dark-white;
+  text-align: right;
+}
+
+@media (max-width: 639px) {
+  .section {
+    gap: 24px;
+  }
+
+  .capacityOptions {
+    gap: 6px;
+  }
+
+  .capacityBtn {
+    flex: 1;
+    min-width: auto;
+    padding: 8px 4px;
+    font-size: 13px;
+  }
+
+  .actions {
+    gap: 12px;
+  }
+
+  .favourite {
+    width: 44px;
+    height: 44px;
+  }
+
+  .newPrice {
+    font-size: 28px;
+  }
+
+  .oldPrice {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1199px) {
+  .section {
+    max-width: 400px;
+  }
+
+  .capacityOptions {
+    justify-content: flex-start;
+  }
+}
