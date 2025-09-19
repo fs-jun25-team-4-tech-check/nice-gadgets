@@ -3,16 +3,13 @@ import styles from './ImageGallery.module.scss';
 
 interface ImageGalleryProps {
   images: string[];
-  name: string;
 }
 
-export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, name }) => {
+export const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <div className={styles.gallery}>
-      <h2>{name}</h2>
-
       <div className={styles.images}>
         <div className={styles.thumbs}>
           {images.map((img, i) => (

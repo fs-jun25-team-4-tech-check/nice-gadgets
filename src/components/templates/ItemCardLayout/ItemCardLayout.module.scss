@@ -1,7 +1,19 @@
-// .itemCard {
-//   display: flex;
-//   flex-direction: column;
-//   @include on-md {
-//     flex-direction: row;
-//   }
-// }
+h2 {
+  padding-top: 16px;
+  padding-bottom: 36px;
+  width: 100%;
+
+  @include on-md {
+    padding-bottom: 40px;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  @include on-md {
+    flex-direction: row;
+  }
+}

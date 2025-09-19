@@ -18,7 +18,7 @@ function App() {
           />
           <Route path="catalog/:category/:sortBy?/:itemsPerPage?" />
           <Route
-            path="item/:productId"
+            path="item/:category/:productId"
             element={<ItemCardPage />}
           />
           <Route path="favourites" />

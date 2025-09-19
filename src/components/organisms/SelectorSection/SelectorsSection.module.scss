@@ -16,6 +16,8 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  border-bottom: 1px solid $dark-elements;
+  padding-bottom: 24px;
 }
 
 .label {
@@ -71,7 +73,6 @@
   padding: 7px 8px;
   min-width: 60px;
   border: 1px solid $dark-elements;
-  border-radius: 4px;
   background: transparent;
   color: $dark-secondary;
   font-size: 14px;
@@ -199,7 +200,6 @@
   flex-direction: column;
   gap: 8px;
   padding-top: 8px;
-  border-top: 1px solid $dark-elements;
 }
 
 .specRow {
@@ -224,6 +224,13 @@
   font-weight: 600;
   color: $dark-white;
   text-align: right;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: auto;
 }
 
 @media (max-width: 639px) {
@@ -260,12 +267,12 @@
   }
 }
 
-@media (min-width: 640px) and (max-width: 1199px) {
-  .section {
-    max-width: 400px;
-  }
+// @media (min-width: 640px) and (max-width: 1199px) {
+//   .section {
+//     max-width: 400px;
+//   }
 
-  .capacityOptions {
-    justify-content: flex-start;
-  }
-}
+//   .capacityOptions {
+//     justify-content: flex-start;
+//   }
+// }

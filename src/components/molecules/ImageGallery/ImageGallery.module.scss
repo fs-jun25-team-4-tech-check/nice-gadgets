@@ -6,11 +6,6 @@
   margin-bottom: 40px;
   margin-top: 16px;
 
-  h2 {
-    width: 100%;
-    text-align: center;
-  }
-
   @include on-md {
     margin-bottom: 80px;
   }
@@ -18,7 +13,7 @@
 
 .images {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
   gap: 16px;
 
@@ -91,5 +86,5 @@
 }
 
 .active {
-  border-color: $dark-accent;
+  border: 1px solid $dark-white;
 }

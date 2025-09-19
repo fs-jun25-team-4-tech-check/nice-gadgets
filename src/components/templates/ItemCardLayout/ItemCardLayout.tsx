@@ -1,19 +1,26 @@
 import type { ProductDetails } from '../../../types';
+import { BackButton } from '../../atoms';
+import Breadcrumbs from '../../molecules/Breadcrumbs/Breadcrumbs';
 import { ImageGallery } from '../../molecules/ImageGallery/ImageGallery';
 import { AboutAndTechSpecs } from '../../organisms/AboutAndTechSpecs/AboutAndTechSpecs';
 import { SelectorsSection } from '../../organisms/SelectorSection/SelectorsSection';
-import { SliderYouMayAlsoLike } from '../../organisms/SliderYouMayALsoLike/SliderYouMayAlsoLike';
 import styles from './ItemCardLayout.module.scss';
 
-export const ItemCardLayout = ({ items }: { items: ProductDetails[] }) => {
-  const handleColorChange = (productId: string, color: string) => {
-    console.log(`Product ${productId}: Color changed to ${color}`);
-  };
+interface ItemCardLayoutProps {
+  items: ProductDetails[];
+  categorySlug: string;
+  onColorChange?: (color: string) => void;
+  onCapacityChange?: (capacity: string) => void;
+  hotPricesSection: React.ReactNode;
+}
 
-  const handleCapacityChange = (productId: string, capacity: string) => {
-    console.log(`Product ${productId}: Capacity changed to ${capacity}`);
-  };
-
+export const ItemCardLayout = ({
+  items,
+  categorySlug,
+  onColorChange,
+  onCapacityChange,
+  hotPricesSection,
+}: ItemCardLayoutProps) => {
   return (
     <>
       {items.map((product) => (
@@ -21,26 +28,30 @@ export const ItemCardLayout = ({ items }: { items: ProductDetails[] }) => {
           key={product.id}
           className={styles.itemCard}
         >
-          <ImageGallery
-            images={product.images}
-            name={product.name}
+          <Breadcrumbs
+            categorySlug={categorySlug || ''}
+            productName={product.name}
           />
-          <SelectorsSection
-            colorsAvailable={product.colorsAvailable}
-            capacityAvailable={product.capacityAvailable}
-            priceRegular={product.priceRegular}
-            priceDiscount={product.priceDiscount}
-            screen={product.screen}
-            resolution={product.resolution}
-            processor={product.processor}
-            ram={product.ram}
-            onColorChange={(color) => handleColorChange(product.id, color)}
-            onCapacityChange={(capacity) =>
-              handleCapacityChange(product.id, capacity)
-            }
-          />
+
+          {/* кнопка Back не працює */}
+          <BackButton params={{ to: `#/catalog/${categorySlug}` }}>
+            Back
+          </BackButton>
+
+          <h2>{product.name}</h2>
+
+          <div className="info">
+            <ImageGallery images={product.images} />
+
+            <SelectorsSection
+              product={product}
+              onColorChange={onColorChange}
+              onCapacityChange={onCapacityChange}
+            />
+          </div>
+
           <AboutAndTechSpecs product={product} />
-          <SliderYouMayAlsoLike productId={product.id} />
+          {hotPricesSection}
         </div>
       ))}
     </>

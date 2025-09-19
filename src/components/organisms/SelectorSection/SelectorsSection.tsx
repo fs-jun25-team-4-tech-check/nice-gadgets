@@ -1,57 +1,38 @@
-import { useState } from 'react';
+import { useCart } from '../../../hooks/useCart';
+import { useFavs } from '../../../hooks/useFavs';
+import type { ProductDetails } from '../../../types';
+import { ActionButton, PrimaryButton } from '../../atoms';
+
 import styles from './SelectorsSection.module.scss';
 
 interface SelectorsSectionProps {
-  colorsAvailable: string[];
-  capacityAvailable: string[];
-  priceRegular: number;
-  priceDiscount: number;
-  screen: string;
-  resolution: string;
-  processor: string;
-  ram: string;
+  product: ProductDetails;
   onColorChange?: (color: string) => void;
   onCapacityChange?: (capacity: string) => void;
 }
 
 export const SelectorsSection = ({
-  colorsAvailable,
-  capacityAvailable,
-  priceRegular,
-  priceDiscount,
-  screen,
-  resolution,
-  processor,
-  ram,
+  product,
   onColorChange,
   onCapacityChange,
 }: SelectorsSectionProps) => {
-  const [selectedColor, setSelectedColor] = useState(colorsAvailable[0]);
-  const [selectedCapacity, setSelectedCapacity] = useState(
-    capacityAvailable[0],
-  );
+  const { addToCart, removeFromCart, isInCart } = useCart();
+  const { addToFavs, removeFromFavs, isInFavs } = useFavs();
 
-  const handleColorSelect = (color: string) => {
-    setSelectedColor(color);
-    onColorChange?.(color);
-  };
-
-  const handleCapacitySelect = (capacity: string) => {
-    setSelectedCapacity(capacity);
-    onCapacityChange?.(capacity);
-  };
+  const isInCartState = isInCart(product.id);
+  const isFavourite = isInFavs(product.id);
 
   return (
     <section className={styles.section}>
       <div className={styles.selectorGroup}>
         <p className={styles.label}>Available colors</p>
         <div className={styles.colorOptions}>
-          {colorsAvailable.map((color) => (
+          {product.colorsAvailable.map((color) => (
             <button
               key={color}
-              className={`${styles.colorCircle} ${selectedColor === color ? styles.active : ''}`}
+              className={`${styles.colorCircle} ${product.color === color ? styles.active : ''}`}
               style={{ backgroundColor: color || '#CCCCCC' }}
-              onClick={() => handleColorSelect(color)}
+              onClick={() => onColorChange?.(color)}
               aria-label={`Select ${color} color`}
             />
           ))}
@@ -61,11 +42,11 @@ export const SelectorsSection = ({
       <div className={styles.selectorGroup}>
         <p className={styles.label}>Select capacity</p>
         <div className={styles.capacityOptions}>
-          {capacityAvailable.map((capacity) => (
+          {product.capacityAvailable.map((capacity) => (
             <button
               key={capacity}
-              className={`${styles.capacityBtn} ${selectedCapacity === capacity ? styles.active : ''}`}
-              onClick={() => handleCapacitySelect(capacity)}
+              className={`${styles.capacityBtn} ${product.capacity === capacity ? styles.active : ''}`}
+              onClick={() => onCapacityChange?.(capacity)}
             >
               {capacity}
             </button>
@@ -74,46 +55,49 @@ export const SelectorsSection = ({
       </div>
 
       <div className={styles.priceBlock}>
-        <span className={styles.newPrice}>${priceDiscount}</span>
-        <span className={styles.oldPrice}>${priceRegular}</span>
+        <span className={styles.newPrice}>${product.priceDiscount}</span>
+        <span className={styles.oldPrice}>${product.priceRegular}</span>
       </div>
 
-      <div className={styles.actions}>
-        <button className={styles.addToCart}>Add to cart</button>
-        <button
-          className={styles.favourite}
-          aria-label="Add to favourites"
+      <div className={styles.buttonGroup}>
+        <PrimaryButton
+          onClick={
+            isInCartState ?
+              () => removeFromCart(product.id)
+            : () => addToCart(product.id)
+          }
+          isSelected={isInCartState}
         >
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-          >
-            <path
-              d="M8 14L7.175 13.25C3.4 9.8 1 7.6 1 4.95C1 2.75 2.75 1 4.95 1C6.17 1 7.34 1.62 8 2.53C8.66 1.62 9.83 1 11.05 1C13.25 1 15 2.75 15 4.95C15 7.6 12.6 9.8 8.825 13.25L8 14Z"
-              fill="currentColor"
-            />
-          </svg>
-        </button>
+          {isInCartState ? 'Added' : 'Add to cart'}
+        </PrimaryButton>
+
+        <ActionButton
+          variant="favourites"
+          onClick={
+            isFavourite ?
+              () => removeFromFavs(product.id)
+            : () => addToFavs(product.id)
+          }
+          isSelected={isFavourite}
+        />
       </div>
 
       <div className={styles.specs}>
         <div className={styles.specRow}>
           <span className={styles.specName}>Screen</span>
-          <span className={styles.specValue}>{screen}</span>
+          <span className={styles.specValue}>{product.screen}</span>
         </div>
         <div className={styles.specRow}>
           <span className={styles.specName}>Resolution</span>
-          <span className={styles.specValue}>{resolution}</span>
+          <span className={styles.specValue}>{product.resolution}</span>
         </div>
         <div className={styles.specRow}>
           <span className={styles.specName}>Processor</span>
-          <span className={styles.specValue}>{processor}</span>
+          <span className={styles.specValue}>{product.processor}</span>
         </div>
         <div className={styles.specRow}>
           <span className={styles.specName}>RAM</span>
-          <span className={styles.specValue}>{ram}</span>
+          <span className={styles.specValue}>{product.ram}</span>
         </div>
       </div>
     </section>
