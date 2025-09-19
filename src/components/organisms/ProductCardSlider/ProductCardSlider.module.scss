@@ -1,0 +1,18 @@
+.sliderWrapper {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  overflow: hidden;
+
+  .cardsWrapper {
+    display: flex;
+    width: 100%;
+
+    .swiperSlide {
+      width: auto;
+      flex: 0 0 auto;
+    }
+  }
+}
