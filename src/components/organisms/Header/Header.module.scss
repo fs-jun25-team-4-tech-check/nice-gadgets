@@ -17,6 +17,8 @@
   }
 
   .nav {
+    list-style-type: none;
+    padding: 0;
     display: none;
     align-items: center;
     gap: 64px;
@@ -43,7 +45,7 @@
     &::after {
       content: '';
       position: absolute;
-      bottom: -26px;
+      bottom: -23px;
       left: 0;
       width: 100%;
       height: 2px;
