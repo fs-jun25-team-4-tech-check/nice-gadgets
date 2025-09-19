@@ -1,73 +1,75 @@
 import styles from './ProductCard.module.scss';
 import { ActionButton, PrimaryButton } from '../../atoms';
+import type { Product } from '../../../types';
+import { useCart } from '../../../hooks/useCart';
+import { useFavs } from '../../../hooks/useFavs';
 
 interface ProductCardProps {
-  image: string;
-  title: string;
-  price: number;
-  oldPrice?: number;
-  screen: string;
-  capacity: string;
-  ram: string;
-  onAddToCart?: () => void;
-  onAddToFavorites?: () => void;
-  isInCart: boolean;
-  isFavorite: boolean;
+  product: Product;
+  className?: string;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
-  image,
-  title,
-  price,
-  oldPrice,
-  screen,
-  capacity,
-  ram,
-  onAddToCart,
-  onAddToFavorites,
-  isInCart,
-  isFavorite,
+  product,
+  className = '',
 }) => {
+  const { addToCart, removeFromCart, isInCart: isInCartFunc } = useCart();
+  const { addToFavs, removeFromFavs, isInFavs } = useFavs();
+
+  const isInCart = isInCartFunc(product.itemId);
+
+  const isFavourite = isInFavs(product.itemId);
+
   const handleAddToCart = () => {
-    onAddToCart?.();
+    addToCart(product.itemId);
   };
 
   const handleAddToFavorites = () => {
-    onAddToFavorites?.();
+    addToFavs(product.itemId);
+  };
+
+  const handleRemovefromCart = () => {
+    removeFromCart(product.itemId);
+  };
+
+  const handleRemovefromFavs = () => {
+    removeFromFavs(product.itemId);
   };
 
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card} ${className}`}>
       <div className={styles.imageWrapper}>
         <img
-          src={image}
-          alt={title}
+          src={product.image}
+          alt={product.name}
           className={styles.image}
         />
       </div>
 
-      <h3 className={styles.title}>{title}</h3>
+      <h3 className={styles.title}>{product.name}</h3>
 
       <div className={styles.priceBlock}>
-        <span className={styles.price}>${price}</span>
-        {oldPrice && <span className={styles.oldPrice}>${oldPrice}</span>}
+        <span className={styles.price}>${product.price}</span>
+        {product.price < product.fullPrice && (
+          <span className={styles.oldPrice}>${product.fullPrice}</span>
+        )}
       </div>
 
       <ul className={styles.specs}>
         <li>
-          <span>Screen:</span> {screen}
+          <span>Screen:</span> {product.screen}
         </li>
         <li>
-          <span>Capacity:</span> {capacity}
+          <span>Capacity:</span> {product.capacity}
         </li>
         <li>
-          <span>RAM:</span> {ram}
+          <span>RAM:</span> {product.ram}
         </li>
       </ul>
 
       <div className={styles.buttonGroup}>
         <PrimaryButton
-          onClick={handleAddToCart}
+          onClick={isInCart ? handleRemovefromCart : handleAddToCart}
           isSelected={isInCart}
         >
           {isInCart ? 'Added' : 'Add to cart'}
@@ -75,8 +77,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
         <ActionButton
           variant="favourites"
-          onClick={handleAddToFavorites}
-          isSelected={isFavorite}
+          onClick={isFavourite ? handleRemovefromFavs : handleAddToFavorites}
+          isSelected={isFavourite}
         />
       </div>
     </div>

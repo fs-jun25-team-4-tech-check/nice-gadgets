@@ -4,10 +4,15 @@ import styles from './DropdownAtom.module.scss';
 import classNames from 'classnames';
 import { PiCaretDownBold, PiCaretUpBold } from 'react-icons/pi';
 
+interface DropdownItem {
+  value: string;
+  displayName: string;
+}
+
 interface DropdownAtomProps {
   label?: string;
   placeholder?: string;
-  items: string[];
+  items: DropdownItem[];
   value?: string;
   onSelect?: (item: string) => void;
   variant?: 'sort' | 'pagination';
@@ -27,6 +32,8 @@ export const DropdownAtom = ({
     [styles.dropdownSort]: variant === 'sort',
     [styles.dropdownPagination]: variant === 'pagination',
   };
+
+  const selectedItem = items.find((item) => item.value === value);
 
   const triggerId = useId();
 
@@ -52,8 +59,9 @@ export const DropdownAtom = ({
         className={classNames(styles.dropdownTrigger, variantClass)}
       >
         <span className={styles.dropdownPlaceholder}>
-          {value ?? placeholder ?? ''}
+          {selectedItem?.displayName ?? placeholder ?? ''}
         </span>
+
         <span className={styles.dropdownIconWrapper}>
           {open ?
             <PiCaretUpBold />
@@ -66,11 +74,11 @@ export const DropdownAtom = ({
       >
         {items.map((item) => (
           <DropdownMenu.Item
-            key={item}
+            key={item.value}
             className={styles.dropdownItem}
-            onSelect={() => handleSelect(item)}
+            onSelect={() => handleSelect(item.value)}
           >
-            {item}
+            {item.displayName}
           </DropdownMenu.Item>
         ))}
       </DropdownMenu.Content>
