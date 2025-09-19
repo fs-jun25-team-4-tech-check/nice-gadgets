@@ -39,16 +39,7 @@ export const ItemCardLayout = ({ items }: { items: ProductDetails[] }) => {
               handleCapacityChange(product.id, capacity)
             }
           />
-          <AboutAndTechSpecs
-            description={product.description}
-            screen={product.screen}
-            resolution={product.resolution}
-            processor={product.processor}
-            ram={product.ram}
-            camera={product.camera}
-            zoom={product.zoom}
-            cell={product.cell}
-          />
+          <AboutAndTechSpecs product={product} />
           <SliderYouMayAlsoLike productId={product.id} />
         </div>
       ))}
