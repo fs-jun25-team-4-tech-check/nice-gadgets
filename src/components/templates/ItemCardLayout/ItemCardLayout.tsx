@@ -1,15 +1,34 @@
-import type React from 'react';
-import type { ProductCategory } from '../../../types';
+import type { ProductDetails } from '../../../types';
+import { ImageGallery } from '../../molecules/ImageGallery/ImageGallery';
+import { AboutAndTechSpecs } from '../../organisms/AboutAndTechSpecs/AboutAndTechSpecs';
+import { SelectorsSection } from '../../organisms/SelectorSection/SelectorsSection';
+import { SliderYouMayAlsoLike } from '../../organisms/SliderYouMayALsoLike/SliderYouMayAlsoLike';
+import styles from './ItemCardLayout.module.scss';
 
-// import styles from './ItemCardLayout.module.scss';
-
-type Props = {
-  itemId: string;
-  category: ProductCategory;
+export const ItemCardLayout = ({ items }: { items: ProductDetails[] }) => {
+  return (
+    <>
+      {items.map((product) => (
+        <div
+          key={product.id}
+          className={styles.itemCard}
+        >
+          <h2>{product.name}</h2>
+          <ImageGallery images={product.images} />
+          <SelectorsSection />
+          <AboutAndTechSpecs
+            description={product.description}
+            screen={product.screen}
+            resolution={product.resolution}
+            processor={product.processor}
+            ram={product.ram}
+            camera={product.camera}
+            zoom={product.zoom}
+            cell={product.cell}
+          />
+          <SliderYouMayAlsoLike productId={product.id} />
+        </div>
+      ))}
+    </>
+  );
 };
-
-const ItemCardLayout: React.FC<Props> = () => {
-  return <></>;
-};
-
-export default ItemCardLayout;

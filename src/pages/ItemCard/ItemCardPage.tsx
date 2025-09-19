@@ -1,28 +1,26 @@
-import ItemCardLayout from '../../components/templates/ItemCardLayout/ItemCardLayout';
 import { useProductDetails } from '../../hooks';
 import { useParams } from 'react-router-dom';
+import type { ProductCategory } from '../../services';
+import { ItemCardLayout } from '../../components/templates/ItemCardLayout/ItemCardLayout';
+import Loader from '../../components/atoms/Loader/Loader';
 
 const ItemCardPage = () => {
-  const { productId = 'apple-watch-series-3-38mm-space-gray' } = useParams<{
-    productId?: string;
+  const { productId } = useParams<{
+    productId: string;
   }>();
 
-  const { data } = useProductDetails(productId, 'phones');
+  const category: ProductCategory = 'phones';
 
-  if (!productId) {
-    return <div>Problem...</div>;
-  }
-
-  console.log('It works');
-  console.log(productId);
-  console.log(data);
-
-  return (
-    <ItemCardLayout
-      itemId={productId}
-      category={category}
-    />
+  const { data, isLoading, error } = useProductDetails(
+    productId ?? '',
+    category,
   );
+
+  if (isLoading) return <Loader />;
+  if (error) return <p>{error.message}</p>;
+  if (!data) return <p>Error: Product not found</p>;
+
+  return <ItemCardLayout items={[data]} />;
 };
 
 export default ItemCardPage;
