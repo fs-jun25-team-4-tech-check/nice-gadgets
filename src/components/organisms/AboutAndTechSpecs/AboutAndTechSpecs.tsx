@@ -16,7 +16,6 @@ export const AboutAndTechSpecs: React.FC<AboutAndTechSpecsProps> = ({
           <p>Zoom: {product.zoom}</p>
         </div>
       );
-
     case 'tablets':
       // TypeScript knows 'product' is of type 'Tablet' here
       return (
@@ -25,7 +24,6 @@ export const AboutAndTechSpecs: React.FC<AboutAndTechSpecsProps> = ({
           <p>Zoom: {product.zoom}</p>
         </div>
       );
-
     case 'accessories':
       // No specific properties to render for Accessory
       return null;
