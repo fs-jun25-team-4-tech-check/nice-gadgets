@@ -85,7 +85,7 @@ const Header = () => {
             </li>
             <li>
               <NavLink
-                to="/catalog/accesories"
+                to="/catalog/accessories"
                 className={({ isActive }) =>
                   `uppercase-text ${styles.navLink} ${isActive ? styles.active : ''}`
                 }
