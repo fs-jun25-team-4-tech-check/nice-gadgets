@@ -4,8 +4,12 @@ import logo from './../../../assets/icons/brand/logo.svg';
 import { HeaderButton } from '../../atoms/Buttons/HeaderButton';
 import { BurgerMenu } from '../../molecules/BurgerMenu';
 import { useEffect, useState } from 'react';
+import { useCart } from '../../../hooks/useCart';
+import { useFavs } from '../../../hooks/useFavs';
 
 const Header = () => {
+  const { cart } = useCart();
+  const { favs } = useFavs();
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
   useEffect(() => {
     if (isBurgerMenuOpen) {
@@ -81,7 +85,7 @@ const Header = () => {
             </li>
             <li>
               <NavLink
-                to="/catalog/accesories"
+                to="/catalog/accessories"
                 className={({ isActive }) =>
                   `uppercase-text ${styles.navLink} ${isActive ? styles.active : ''}`
                 }
@@ -96,10 +100,12 @@ const Header = () => {
           <HeaderButton
             variant="favourites"
             className={styles.desktopIcons}
+            notifCount={favs.length}
           />
           <HeaderButton
             variant="cart"
             className={styles.desktopIcons}
+            notifCount={cart.length}
           />
           <HeaderButton
             variant={isBurgerMenuOpen ? 'close' : 'burger'}
