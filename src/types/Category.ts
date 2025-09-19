@@ -1,8 +1,8 @@
-export type CategorySlug = 'phones' | 'accessories' | 'tablets';
+import type { ProductCategory } from './api.types';
 
 export interface CategoryBannerData {
   name: string;
-  categorySlug: CategorySlug;
+  categorySlug: ProductCategory;
   imgLink: string;
   backgroundColor: string;
 }
