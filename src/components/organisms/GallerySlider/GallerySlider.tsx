@@ -20,13 +20,14 @@ export const GallerySlider: React.FC<GallerySliderProps> = ({
   gallerySlides,
 }) => {
   return (
-    <div className={styles.sliderWrapper}>
-      <div className={styles.sliderInnerWrapper}>
+    <div className={styles.container}>
+      <div className={styles.sliderContainer}>
         <ActionButton
           variant="slider"
           direction="left"
           className={styles.prev}
         />
+
         <Swiper
           modules={[Navigation, Pagination]}
           loop
@@ -37,10 +38,6 @@ export const GallerySlider: React.FC<GallerySliderProps> = ({
             nextEl: `.${styles.next}`,
           }}
           pagination={{ clickable: true }}
-          // breakpoints={{
-          //   [SCREEN_WIDTH.SLIDER_TABLET]: { slidesPerView: 1 },
-          //   [SCREEN_WIDTH.SLIDER_DESKTOP]: { slidesPerView: 1 },
-          // }}
         >
           {gallerySlides.map((slide, index) => (
             <SwiperSlide key={index}>
