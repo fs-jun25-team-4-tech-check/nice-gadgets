@@ -6,9 +6,13 @@ import { useFavs } from '../../../hooks/useFavs';
 
 interface ProductCardProps {
   product: Product;
+  className?: string;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+const ProductCard: React.FC<ProductCardProps> = ({
+  product,
+  className = '',
+}) => {
   const { addToCart, removeFromCart, isInCart: isInCartFunc } = useCart();
   const { addToFavs, removeFromFavs, isInFavs } = useFavs();
 
@@ -33,7 +37,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   };
 
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card} ${className}`}>
       <div className={styles.imageWrapper}>
         <img
           src={product.image}

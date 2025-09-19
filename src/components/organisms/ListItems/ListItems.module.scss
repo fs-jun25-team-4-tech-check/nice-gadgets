@@ -1,0 +1,11 @@
+.listContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(229px, 1fr));
+  column-gap: 16px;
+  row-gap: 40px;
+  align-items: stretch;
+
+  .listItem {
+    width: 100%;
+  }
+}
