@@ -1,0 +1,10 @@
+.sliderHeader {
+  display: flex;
+  justify-content: space-between;
+
+  .sliderButtons {
+    display: flex;
+    justify-content: end;
+    gap: 16px;
+  }
+}
