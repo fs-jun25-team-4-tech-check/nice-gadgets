@@ -1,0 +1,46 @@
+.itemCard {
+  @include page-grid;
+  padding-block: 32px;
+  border-bottom: 1px solid #e0e0e0;
+
+  .title {
+    grid-column: 1 / -1;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+
+  .imageGallery {
+    grid-column: span 4;
+
+    @include on-md {
+      grid-column: span 6;
+    }
+
+    @include on-xl {
+      grid-column: span 12;
+    }
+  }
+
+  .selectorsSection {
+    grid-column: span 4;
+
+    @include on-md {
+      grid-column: span 6;
+    }
+
+    @include on-xl {
+      grid-column: span 12;
+    }
+  }
+
+  .aboutAndTechSpecs {
+    grid-column: 1 / -1;
+    margin-top: 32px;
+  }
+
+  .sliderYouMayAlsoLike {
+    grid-column: 1 / -1;
+    margin-top: 48px;
+  }
+}

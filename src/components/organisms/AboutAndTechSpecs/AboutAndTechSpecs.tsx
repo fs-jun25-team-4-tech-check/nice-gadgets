@@ -1,43 +1,33 @@
+import type { ProductDetails } from '../../../types';
+
 interface AboutAndTechSpecsProps {
-  description: Array<{ title: string; text: string[] }>;
-  screen: string;
-  resolution: string;
-  processor: string;
-  ram: string;
-  cell: string[];
-  camera?: string;
-  zoom?: string;
+  product: ProductDetails;
 }
 
-export const AboutAndTechSpecs = ({
-  description,
-  screen,
-  resolution,
-  processor,
-  ram,
-  cell,
-  camera,
-  zoom,
-}: AboutAndTechSpecsProps) => {
-  return (
-    <div>
-      <h3>About</h3>
-      {description.map((item, index) => (
-        <div key={index}>
-          <strong>{item.title}</strong>
-          <p>{item.text.join(', ')}</p>
+export const AboutAndTechSpecs: React.FC<AboutAndTechSpecsProps> = ({
+  product,
+}) => {
+  switch (product.category) {
+    case 'phones':
+      // TypeScript knows 'product' is of type 'Phone' here
+      return (
+        <div>
+          <p>Camera: {product.camera}</p>
+          <p>Zoom: {product.zoom}</p>
         </div>
-      ))}
-      <h3>Technical Specifications</h3>
-      <ul>
-        <li>Screen: {screen}</li>
-        <li>Resolution: {resolution}</li>
-        <li>Processor: {processor}</li>
-        <li>RAM: {ram}</li>
-        <li>Cell: {cell.join(', ')}</li>
-        {camera && <li>Camera: {camera}</li>}
-        {zoom && <li>Zoom: {zoom}</li>}
-      </ul>
-    </div>
-  );
+      );
+
+    case 'tablets':
+      // TypeScript knows 'product' is of type 'Tablet' here
+      return (
+        <div>
+          <p>Camera: {product.camera}</p>
+          <p>Zoom: {product.zoom}</p>
+        </div>
+      );
+
+    case 'accessories':
+      // No specific properties to render for Accessory
+      return null;
+  }
 };
