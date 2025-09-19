@@ -1,10 +1,15 @@
 .breadcrumbs {
   width: 100%;
   margin-top: 24px;
+  margin-bottom: 24px;
   font-size: 12px;
   font-weight: 700;
   color: $dark-white;
   white-space: nowrap;
+
+  @include on-md {
+    margin-bottom: 40px;
+  }
 
   ul {
     display: inline-flex;
