@@ -4,25 +4,36 @@
   align-items: center;
   gap: 16px;
   margin-bottom: 40px;
+  margin-top: 16px;
+
+  h2 {
+    width: 100%;
+    text-align: center;
+  }
 
   @include on-md {
-    flex-direction: row;
-    align-items: flex-start;
     margin-bottom: 80px;
   }
 }
 
+.images {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  @include on-md {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
 .main {
-  order: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 288px;
   height: 288px;
-
-  @include on-md {
-    order: 2;
-  }
 
   @include on-xl {
     width: 464px;
@@ -38,17 +49,14 @@
 }
 
 .thumbs {
-  order: 2;
   display: flex;
   gap: 8px;
   justify-content: center;
-  flex-direction: row;
 
   @include on-md {
-    order: 1;
     flex-direction: column;
-    align-items: flex-start;
     justify-content: flex-start;
+    align-items: flex-start;
   }
 }
 
@@ -62,6 +70,7 @@
   padding: 0;
   cursor: pointer;
   background: none;
+  border: 2px solid transparent;
 
   @include on-md {
     width: 35px;
