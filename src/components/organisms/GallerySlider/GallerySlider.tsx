@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import { ActionButton } from '../../atoms';
-// import { SCREEN_WIDTH } from '../../../constants/screenWidth';
 
 import type { GallerySliderItem } from '../../../types/GallerySliderItem';
 
@@ -40,7 +39,10 @@ export const GallerySlider: React.FC<GallerySliderProps> = ({
           pagination={{ clickable: true }}
         >
           {gallerySlides.map((slide, index) => (
-            <SwiperSlide key={index}>
+            <SwiperSlide
+              key={index}
+              className={styles.slideElement}
+            >
               <Link to={slide.linkUrl}>
                 <img
                   src={slide.imgUrl}
