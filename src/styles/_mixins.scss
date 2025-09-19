@@ -42,6 +42,7 @@
 
 @mixin content-container {
   max-width: variables.$max-container-width;
+  width: 100%;
   overflow: hidden;
 
   margin-inline: auto;
