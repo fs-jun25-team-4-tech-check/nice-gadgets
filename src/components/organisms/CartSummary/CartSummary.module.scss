@@ -1,0 +1,25 @@
+.cartSummary {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  border: 1px solid $dark-elements;
+  position: relative;
+  .countPriceWrapper {
+    border-bottom: 1px solid $dark-elements;
+    .totalPrice {
+      display: flex;
+      justify-content: center;
+    }
+    .countTitle {
+      display: flex;
+      justify-content: center;
+      color: $dark-secondary;
+      margin-bottom: 25px;
+    }
+  }
+  .checkoutButton {
+    height: 48px;
+    font-weight: 500;
+  }
+}
