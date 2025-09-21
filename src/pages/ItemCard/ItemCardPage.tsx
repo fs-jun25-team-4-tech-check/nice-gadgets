@@ -1,14 +1,9 @@
-// логіка потребує змін
-
-import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useProductDetails } from '../../hooks';
 import { ItemCardLayout } from '../../components/templates/ItemCardLayout/ItemCardLayout';
 import Loader from '../../components/atoms/Loader/Loader';
 import { CardsSlider } from '../../components/organisms/ProductCardSlider/ProductCardsSlider';
-
-import type { ProductDetails } from '../../types';
 
 const ItemCardPage = () => {
   const { productId } = useParams<{
@@ -17,18 +12,10 @@ const ItemCardPage = () => {
   const navigate = useNavigate();
 
   const {
-    data: currentData,
+    data: product,
     isLoading,
     error,
   } = useProductDetails(productId ?? '');
-
-  const [product, setProduct] = useState<ProductDetails | null>(null);
-
-  useEffect(() => {
-    if (currentData) {
-      setProduct(currentData);
-    }
-  }, [currentData]);
 
   const updateVariant = (newColor?: string, newCapacity?: string) => {
     if (!product) return;

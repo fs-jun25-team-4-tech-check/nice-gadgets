@@ -36,7 +36,8 @@ export const SelectorsSection = ({
               className={`${styles.colorCircle} ${product.color === color ? styles.active : ''}`}
               style={{
                 backgroundColor:
-                  productColorOptions[color as ColorKey] || '#CCCCCC',
+                  productColorOptions[color as ColorKey] ||
+                  productColorOptions['out-of-stock'],
               }}
               onClick={() => onColorChange?.(color)}
               aria-label={`Select ${color} color`}

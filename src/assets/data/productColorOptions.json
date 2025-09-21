@@ -20,5 +20,6 @@
   "white": "#FFFFFF",
   "yellow": "#FFEE8C ",
   "sky blue": "#87CEEB",
-  "starlight": "#161126"
+  "starlight": "#161126",
+  "out-of-stock": "#CCCCCC"
 }
