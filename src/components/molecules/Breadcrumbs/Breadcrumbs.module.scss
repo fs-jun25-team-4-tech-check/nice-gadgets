@@ -1,31 +1,40 @@
 .breadcrumbs {
-  width: 100%;
+  max-width: 100%;
   margin-top: 24px;
+  margin-bottom: 24px;
   font-size: 12px;
   font-weight: 700;
   color: $dark-white;
-  white-space: nowrap;
+
+  @include on-md {
+    margin-bottom: 40px;
+  }
 
   ul {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     list-style: none;
     padding: 0;
     margin: 0;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   li {
-    display: inline-flex;
+    display: flex;
     align-items: center;
+    min-width: 0;
+    flex: 0 0 auto;
+
+    &:last-child {
+      flex: 1 1 0;
+    }
 
     a {
-      display: inline-flex;
-      align-items: center;
+      display: block;
       white-space: nowrap;
       color: $dark-white;
       text-decoration: none;
-      overflow: hidden;
-      text-overflow: ellipsis;
 
       &:hover {
         text-decoration: underline;
@@ -39,6 +48,9 @@
     }
 
     .current {
+      display: block;
+      width: 100%;
+      min-width: 0;
       color: $dark-secondary;
       font-weight: 600;
       white-space: nowrap;
