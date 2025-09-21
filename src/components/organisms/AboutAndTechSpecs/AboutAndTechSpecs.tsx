@@ -14,14 +14,14 @@ export const AboutAndTechSpecs: React.FC<AboutAndTechSpecsProps> = ({
   return (
     <section className={styles.wrapper}>
       <div className={styles.about}>
-        <h2 className={styles.heading}>About</h2>
+        <h3 className={styles.heading}>About</h3>
 
         {product.description.map((block, i) => (
           <div
             key={i}
             className={styles.block}
           >
-            <h3>{block.title}</h3>
+            <h4>{block.title}</h4>
             {block.text.map((p, j) => (
               <p key={j}>{p}</p>
             ))}
@@ -30,7 +30,7 @@ export const AboutAndTechSpecs: React.FC<AboutAndTechSpecsProps> = ({
       </div>
 
       <div className={styles.specs}>
-        <h2 className={styles.heading}>Tech specs</h2>
+        <h3 className={styles.headingSpecs}>Tech specs</h3>
         <ul>
           <li>
             <span>Screen</span>

@@ -2,7 +2,7 @@ import type { ProductDetails } from '../../../types';
 import { BackButton } from '../../atoms';
 
 import Breadcrumbs from '../../molecules/Breadcrumbs/Breadcrumbs';
-import { ImageGallery } from '../../molecules/ImageGallery/ImageGallery';
+import { ImageGallery } from '../../organisms/ImageGallery/ImageGallery';
 import { AboutAndTechSpecs } from '../../organisms/AboutAndTechSpecs/AboutAndTechSpecs';
 import { SelectorsSection } from '../../organisms/SelectorSection/SelectorsSection';
 import styles from './ItemCardLayout.module.scss';
@@ -47,6 +47,7 @@ export const ItemCardLayout = ({
           </div>
 
           <AboutAndTechSpecs product={product} />
+
           {youMayAlsoLikeSection}
         </div>
       ))}

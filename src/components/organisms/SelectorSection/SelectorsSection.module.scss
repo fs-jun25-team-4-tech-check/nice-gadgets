@@ -1,31 +1,33 @@
 .section {
   display: flex;
   flex-direction: column;
-  gap: 32px;
   max-width: 100%;
-  margin-top: 16px;
+
   @include on-md {
-    gap: 36px;
+    flex: 1 22 50%;
+    max-width: 237px;
+  }
+
+  @include on-lg {
     flex: 1 1 50%;
-    max-width: 50%;
+    max-width: 320px;
   }
 }
 
 .selectorGroup {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
   border-bottom: 1px solid $dark-elements;
   padding-bottom: 24px;
+  border-bottom: 1px solid $dark-elements;
+  margin-bottom: 24px;
 }
 
 .label {
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   color: $dark-secondary;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin: 0;
 }
 
 .colorOptions {
@@ -38,27 +40,14 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  border: 2px solid transparent;
+  border: 2px solid $dark-black;
+  box-shadow: 0 0 0 1px $dark-elements;
   cursor: pointer;
-  transition: all 0.2s ease;
   position: relative;
-  background-color: transparent;
   padding: 0;
 
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 2px;
-    border-radius: 50%;
-    background-color: inherit;
-  }
-
   &.active {
-    border-color: $dark-white;
-  }
-
-  &:hover:not(.active) {
-    border-color: $dark-elements;
+    box-shadow: 0 0 0 1px $dark-white;
   }
 }
 
@@ -69,39 +58,34 @@
 }
 
 .capacityBtn {
-  padding: 7px 8px;
-  min-width: 60px;
-  border: 1px solid $dark-elements;
-  background: transparent;
-  color: $dark-secondary;
+  padding: 8px;
+  min-width: 56px;
+  border: 1px solid $dark-icons;
+  color: $dark-white;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
   text-align: center;
+  background-color: inherit;
 
   &.active {
     background-color: $dark-white;
     border-color: $dark-white;
     color: $dark-black;
-    font-weight: 700;
   }
 
   &:hover:not(.active) {
-    border-color: $dark-secondary;
-    color: $dark-white;
-  }
-
-  @include on-md {
-    padding: 8px 12px;
+    border-color: $dark-white;
   }
 }
 
 .priceBlock {
+  padding-top: 8px;
   display: flex;
   align-items: baseline;
   gap: 8px;
-  margin: 8px 0;
+  margin-bottom: 16px;
 }
 
 .newPrice {
@@ -117,80 +101,12 @@
 
 .oldPrice {
   font-size: 22px;
-  font-weight: 500;
+  font-weight: 600;
   color: $dark-secondary;
   text-decoration: line-through;
-  margin-left: 4px;
 
   @include on-md {
     font-size: 24px;
-  }
-}
-
-.actions {
-  display: flex;
-  gap: 16px;
-  margin: 8px 0;
-}
-
-.addToCart {
-  flex: 1;
-  padding: 12px 24px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, $dark-accent 0%, #7c4dff 100%);
-  color: $dark-white;
-  font-weight: 600;
-  font-size: 14px;
-  text-align: center;
-  cursor: pointer;
-  border: none;
-  transition: all 0.2s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-
-  &:hover {
-    background: linear-gradient(135deg, $dark-accent-hover 0%, #8e61ff 100%);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(144, 91, 255, 0.3);
-  }
-
-  &:active {
-    transform: translateY(0);
-  }
-
-  @include on-md {
-    padding: 14px 24px;
-    font-size: 14px;
-  }
-}
-
-.favourite {
-  width: 48px;
-  height: 48px;
-  border-radius: 8px;
-  border: 1px solid $dark-elements;
-  background: transparent;
-  color: $dark-secondary;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-
-  svg {
-    width: 16px;
-    height: 16px;
-  }
-
-  &:hover {
-    border-color: $dark-white;
-    color: $dark-white;
-    background-color: rgba(255, 255, 255, 0.05);
-  }
-
-  @include on-md {
-    width: 52px;
-    height: 52px;
   }
 }
 
@@ -198,7 +114,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding-top: 8px;
+  padding-top: 32px;
 }
 
 .specRow {
