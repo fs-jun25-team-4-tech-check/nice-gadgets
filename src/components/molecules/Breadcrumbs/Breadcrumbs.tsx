@@ -20,7 +20,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   return (
     <nav
       className={styles.breadcrumbs}
-      aria-label="Breadcrumb"
+      aria-label="Breadcrumbs"
     >
       <ul>
         <li>
