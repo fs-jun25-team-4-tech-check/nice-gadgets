@@ -54,12 +54,11 @@ const ItemCardPage = () => {
       items={[product]}
       onColorChange={handleColorChange}
       onCapacityChange={handleCapacityChange}
-      //існуючий слайдер для гарячих цін для наглядності
-      hotPricesSection={
+      youMayAlsoLikeSection={
         <CardsSlider
-          id="hotPricesSlider"
+          id="youMayAlsoLikeSlider"
           type="hotPrices"
-          headerText="Hot prices"
+          headerText="You may also like"
         />
       }
     />

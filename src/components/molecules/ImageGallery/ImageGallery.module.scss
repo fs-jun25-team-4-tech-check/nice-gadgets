@@ -8,6 +8,8 @@
 
   @include on-md {
     margin-bottom: 80px;
+    flex: 1 1 50%;
+    max-width: 50%;
   }
 }
 
