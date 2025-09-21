@@ -79,6 +79,19 @@ export async function mockGetAllProducts(): Promise<Product[]> {
   return addFullImagePaths(products);
 }
 
+export async function mockGetProductsById(
+  itemIds: string[],
+): Promise<Product[]> {
+  await waitDelay(mockNetworkDelay);
+  const products = await fetchJson<Product[]>(API_ENDPOINTS.PRODUCTS);
+
+  const filteredProducts = products.filter((product) =>
+    itemIds.includes(product.itemId),
+  );
+
+  return filteredProducts;
+}
+
 export async function mockGetProducts(
   page: number,
   perPage: number,

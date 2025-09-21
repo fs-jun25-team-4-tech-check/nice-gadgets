@@ -5,6 +5,7 @@ import {
   getProductDetails,
   getProducts,
   getProductsByCategory,
+  getProductsById,
   type ProductCategory,
   type ProductDetails,
 } from '../services';
@@ -19,6 +20,16 @@ export const useAllProducts = () => {
     queryKey: ['products', 'all'],
     queryFn: getAllProducts,
     staleTime,
+    placeholderData: keepPreviousData,
+  });
+};
+
+export const useProductsById = (itemIds: string[] = []) => {
+  return useQuery<Product[], Error>({
+    queryKey: ['products', [...itemIds].sort()],
+    queryFn: () => getProductsById(itemIds),
+    staleTime,
+    enabled: itemIds.length > 0,
     placeholderData: keepPreviousData,
   });
 };

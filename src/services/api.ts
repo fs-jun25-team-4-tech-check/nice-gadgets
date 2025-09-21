@@ -4,6 +4,7 @@ import {
   mockGetProductDetails,
   mockGetProducts,
   mockGetProductsByCategory,
+  mockGetProductsById,
 } from './mockApi';
 import type {
   PaginatedResponse,
@@ -14,6 +15,12 @@ import type {
 
 export async function getAllProducts(): Promise<Product[]> {
   return mockGetAllProducts();
+}
+
+export async function getProductsById(
+  itemIds: string[] = [],
+): Promise<Product[]> {
+  return mockGetProductsById(itemIds);
 }
 
 export async function getProducts(
