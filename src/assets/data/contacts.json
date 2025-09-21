@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "firstName": "Oleksandr",
+    "lastName": "Vannovskyi [Tech lead 🧠]",
+    "github": "https://github.com/derpedcatto",
+    "githubUsername": "derpedcatto",
+    "email": "alexandervannovskiy@gmail.com",
+    "photo": "../../../public/img/contacts/sasha.jpg",
+    "about": "Me make the code. Me review the code. Me help others with code. Looks like my life will revolve around code for a while."
+  },
+  {
+    "id": 2,
+    "firstName": "Yana",
+    "lastName": "Ovcharik [PM ❤️]",
+    "github": "https://github.com/yanaovcharik",
+    "githubUsername": "yanaovcharik",
+    "email": "yanaovcharik@gmail.com",
+    "photo": "../../../public/img/contacts/yana.jpg",
+    "about": "I'm known for being one of the kindest and sweetest people around. I love helping others and always try to bring positive energy to the team"
+  },
+  {
+    "id": 3,
+    "firstName": "Petro",
+    "lastName": "Bahrynovskyi",
+    "github": "https://github.com/pbahrynovskyi",
+    "githubUsername": "pbahrynovskyi",
+    "email": "pbahrynovskyi@gmail.com",
+    "photo": "../../../public/img/contacts/petro.jpg",
+    "about": "I will become a real software engineer once, I will."
+  },
+  {
+    "id": 4,
+    "firstName": "Petro",
+    "lastName": "Bahrynovskyi",
+    "github": "https://github.com/pbahrynovskyi",
+    "githubUsername": "pbahrynovskyi",
+    "email": "pbahrynovskyi@gmail.com",
+    "photo": "../../../public/img/contacts/petro.jpg",
+    "about": "I will become a real software engineer once, I will."
+  },
+  {
+    "id": 5,
+    "firstName": "Petro",
+    "lastName": "Bahrynovskyi",
+    "github": "https://github.com/pbahrynovskyi",
+    "githubUsername": "pbahrynovskyi",
+    "email": "pbahrynovskyi@gmail.com",
+    "photo": "../../../public/img/contacts/petro.jpg",
+    "about": "I will become a real software engineer once, I will."
+  }
+]

@@ -1,0 +1,25 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.container {
+  @include content-container;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  align-items: center;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 24px;
+  color: $dark-white;
+  font-weight: bold;
+  font-size: 28px;
+
+  @include on-md {
+    font-size: 36px;
+    margin-bottom: 32px;
+  }
+}
