@@ -46,9 +46,8 @@ export async function getProductsByCategory(
 
 export async function getProductDetails(
   itemId: string,
-  category: ProductCategory,
 ): Promise<ProductDetails | undefined> {
-  return mockGetProductDetails(itemId, category);
+  return mockGetProductDetails(itemId);
 }
 
 export async function getProductCategoryCounts(): Promise<
