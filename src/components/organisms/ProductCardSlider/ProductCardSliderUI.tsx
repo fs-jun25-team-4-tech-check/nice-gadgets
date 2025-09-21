@@ -1,0 +1,78 @@
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
+import ProductCard from '../../molecules/ProductCard/ProductCard';
+import type { Product } from '../../../types';
+import { SCREEN_WIDTH } from '../../../constants/screenWidth';
+
+import 'swiper/swiper.css';
+
+import styles from './ProductCardSlider.module.scss';
+import { SliderHeader } from '../../molecules/SliderHeader/SliderHeader';
+import Loader from '../../atoms/Loader/Loader';
+
+type Props = {
+  id: string;
+  headerText: string;
+  products: Product[] | undefined;
+  isLoading: boolean;
+  isError: boolean;
+};
+
+const SliderError = () => (
+  <p>Error loading products. Please try again later.</p>
+);
+
+export const CardsSliderUI: React.FC<Props> = ({
+  id,
+  headerText,
+  products,
+  isLoading,
+  isError,
+}) => {
+  return (
+    <div className={styles.sliderWrapper}>
+      <SliderHeader
+        sliderId={id}
+        headerText={headerText}
+        isLoading={isLoading}
+        isError={isError}
+      />
+
+      <div className={styles.cardsWrapper}>
+        {isLoading ?
+          <Loader size={400} />
+        : isError ?
+          <SliderError />
+        : <Swiper
+            modules={[Navigation]}
+            breakpoints={{
+              [SCREEN_WIDTH.SLIDER_XL]: {
+                slidesPerView: 4,
+                spaceBetween: 16,
+              },
+              0: {
+                slidesPerView: 'auto',
+                spaceBetween: 16,
+              },
+            }}
+            navigation={{
+              prevEl: `.prev-${id}`,
+              nextEl: `.next-${id}`,
+            }}
+          >
+            {products &&
+              products.map((product) => (
+                <SwiperSlide
+                  key={product.id}
+                  className={styles.swiperSlide}
+                >
+                  <ProductCard product={product} />
+                </SwiperSlide>
+              ))}
+          </Swiper>
+        }
+      </div>
+    </div>
+  );
+};
