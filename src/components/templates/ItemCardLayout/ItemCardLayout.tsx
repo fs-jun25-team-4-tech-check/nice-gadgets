@@ -32,9 +32,7 @@ export const ItemCardLayout = ({
             productName={product.name}
           />
 
-          <BackButton params={{ to: `/catalog/${categorySlug}` }}>
-            Back
-          </BackButton>
+          <BackButton params={{ to: `${product.category}` }}>Back</BackButton>
 
           <h2>{product.name}</h2>
 
