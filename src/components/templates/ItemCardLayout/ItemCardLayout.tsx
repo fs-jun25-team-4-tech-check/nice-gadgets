@@ -8,7 +8,6 @@ import styles from './ItemCardLayout.module.scss';
 
 interface ItemCardLayoutProps {
   items: ProductDetails[];
-  categorySlug: string;
   onColorChange?: (color: string) => void;
   onCapacityChange?: (capacity: string) => void;
   hotPricesSection: React.ReactNode;
@@ -16,7 +15,6 @@ interface ItemCardLayoutProps {
 
 export const ItemCardLayout = ({
   items,
-  categorySlug,
   onColorChange,
   onCapacityChange,
   hotPricesSection,
@@ -29,14 +27,12 @@ export const ItemCardLayout = ({
           className={styles.itemCard}
         >
           <Breadcrumbs
-            categorySlug={categorySlug || ''}
+            categorySlug={product.category}
             productName={product.name}
           />
 
           {/* кнопка Back не працює */}
-          <BackButton params={{ to: `#/catalog/${categorySlug}` }}>
-            Back
-          </BackButton>
+          <BackButton params={`${product.category}`}>Back</BackButton>
 
           <h2>{product.name}</h2>
 

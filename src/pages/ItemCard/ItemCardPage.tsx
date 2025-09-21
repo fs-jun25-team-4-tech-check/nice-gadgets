@@ -8,7 +8,7 @@ import { ItemCardLayout } from '../../components/templates/ItemCardLayout/ItemCa
 import Loader from '../../components/atoms/Loader/Loader';
 import { CardsSlider } from '../../components/organisms/ProductCardSlider/ProductCardsSlider';
 
-import type { ProductCategory, ProductDetails } from '../../types';
+import type { ProductDetails } from '../../types';
 
 const ItemCardPage = () => {
   const { productId, category } = useParams<{
@@ -21,7 +21,7 @@ const ItemCardPage = () => {
     data: currentData,
     isLoading,
     error,
-  } = useProductDetails(productId ?? '', category as ProductCategory);
+  } = useProductDetails(productId ?? '');
 
   const [product, setProduct] = useState<ProductDetails | null>(null);
 
@@ -53,7 +53,6 @@ const ItemCardPage = () => {
   return (
     <ItemCardLayout
       items={[product]}
-      categorySlug={category}
       onColorChange={handleColorChange}
       onCapacityChange={handleCapacityChange}
       //існуючий слайдер для гарячих цін для наглядності
