@@ -29,7 +29,6 @@ export const useProductsById = (itemIds: string[] = []) => {
     queryKey: ['products', [...itemIds].sort()],
     queryFn: () => getProductsById(itemIds),
     staleTime,
-    enabled: itemIds.length > 0,
     placeholderData: keepPreviousData,
   });
 };

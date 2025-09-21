@@ -20,6 +20,9 @@ export async function getAllProducts(): Promise<Product[]> {
 export async function getProductsById(
   itemIds: string[] = [],
 ): Promise<Product[]> {
+  if (itemIds.length === 0) {
+    return [];
+  }
   return mockGetProductsById(itemIds);
 }
 
