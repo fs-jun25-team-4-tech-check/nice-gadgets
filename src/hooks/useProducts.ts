@@ -78,14 +78,11 @@ export const useProductCategoryCounts = () => {
   });
 };
 
-export const useProductDetails = (
-  itemId: string,
-  category: ProductCategory,
-) => {
+export const useProductDetails = (itemId: string) => {
   return useQuery<ProductDetails | undefined, Error>({
-    queryKey: ['product', 'details', itemId, category],
-    queryFn: () => getProductDetails(itemId, category),
+    queryKey: ['product', 'details', itemId],
+    queryFn: () => getProductDetails(itemId),
     staleTime,
-    enabled: !!itemId && !!category,
+    enabled: !!itemId,
   });
 };

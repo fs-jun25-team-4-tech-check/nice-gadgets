@@ -14,6 +14,8 @@ const endpointMap: Record<ProductCategory, string> = {
   accessories: API_ENDPOINTS.ACCESSORIES,
 };
 
+const allCategories: ProductCategory[] = ['phones', 'tablets', 'accessories'];
+
 // #region Utility
 function waitDelay(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -177,20 +179,30 @@ export async function mockGetProductsByCategory(
 
 export async function mockGetProductDetails(
   itemId: string,
-  category: ProductCategory,
 ): Promise<ProductDetails | undefined> {
   await waitDelay(mockNetworkDelay);
 
-  const endpoint = endpointMap[category];
+  for (const category of allCategories) {
+    const endpoint = endpointMap[category];
 
-  if (!endpoint) {
-    throw new Error(`Invalid category: ${category}`);
+    if (!endpoint) {
+      continue;
+    }
+
+    const products = await fetchJson<ProductDetails[]>(endpoint);
+    const foundProduct = products.find((p) => p.id === itemId);
+
+    if (foundProduct) {
+      const productWithCategory = {
+        ...addFullImagePaths(foundProduct),
+        category: category,
+      };
+
+      return productWithCategory as ProductDetails;
+    }
   }
 
-  const products = await fetchJson<ProductDetails[]>(endpoint);
-  const product = products.find((p) => p.id === itemId);
-
-  return product ? addFullImagePaths(product) : undefined;
+  return undefined;
 }
 
 export async function mockGetProductCategoryCounts(): Promise<
