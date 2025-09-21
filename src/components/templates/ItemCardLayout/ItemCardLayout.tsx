@@ -36,7 +36,7 @@ export const ItemCardLayout = ({
 
           <h2>{product.name}</h2>
 
-          <div className="info">
+          <div className={styles.info}>
             <ImageGallery images={product.images} />
 
             <SelectorsSection
