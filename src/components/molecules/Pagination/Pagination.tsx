@@ -33,7 +33,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages }) => {
   };
 
   return (
-    <div className={styles.paginationContainer}>
+    <nav className={styles.paginationContainer}>
       <ActionButton
         variant="slider"
         direction="left"
@@ -77,7 +77,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages }) => {
         onClick={handleNextClick}
         disabled={currentPage === totalPages}
       />
-    </div>
+    </nav>
   );
 };
 
