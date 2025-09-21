@@ -1,3 +1,15 @@
+.itemCard {
+  margin-bottom: 56px;
+
+  @include on-md {
+    margin-bottom: 64px;
+  }
+
+  @include on-xl {
+    margin-bottom: 81px;
+  }
+}
+
 h2 {
   padding-top: 16px;
   padding-bottom: 36px;

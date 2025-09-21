@@ -11,14 +11,14 @@ interface ItemCardLayoutProps {
   items: ProductDetails[];
   onColorChange?: (color: string) => void;
   onCapacityChange?: (capacity: string) => void;
-  hotPricesSection: React.ReactNode;
+  youMayAlsoLikeSection: React.ReactNode;
 }
 
 export const ItemCardLayout = ({
   items,
   onColorChange,
   onCapacityChange,
-  hotPricesSection,
+  youMayAlsoLikeSection,
 }: ItemCardLayoutProps) => {
   return (
     <>
@@ -47,7 +47,7 @@ export const ItemCardLayout = ({
           </div>
 
           <AboutAndTechSpecs product={product} />
-          {hotPricesSection}
+          {youMayAlsoLikeSection}
         </div>
       ))}
     </>
