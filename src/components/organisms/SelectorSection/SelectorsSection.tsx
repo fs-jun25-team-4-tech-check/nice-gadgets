@@ -2,8 +2,11 @@ import { useCart } from '../../../hooks/useCart';
 import { useFavs } from '../../../hooks/useFavs';
 import type { ProductDetails } from '../../../types';
 import { ActionButton, PrimaryButton } from '../../atoms';
+import productColorOptions from '../../../assets/data/productColorOptions.json';
 
 import styles from './SelectorsSection.module.scss';
+
+type ColorKey = keyof typeof productColorOptions;
 
 interface SelectorsSectionProps {
   product: ProductDetails;
@@ -31,7 +34,10 @@ export const SelectorsSection = ({
             <button
               key={color}
               className={`${styles.colorCircle} ${product.color === color ? styles.active : ''}`}
-              style={{ backgroundColor: color || '#CCCCCC' }}
+              style={{
+                backgroundColor:
+                  productColorOptions[color as ColorKey] || '#CCCCCC',
+              }}
               onClick={() => onColorChange?.(color)}
               aria-label={`Select ${color} color`}
             />
