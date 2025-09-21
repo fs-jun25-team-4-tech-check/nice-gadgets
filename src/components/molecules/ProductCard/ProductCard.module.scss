@@ -5,8 +5,13 @@
   height: 439px;
   padding: 32px;
   background-color: $dark-surface-1;
+  border: 1px solid transparent;
+
   box-sizing: border-box;
 
+  &:hover {
+    border: 1px solid $dark-surface-2;
+  }
   @include on-md {
     width: 237px;
     height: 512px;
