@@ -3,10 +3,11 @@
 }
 
 .container {
+  @extend .full-width-sm;
+
   display: flex;
   justify-content: center;
   align-items: stretch;
-  width: 100%;
   max-height: 350px;
 
   @include on-sm {
@@ -27,8 +28,11 @@
   overflow: hidden;
 
   .slideElement {
-    border-radius: 12px;
     overflow: hidden;
+
+    @include on-sm {
+      border-radius: 12px;
+    }
 
     .slideImage {
       width: 100%;
@@ -36,6 +40,8 @@
 
       object-fit: cover;
       display: block;
+
+      @include hover(transform, scale($image-hover-scale), 0.3s);
     }
   }
 
