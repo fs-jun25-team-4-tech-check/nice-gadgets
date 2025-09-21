@@ -1,5 +1,6 @@
 import type { ProductDetails } from '../../../types';
 import { BackButton } from '../../atoms';
+
 import Breadcrumbs from '../../molecules/Breadcrumbs/Breadcrumbs';
 import { ImageGallery } from '../../molecules/ImageGallery/ImageGallery';
 import { AboutAndTechSpecs } from '../../organisms/AboutAndTechSpecs/AboutAndTechSpecs';
@@ -31,8 +32,9 @@ export const ItemCardLayout = ({
             productName={product.name}
           />
 
-          {/* кнопка Back не працює */}
-          <BackButton params={`${product.category}`}>Back</BackButton>
+          <BackButton params={{ to: `/catalog/${categorySlug}` }}>
+            Back
+          </BackButton>
 
           <h2>{product.name}</h2>
 
