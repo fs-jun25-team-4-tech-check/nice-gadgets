@@ -7,9 +7,7 @@
   cursor: pointer;
   flex-grow: 1;
 
-  &:hover {
-    background-color: $dark-accent-hover;
-  }
+  @include hover(background-color, $dark-accent-hover);
 
   &:disabled {
     border: 1px solid $dark-elements;

@@ -7,6 +7,9 @@
   width: 64px;
   border-left: 1px solid $dark-elements;
   cursor: pointer;
+
+  @include hover(background-color, $dark-icons);
+
   .iconWrapper {
     position: relative;
 
@@ -23,7 +26,7 @@
       font-size: 10px;
       width: 17px;
       height: 17px;
-      line-height: 1;
+      line-height: 17px;
       border: 2px solid black;
     }
   }

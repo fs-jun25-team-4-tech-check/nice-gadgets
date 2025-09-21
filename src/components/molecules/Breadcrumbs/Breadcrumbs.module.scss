@@ -47,6 +47,11 @@
       flex-shrink: 0;
     }
 
+    .homeLink {
+      @include hover(color, $dark-accent-hover);
+      @include hover(transform, scale($icon-hover-scale));
+    }
+
     .current {
       display: block;
       width: 100%;
@@ -56,6 +61,11 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      cursor: default;
+    }
+
+    .activeLink {
+      @include hover(color, $dark-accent-hover);
     }
   }
 }

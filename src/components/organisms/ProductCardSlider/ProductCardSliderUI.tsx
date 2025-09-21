@@ -1,6 +1,6 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
+import { FreeMode, Navigation } from 'swiper/modules';
 import ProductCard from '../../molecules/ProductCard/ProductCard';
 import type { Product } from '../../../types';
 import { SCREEN_WIDTH } from '../../../constants/screenWidth';
@@ -45,13 +45,25 @@ export const CardsSliderUI: React.FC<Props> = ({
         : isError ?
           <SliderError />
         : <Swiper
-            modules={[Navigation]}
+            modules={[Navigation, FreeMode]}
             breakpoints={{
               [SCREEN_WIDTH.SLIDER_XL]: {
                 slidesPerView: 4,
                 spaceBetween: 16,
               },
+              [SCREEN_WIDTH.SLIDER_SM]: {
+                freeMode: {
+                  enabled: false,
+                  sticky: true,
+                },
+                slidesPerView: 'auto',
+                spaceBetween: 16,
+              },
               0: {
+                freeMode: {
+                  enabled: true,
+                  sticky: false,
+                },
                 slidesPerView: 'auto',
                 spaceBetween: 16,
               },

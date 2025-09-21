@@ -8,9 +8,7 @@
   gap: 4px;
   text-decoration: none;
 
-  &:hover {
-    color: $dark-accent;
-  }
+  @include hover(color, $dark-accent);
 
   .textSpan {
     padding-top: 2px;
