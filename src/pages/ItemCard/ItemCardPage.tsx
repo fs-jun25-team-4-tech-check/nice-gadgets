@@ -11,9 +11,8 @@ import { CardsSlider } from '../../components/organisms/ProductCardSlider/Produc
 import type { ProductDetails } from '../../types';
 
 const ItemCardPage = () => {
-  const { productId, category } = useParams<{
+  const { productId } = useParams<{
     productId: string;
-    category: string;
   }>();
   const navigate = useNavigate();
 
@@ -39,7 +38,7 @@ const ItemCardPage = () => {
 
     const variantId = `${product.namespaceId}-${capacity.toLowerCase()}-${color}`;
 
-    navigate(`/item/${category}/${variantId}`, { replace: true });
+    navigate(`/item/${variantId}`, { replace: true });
   };
 
   const handleColorChange = (color: string) => updateVariant(color);
