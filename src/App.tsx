@@ -2,6 +2,7 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import './styles/main.scss';
 import { HomePage } from './pages';
 import { MainLayout } from './components/templates';
+import FavouritesPage from './pages/FavouritesPage/FavouritesPage';
 import ItemCardPage from './pages/ItemCard/ItemCardPage';
 
 function App() {
@@ -21,7 +22,10 @@ function App() {
             path="item/:productId"
             element={<ItemCardPage />}
           />
-          <Route path="favourites" />
+          <Route
+            path="favourites"
+            element={<FavouritesPage />}
+          />
           <Route path="cart" />
           <Route path="*" />
         </Route>
