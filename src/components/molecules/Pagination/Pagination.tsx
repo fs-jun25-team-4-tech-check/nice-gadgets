@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSearchParams } from 'react-router-dom';
 import cn from 'classnames';
 import ActionButton from './../../atoms/Buttons/ActionButton/ActionButton';
 import styles from './Pagination.module.scss';
@@ -6,15 +7,11 @@ import styles from './Pagination.module.scss';
 interface PaginationProps {
   currentPage: number;
   totalPages: number;
-  onPageChange: (page: number) => void;
 }
 
-const Pagination: React.FC<PaginationProps> = ({
-  currentPage,
-  totalPages,
-  onPageChange,
-}) => {
+const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages }) => {
   const pageNumbers = [];
+  const [searchParams, setSearchParams] = useSearchParams();
 
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
@@ -22,13 +19,17 @@ const Pagination: React.FC<PaginationProps> = ({
 
   const handlePrevClick = () => {
     if (currentPage > 1) {
-      onPageChange(currentPage - 1);
+      const newSearchParams = new URLSearchParams(searchParams);
+      newSearchParams.set('page', (currentPage - 1).toString());
+      setSearchParams(newSearchParams);
     }
   };
 
   const handleNextClick = () => {
     if (currentPage < totalPages) {
-      onPageChange(currentPage + 1);
+      const newSearchParams = new URLSearchParams(searchParams);
+      newSearchParams.set('page', (currentPage + 1).toString());
+      setSearchParams(newSearchParams);
     }
   };
 
@@ -46,7 +47,7 @@ const Pagination: React.FC<PaginationProps> = ({
           key={page}
           variant="pagination"
           isSelected={page === currentPage}
-          onClick={() => onPageChange(page)}
+          params={{ page: page.toString() }}
           className={cn({ [styles.selected]: page === currentPage })}
         >
           {page}
