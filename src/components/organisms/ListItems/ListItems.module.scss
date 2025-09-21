@@ -4,8 +4,10 @@
   column-gap: 16px;
   row-gap: 40px;
   align-items: stretch;
+  justify-items: center;
 
   .listItem {
     width: 100%;
+    max-width: 560px;
   }
 }

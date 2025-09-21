@@ -26,13 +26,11 @@
     min-height: 129px;
     width: 100%;
     @include on-md {
-      max-width: 224px;
       height: 202px;
     }
 
     @include on-lg {
       height: 196px;
-      max-width: 208px;
     }
   }
 
