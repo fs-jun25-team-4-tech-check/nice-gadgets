@@ -9,7 +9,7 @@ import 'swiper/swiper.css';
 
 import styles from './ProductCardSlider.module.scss';
 import { SliderHeader } from '../../molecules/SliderHeader/SliderHeader';
-import Loader from '../../atoms/Loader/Loader';
+import ProductCardSkeleton from '../../molecules/ProductCard/ProductCardSkeleton';
 
 type Props = {
   id: string;
@@ -41,7 +41,11 @@ export const CardsSliderUI: React.FC<Props> = ({
 
       <div className={styles.cardsWrapper}>
         {isLoading ?
-          <Loader size={400} />
+          <div className={styles.skeletonWrapper}>
+            {Array.from({ length: 4 }).map((_, index) => (
+              <ProductCardSkeleton key={index} />
+            ))}
+          </div>
         : isError ?
           <SliderError />
         : <Swiper

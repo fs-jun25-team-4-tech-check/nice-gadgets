@@ -22,5 +22,11 @@
       width: auto;
       flex: 0 0 auto;
     }
+
+    .skeletonWrapper {
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+    }
   }
 }

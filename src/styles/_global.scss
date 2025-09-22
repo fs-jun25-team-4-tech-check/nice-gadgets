@@ -129,3 +129,25 @@ p,
     margin-inline: 0;
   }
 }
+
+// #region Skeletons
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+%skeleton-base {
+  background: linear-gradient(
+    90deg,
+    variables.$dark-skeleton-bg-start 25%,
+    variables.$dark-skeleton-bg-highlight 50%,
+    variables.$dark-skeleton-bg-end 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+// #endregion
