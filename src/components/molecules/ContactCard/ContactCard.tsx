@@ -1,19 +1,22 @@
 import React from 'react';
 import styles from './ContactCard.module.scss';
 import type { Contact } from '../../../types/Contact';
+import { BASE_URL } from '../../../constants';
 
 interface ContactCardProps {
   person: Contact;
 }
 
 const ContactCard: React.FC<ContactCardProps> = ({ person }) => {
+  const imageUrl = `${BASE_URL}/img/contacts/${person.photo}`;
+
   return (
     <article
       className={styles.card}
       aria-label={`Contact card for ${person.firstName} ${person.lastName}`}
     >
       <img
-        src={person.photo}
+        src={imageUrl}
         alt={`${person.firstName} ${person.lastName}`}
         className={styles.photo}
       />
