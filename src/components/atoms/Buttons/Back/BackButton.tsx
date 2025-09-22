@@ -1,33 +1,39 @@
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { PiCaretLeft as LeftArrow } from 'react-icons/pi';
 import styles from './BackButton.module.scss';
-import SearchLink from '../../Links/SearchLink';
-import type { LinkButtonProps as Props } from '../../../../types/ButtonPropsTypes';
 
-const BackButton: React.FC<Props> = ({ children, params }) => {
-  const isRoutePath =
-    params.to && typeof params.to === 'string' && params.to.startsWith('/');
+interface BackButtonProps {
+  children?: React.ReactNode;
+  fallbackPath?: string;
+  className?: string;
+}
 
-  if (isRoutePath && typeof params.to === 'string') {
-    return (
-      <Link
-        to={params.to}
-        className={styles.backButton}
-      >
-        <LeftArrow />
-        <span className={styles.textSpan}>{children}</span>
-      </Link>
-    );
-  }
+const BackButton: React.FC<BackButtonProps> = ({
+  children = 'Back',
+  fallbackPath = '/',
+  className,
+}) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleBackClick = () => {
+    if (location.key !== 'default') {
+      navigate(-1);
+    } else {
+      navigate(fallbackPath);
+    }
+  };
 
   return (
-    <SearchLink
-      params={params}
-      className={styles.backButton}
+    <button
+      type="button"
+      onClick={handleBackClick}
+      className={`${styles.backButton} ${className ?? ''}`}
     >
       <LeftArrow />
       <span className={styles.textSpan}>{children}</span>
-    </SearchLink>
+    </button>
   );
 };
 

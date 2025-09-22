@@ -2,8 +2,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { useProductDetails } from '../../hooks';
 import { ItemCardLayout } from '../../components/templates/ItemCardLayout/ItemCardLayout';
-import Loader from '../../components/atoms/Loader/Loader';
 import { CardsSlider } from '../../components/organisms/ProductCardSlider/ProductCardsSlider';
+import { BackButton } from '../../components/atoms';
 
 const ItemCardPage = () => {
   const { productId } = useParams<{
@@ -32,13 +32,19 @@ const ItemCardPage = () => {
   const handleCapacityChange = (capacity: string) =>
     updateVariant(undefined, capacity);
 
-  if (isLoading) return <Loader />;
-  if (error) return <p>{error.message}</p>;
-  if (!product) return <p>Product not found</p>;
+  if (error || !product) {
+    return (
+      <div>
+        <BackButton fallbackPath="/">Back</BackButton>
+        <p>Product not found</p>
+      </div>
+    );
+  }
 
   return (
     <ItemCardLayout
       items={[product]}
+      isLoading={isLoading}
       onColorChange={handleColorChange}
       onCapacityChange={handleCapacityChange}
       youMayAlsoLikeSection={

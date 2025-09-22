@@ -1,14 +1,16 @@
 import type { ProductDetails } from '../../../types';
 import { BackButton } from '../../atoms';
-
 import Breadcrumbs from '../../molecules/Breadcrumbs/Breadcrumbs';
 import { ImageGallery } from '../../organisms/ImageGallery/ImageGallery';
 import { AboutAndTechSpecs } from '../../organisms/AboutAndTechSpecs/AboutAndTechSpecs';
 import { SelectorsSection } from '../../organisms/SelectorSection/SelectorsSection';
+import Loader from '../../atoms/Loader/Loader';
 import styles from './ItemCardLayout.module.scss';
 
 interface ItemCardLayoutProps {
   items: ProductDetails[];
+  isLoading?: boolean;
+  isError?: boolean;
   onColorChange?: (color: string) => void;
   onCapacityChange?: (capacity: string) => void;
   youMayAlsoLikeSection: React.ReactNode;
@@ -16,6 +18,7 @@ interface ItemCardLayoutProps {
 
 export const ItemCardLayout = ({
   items,
+  isLoading,
   onColorChange,
   onCapacityChange,
   youMayAlsoLikeSection,
@@ -32,21 +35,28 @@ export const ItemCardLayout = ({
             productName={product.name}
           />
 
-          <BackButton params={{ to: `/${product.category}` }}>Back</BackButton>
+          <BackButton fallbackPath="/">Back</BackButton>
 
           <h2>{product.name}</h2>
 
           <div className={styles.info}>
-            <ImageGallery images={product.images} />
+            {isLoading ?
+              <Loader />
+            : <ImageGallery images={product.images} />}
 
-            <SelectorsSection
-              product={product}
-              onColorChange={onColorChange}
-              onCapacityChange={onCapacityChange}
-            />
+            {isLoading ?
+              <Loader />
+            : <SelectorsSection
+                product={product}
+                onColorChange={onColorChange}
+                onCapacityChange={onCapacityChange}
+              />
+            }
           </div>
 
-          <AboutAndTechSpecs product={product} />
+          {isLoading ?
+            <Loader />
+          : <AboutAndTechSpecs product={product} />}
 
           {youMayAlsoLikeSection}
         </div>
