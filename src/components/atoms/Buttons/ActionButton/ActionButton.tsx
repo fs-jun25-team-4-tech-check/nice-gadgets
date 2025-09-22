@@ -3,11 +3,19 @@ import cn from 'classnames';
 import paginationStyles from './PaginationButton.module.scss';
 import toFavoriteStyles from './ToFavorites.module.scss';
 import sliderStyles from './SliderButton.module.scss';
-import { VscHeart as HeartIcon } from 'react-icons/vsc';
-import { VscHeartFilled as FilledHeartIcon } from 'react-icons/vsc';
-import { PiCaretLeft as LeftArrow } from 'react-icons/pi';
-import { PiCaretRight as RightArrow } from 'react-icons/pi';
-import { PiCaretUpBold as UpArrow } from 'react-icons/pi';
+import {
+  VscHeart as HeartIcon,
+  VscHeartFilled as FilledHeartIcon,
+} from 'react-icons/vsc';
+
+import {
+  PiCaretLeft as LeftArrow,
+  PiCaretRight as RightArrow,
+  PiCaretUpBold as UpArrow,
+  PiPlusLight as PlusIcon,
+  PiMinus as MinusIcon,
+} from 'react-icons/pi';
+
 import type { ActionButtonProps as Props } from '../../../../types/ButtonPropsTypes';
 
 const ActionButton: React.FC<Props> = ({
@@ -20,9 +28,9 @@ const ActionButton: React.FC<Props> = ({
   direction = 'right',
   disabled = false,
 }) => {
-  return (
-    <>
-      {variant === 'pagination' && (
+  switch (variant) {
+    case 'pagination': {
+      return (
         <SearchLink
           params={params}
           className={cn(paginationStyles.paginationButton, className, {
@@ -31,8 +39,10 @@ const ActionButton: React.FC<Props> = ({
         >
           {children}
         </SearchLink>
-      )}
-      {variant === 'favourites' && (
+      );
+    }
+    case 'favourites': {
+      return (
         <button
           onClick={onClick}
           className={cn(toFavoriteStyles.toFavoritesButton, className, {
@@ -45,23 +55,38 @@ const ActionButton: React.FC<Props> = ({
             />
           : <HeartIcon className={toFavoriteStyles.toFavoritesIcon} />}
         </button>
-      )}
-      {variant === 'slider' && (
+      );
+    }
+    case 'slider': {
+      const ArrowIcon =
+        direction === 'left' ? LeftArrow
+        : direction === 'up' ? UpArrow
+        : RightArrow;
+      return (
         <button
           onClick={onClick}
           className={cn(sliderStyles.sliderButton, className)}
           type="button"
           disabled={disabled}
         >
-          {direction === 'left' ?
-            <LeftArrow />
-          : direction === 'up' ?
-            <UpArrow />
-          : <RightArrow />}
+          <ArrowIcon />
         </button>
-      )}
-    </>
-  );
+      );
+    }
+    case 'quantity': {
+      const QuantityIcon = direction === 'left' ? MinusIcon : PlusIcon;
+      return (
+        <button
+          onClick={onClick}
+          className={cn(sliderStyles.sliderButton, className)}
+          type="button"
+          disabled={disabled}
+        >
+          <QuantityIcon />
+        </button>
+      );
+    }
+  }
 };
 
 export default ActionButton;

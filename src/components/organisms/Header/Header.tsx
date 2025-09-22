@@ -8,7 +8,7 @@ import { useCart } from '../../../hooks/useCart';
 import { useFavs } from '../../../hooks/useFavs';
 
 const Header = () => {
-  const { cart } = useCart();
+  const { count } = useCart();
   const { favs } = useFavs();
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
   useEffect(() => {
@@ -105,7 +105,7 @@ const Header = () => {
           <HeaderButton
             variant="cart"
             className={styles.desktopIcons}
-            notifCount={cart.length}
+            notifCount={count}
           />
           <HeaderButton
             variant={isBurgerMenuOpen ? 'close' : 'burger'}
