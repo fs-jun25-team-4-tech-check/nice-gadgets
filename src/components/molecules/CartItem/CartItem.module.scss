@@ -1,0 +1,68 @@
+.cartItem {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  background-color: $dark-surface-1;
+  gap: 16px;
+  @include on-md {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .contentWrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    @include on-md {
+      gap: 24px;
+    }
+
+    .deleteIcon {
+      font-size: 16px;
+    }
+    .deleteButton {
+      color: $dark-icons;
+      border: 0;
+      background-color: transparent;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .itemImage {
+      padding: 7px;
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      object-position: center;
+      flex-shrink: 0;
+    }
+  }
+
+  .quantityPriceWrapper {
+    display: flex;
+    justify-content: space-between;
+    @include on-md {
+      justify-content: flex-start;
+      gap: 24px;
+    }
+    .quantityControls {
+      display: flex;
+      align-items: center;
+      .quantity {
+        width: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: default;
+      }
+    }
+
+    .price {
+      display: flex;
+      align-items: center;
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 140%;
+    }
+  }
+}

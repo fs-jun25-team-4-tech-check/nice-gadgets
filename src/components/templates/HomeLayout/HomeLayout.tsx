@@ -1,5 +1,7 @@
 import type React from 'react';
 
+import styles from './HomeLayout.module.scss';
+
 type Props = {
   bannerSliderSection: React.ReactNode;
   shopByCategorySection: React.ReactNode;
@@ -14,18 +16,17 @@ const HomeLayout: React.FC<Props> = ({
   hotPricesSection,
 }) => {
   return (
-    <>
-      <h1>Home Page</h1>
+    <div className={styles.homeLayout}>
+      <h1 className={styles.homeTitle}>Welcome to Nice Gadgets store!</h1>
 
       {bannerSliderSection}
 
       {brandNewModelsSection}
 
-      <h2>Shop by category</h2>
       {shopByCategorySection}
 
       {hotPricesSection}
-    </>
+    </div>
   );
 };
 

@@ -1,3 +1,20 @@
-.homeTitleExample {
-  color: red;
+.homeLayout {
+  & > *:not(h1):not(h2) {
+    margin-bottom: 80px;
+  }
+  .homeTitle {
+    margin: 24px 0;
+
+    @include on-sm {
+      margin: 32px 0;
+    }
+
+    @include on-lg {
+      margin: 56px 0;
+    }
+  }
+
+  .shopByCategoryTitle {
+    margin-bottom: 24px;
+  }
 }

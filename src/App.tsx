@@ -2,7 +2,12 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import './styles/main.scss';
 import { HomePage } from './pages';
 import CatalogPage from './pages/CatalogPage/CatalogPage';
+import RightsPage from './pages/RightsPage/RightsPage';
 import { MainLayout } from './components/templates';
+import ContactsPage from './pages/ContactsPage/ContactsPage';
+import FavouritesPage from './pages/FavouritesPage/FavouritesPage';
+import CartPage from './pages/CartPage/CartPage';
+import ItemCardPage from './pages/ItemCard/ItemCardPage';
 
 function App() {
   return (
@@ -20,9 +25,26 @@ function App() {
             path="catalog/:category"
             element={<CatalogPage />}
           />
-          <Route path="item/:productId" />
-          <Route path="favourites" />
-          <Route path="cart" />
+          <Route
+            path="item/:productId"
+            element={<ItemCardPage />}
+          />
+          <Route
+            path="favourites"
+            element={<FavouritesPage />}
+          />
+          <Route
+            path="cart"
+            element={<CartPage />}
+          />
+          <Route
+            path="contacts"
+            element={<ContactsPage />}
+          />
+          <Route
+            path="rights"
+            element={<RightsPage />}
+          />
           <Route path="*" />
         </Route>
       </Routes>
