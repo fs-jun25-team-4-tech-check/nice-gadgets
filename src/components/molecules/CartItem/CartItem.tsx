@@ -1,3 +1,4 @@
+import { useCart } from '../../../hooks/useCart';
 import type { Product } from '../../../types';
 import { ActionButton } from '../../atoms';
 import styles from './CartItem.module.scss';
@@ -8,10 +9,32 @@ type Props = {
 };
 
 const CartItem: React.FC<Props> = ({ product }) => {
+  const {
+    increaseQuantity,
+    decreaseQuantity,
+    getQuantityById,
+    removeFromCart,
+  } = useCart();
+  const quantity = getQuantityById(product.itemId);
+
+  const handleIncreaseQuantity = () => {
+    increaseQuantity(product.itemId);
+  };
+
+  const handleDecreaseQuantity = () => {
+    decreaseQuantity(product.itemId);
+  };
+
+  const handleRemoveFromCart = () => {
+    removeFromCart(product.itemId);
+  };
   return (
     <div className={styles.cartItem}>
       <div className={styles.contentWrapper}>
-        <button className={styles.deleteButton}>
+        <button
+          className={styles.deleteButton}
+          onClick={handleRemoveFromCart}
+        >
           <CloseIcon className={styles.deleteIcon} />
         </button>
         <img
@@ -26,12 +49,14 @@ const CartItem: React.FC<Props> = ({ product }) => {
           <ActionButton
             variant="quantity"
             direction="left"
-            disabled
+            onClick={handleDecreaseQuantity}
+            disabled={quantity === 1}
           />
-          <p className={styles.quantity}>1</p>
+          <p className={styles.quantity}>{quantity}</p>
           <ActionButton
             variant="quantity"
             direction="right"
+            onClick={handleIncreaseQuantity}
           />
         </div>
         <h3 className={styles.price}>{`$${product.price}`}</h3>

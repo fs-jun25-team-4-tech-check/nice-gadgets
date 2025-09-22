@@ -3,6 +3,7 @@ import './styles/main.scss';
 import { HomePage } from './pages';
 import { MainLayout } from './components/templates';
 import FavouritesPage from './pages/FavouritesPage/FavouritesPage';
+import CartPage from './pages/CartPage/CartPage';
 
 function App() {
   return (
@@ -22,7 +23,10 @@ function App() {
             path="favourites"
             element={<FavouritesPage />}
           />
-          <Route path="cart" />
+          <Route
+            path="cart"
+            element={<CartPage />}
+          />
           <Route path="*" />
         </Route>
       </Routes>
