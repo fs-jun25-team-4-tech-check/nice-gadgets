@@ -1,17 +1,39 @@
+import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { PiCaretLeft as LeftArrow } from 'react-icons/pi';
 import styles from './BackButton.module.scss';
-import SearchLink from '../../Links/SearchLink';
-import type { LinkButtonProps as Props } from '../../../../types/ButtonPropsTypes';
 
-const BackButton: React.FC<Props> = ({ children, params }) => {
+interface BackButtonProps {
+  children?: React.ReactNode;
+  fallbackPath?: string;
+  className?: string;
+}
+
+const BackButton: React.FC<BackButtonProps> = ({
+  children = 'Back',
+  fallbackPath = '/',
+  className,
+}) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleBackClick = () => {
+    if (location.key !== 'default') {
+      navigate(-1);
+    } else {
+      navigate(fallbackPath);
+    }
+  };
+
   return (
-    <SearchLink
-      params={params}
-      className={styles.backButton}
+    <button
+      type="button"
+      onClick={handleBackClick}
+      className={`${styles.backButton} ${className ?? ''}`}
     >
       <LeftArrow />
       <span className={styles.textSpan}>{children}</span>
-    </SearchLink>
+    </button>
   );
 };
 
