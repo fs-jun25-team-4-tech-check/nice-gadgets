@@ -1,0 +1,27 @@
+.searchButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  background-color: $dark-surface-1;
+  color: $dark-white;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    transform 0.1s ease;
+
+  &:hover {
+    background-color: $dark-icons;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  svg {
+    stroke: currentColor;
+  }
+}

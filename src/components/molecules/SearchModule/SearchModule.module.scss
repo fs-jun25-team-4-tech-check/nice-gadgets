@@ -1,0 +1,18 @@
+.searchModule {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+
+  @include on-md {
+    max-width: 400px;
+  }
+
+  .searchButton {
+    display: none;
+
+    @include on-sm {
+      display: block;
+    }
+  }
+}
