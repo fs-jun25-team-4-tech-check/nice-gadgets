@@ -1,44 +1,61 @@
-.header {
-  margin-top: 80px;
-}
-.categories {
-  @include page-grid;
-  row-gap: 32px;
-  margin-top: 24px;
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 
-  &_card {
-    grid-column: span 4;
+  .categories {
+    @include page-grid;
+    row-gap: 32px;
 
-    @include on-md {
+    &_card {
       grid-column: span 4;
+
+      @include on-md {
+        grid-column: span 4;
+      }
+
+      @include on-xl {
+        grid-column: span 8;
+      }
     }
 
-    @include on-xl {
-      grid-column: span 8;
+    &_image {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      object-position: 60px 60px;
+
+      @include hover(transform, scale($image-hover-scale));
+
+      &:hover {
+        transform: scale($image-hover-scale) translate(-5px, -5px);
+      }
+
+      @include on-lg {
+        &:hover {
+          transform: scale($image-hover-scale) translate(-10px, -10px);
+        }
+      }
+
+      &Wrapper {
+        background-color: $dark-secondary;
+        margin-bottom: 24px;
+        overflow: hidden;
+      }
     }
-  }
 
-  &_image {
-    width: 100%;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-    object-position: 60px 60px;
+    &_link {
+      @extend h4;
+      text-decoration: none;
+      color: $dark-white;
+      font-weight: normal;
 
-    &Wrapper {
-      background-color: $dark-secondary;
-      margin-bottom: 24px;
+      @include hover(color, $dark-accent-hover);
     }
-  }
 
-  &_link {
-    @extend h4;
-    text-decoration: none;
-    color: $dark-white;
-    font-weight: normal;
-  }
-
-  &_modelsNumber {
-    color: $dark-secondary;
-    cursor: default;
+    &_modelsNumber {
+      color: $dark-secondary;
+      cursor: default;
+    }
   }
 }

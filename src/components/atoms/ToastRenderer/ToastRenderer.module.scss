@@ -90,9 +90,7 @@
   color: $dark-icons;
   cursor: pointer;
 
-  &:hover {
-    color: $dark-white;
-  }
+  @include hover(color, $dark-white);
 }
 
 @keyframes hide {

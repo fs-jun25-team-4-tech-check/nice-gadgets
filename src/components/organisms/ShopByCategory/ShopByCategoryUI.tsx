@@ -9,44 +9,49 @@ type Props = {
 
 export const ShopByCategoryUI: React.FC<Props> = ({ banners, isLoading }) => {
   const baseCategoryUrl = '/catalog';
+
   return (
-    <section className={styles.categories}>
-      {banners.map((category) => {
-        return (
-          <div
-            key={category.categorySlug}
-            className={styles.categories_card}
-          >
-            <Link
-              style={{ backgroundColor: category.backgroundColor }}
-              className={styles.categories_imageWrapper}
-              to={`${baseCategoryUrl}/${category.categorySlug}`}
+    <section className={styles.container}>
+      <h2>Shop by category</h2>
+
+      <div className={styles.categories}>
+        {banners.map((category) => {
+          return (
+            <div
+              key={category.categorySlug}
+              className={styles.categories_card}
             >
-              <div
+              <Link
                 style={{ backgroundColor: category.backgroundColor }}
                 className={styles.categories_imageWrapper}
+                to={`${baseCategoryUrl}/${category.categorySlug}`}
               >
-                <img
-                  className={styles.categories_image}
-                  src={category.imgLink}
-                  alt={category.name}
-                />
-              </div>
-            </Link>
+                <div
+                  style={{ backgroundColor: category.backgroundColor }}
+                  className={styles.categories_imageWrapper}
+                >
+                  <img
+                    className={styles.categories_image}
+                    src={category.imgLink}
+                    alt={category.name}
+                  />
+                </div>
+              </Link>
 
-            <Link
-              className={styles.categories_link}
-              to={`${baseCategoryUrl}/${category.categorySlug}`}
-            >
-              {category.name}
-            </Link>
+              <Link
+                className={styles.categories_link}
+                to={`${baseCategoryUrl}/${category.categorySlug}`}
+              >
+                {category.name}
+              </Link>
 
-            <p className={styles.categories_modelsNumber}>
-              {isLoading ? 'Loading...' : `${category.productCount} models`}
-            </p>
-          </div>
-        );
-      })}
+              <p className={styles.categories_modelsNumber}>
+                {isLoading ? 'Loading...' : `${category.productCount} models`}
+              </p>
+            </div>
+          );
+        })}
+      </div>
     </section>
   );
 };

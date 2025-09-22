@@ -24,7 +24,10 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
     >
       <ul>
         <li>
-          <Link to="/">
+          <Link
+            to="/"
+            className={styles.homeLink}
+          >
             <PiHouseBold size={16} />
           </Link>
           <PiCaretRightBold
@@ -36,7 +39,12 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
         <li>
           {productName ?
             <>
-              <Link to={`/catalog/${categorySlug}`}>{categoryName}</Link>
+              <Link
+                className={styles.activeLink}
+                to={`/catalog/${categorySlug}`}
+              >
+                {categoryName}
+              </Link>
               <PiCaretRightBold
                 size={16}
                 className={styles.separator}

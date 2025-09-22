@@ -9,9 +9,8 @@
 
   box-sizing: border-box;
 
-  &:hover {
-    border: 1px solid $dark-surface-2;
-  }
+  @include hover(border, 1px solid $dark-surface-2);
+
   @include on-md {
     width: 237px;
     height: 512px;
@@ -40,11 +39,14 @@
   }
 
   .title {
-    @extend .body-text;
+    @extend p;
     padding-top: 16px;
     margin: 8px 0;
     color: $dark-white;
     line-height: 1.4;
+    text-decoration: none;
+
+    @include hover(color, $dark-accent-hover);
   }
 
   .priceBlock {
@@ -67,12 +69,14 @@
     line-height: 140%;
     font-weight: 800;
     color: $dark-white;
+    cursor: default;
   }
 
   .oldPrice {
     font-size: 22px;
     color: $dark-secondary;
     text-decoration: line-through;
+    cursor: default;
   }
 
   .specs {
@@ -80,6 +84,7 @@
     padding: 8px 0;
     font-size: 12px;
     font-weight: 700;
+    cursor: default;
 
     li {
       display: flex;
@@ -105,6 +110,8 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+
+  @include hover(transform, scale($image-hover-scale));
 }
 
 .card.grid-item {

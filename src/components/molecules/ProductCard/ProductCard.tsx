@@ -3,6 +3,7 @@ import { ActionButton, PrimaryButton } from '../../atoms';
 import type { Product } from '../../../types';
 import { useCart } from '../../../hooks/useCart';
 import { useFavs } from '../../../hooks/useFavs';
+import { Link } from 'react-router-dom';
 
 interface ProductCardProps {
   product: Product;
@@ -17,8 +18,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const { addToFavs, removeFromFavs, isInFavs } = useFavs();
 
   const isInCart = isInCartFunc(product.itemId);
-
   const isFavourite = isInFavs(product.itemId);
+
+  const itemPageLink = `${product.category}/${product.itemId}`;
 
   const handleAddToCart = () => {
     addToCart(product.itemId);
@@ -46,7 +48,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
         />
       </div>
 
-      <h3 className={styles.title}>{product.name}</h3>
+      <Link
+        to={itemPageLink}
+        className={styles.title}
+      >
+        {product.name}
+      </Link>
 
       <div className={styles.priceBlock}>
         <span className={styles.price}>${product.price}</span>
@@ -72,7 +79,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           onClick={isInCart ? handleRemovefromCart : handleAddToCart}
           isSelected={isInCart}
         >
-          {isInCart ? 'Added' : 'Add to cart'}
+          {isInCart ? 'In cart' : 'Add to cart'}
         </PrimaryButton>
 
         <ActionButton
