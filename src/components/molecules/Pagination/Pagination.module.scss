@@ -4,19 +4,18 @@
   align-items: flex-end;
   gap: 8px;
 
-  @include on-sm {
-    > *:first-child {
-      margin-right: 8px;
-    }
+  > *:first-child {
+    margin-right: 8px;
+  }
 
-    > *:last-child {
-      margin-left: 8px;
-    }
+  > *:last-child {
+    margin-left: 8px;
   }
 }
 
 .ellipsis {
   font-size: $default-font-size;
   color: $dark-secondary;
+  margin: 0 4px;
   user-select: none;
 }
