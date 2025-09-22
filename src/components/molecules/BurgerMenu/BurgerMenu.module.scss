@@ -25,6 +25,8 @@
       text-decoration: none;
       color: $dark-white;
       position: relative;
+
+      @include hover(color, $dark-accent-hover);
     }
     .isActive {
       &::after {

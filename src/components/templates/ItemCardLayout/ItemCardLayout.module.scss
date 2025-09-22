@@ -1,0 +1,36 @@
+.itemCard {
+  margin-bottom: 56px;
+
+  @include on-md {
+    margin-bottom: 64px;
+  }
+
+  @include on-lg {
+    margin-bottom: 81px;
+  }
+}
+
+h2 {
+  padding-top: 16px;
+  padding-bottom: 36px;
+  width: 100%;
+
+  @include on-md {
+    padding-bottom: 40px;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  @include on-md {
+    gap: 17px;
+    flex-direction: row;
+  }
+
+  @include on-lg {
+    gap: 64px;
+  }
+}
