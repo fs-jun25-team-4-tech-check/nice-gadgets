@@ -3,9 +3,9 @@ import Contacts from '../../components/organisms/Contacts/Contacts';
 
 const ContactsPage = () => {
   return (
-    <main>
+    <>
       <Contacts />
-    </main>
+    </>
   );
 };
 

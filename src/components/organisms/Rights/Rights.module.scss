@@ -1,8 +1,4 @@
-@import '../../../styles/variables';
-@import '../../../styles/mixins';
-
 .container {
-  @include content-container;
   padding-top: 24px;
   padding-bottom: 40px;
   color: $dark-white;

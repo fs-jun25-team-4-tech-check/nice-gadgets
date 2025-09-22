@@ -2,7 +2,7 @@
   {
     "id": 1,
     "firstName": "Oleksandr",
-    "lastName": "Vannovskyi [Tech lead 🧠]",
+    "lastName": "Vannovskyi [ Team lead 🧠 ]",
     "github": "https://github.com/derpedcatto",
     "githubUsername": "derpedcatto",
     "email": "alexandervannovskiy@gmail.com",
@@ -12,12 +12,12 @@
   {
     "id": 2,
     "firstName": "Yana",
-    "lastName": "Ovcharik [PM ❤️]",
+    "lastName": "Ovcharik [ PM ❤️ ]",
     "github": "https://github.com/yanaovcharik",
     "githubUsername": "yanaovcharik",
     "email": "yanaovcharik@gmail.com",
     "photo": "../../../public/img/contacts/yana.jpg",
-    "about": "I'm known for being one of the kindest and sweetest people around. I love helping others and always try to bring positive energy to the team"
+    "about": "Recognized as one of the kindest and most supportive people in the group. A dedicated PM who loves helping others and spreading positive energy."
   },
   {
     "id": 3,
@@ -27,26 +27,26 @@
     "githubUsername": "pbahrynovskyi",
     "email": "pbahrynovskyi@gmail.com",
     "photo": "../../../public/img/contacts/petro.jpg",
-    "about": "I will become a real software engineer once, I will."
+    "about": "Aspiring to become a real software engineer one day. Constantly learning, improving, and bringing ideas to life."
   },
   {
     "id": 4,
-    "firstName": "Petro",
-    "lastName": "Bahrynovskyi",
-    "github": "https://github.com/pbahrynovskyi",
-    "githubUsername": "pbahrynovskyi",
-    "email": "pbahrynovskyi@gmail.com",
-    "photo": "../../../public/img/contacts/petro.jpg",
-    "about": "I will become a real software engineer once, I will."
+    "firstName": "Danylo",
+    "lastName": "Popelinov",
+    "github": "https://github.com/PopelinovDanilo",
+    "githubUsername": "PopelinovDanilo",
+    "email": "popelinov.danilo@gmail.com",
+    "photo": "../../../public/img/contacts/danylo.jpg",
+    "about": "A young and ambitious programmer, passionate about technology and problem-solving. Striving to grow every day and turn ideas into real projects."
   },
   {
     "id": 5,
-    "firstName": "Petro",
-    "lastName": "Bahrynovskyi",
-    "github": "https://github.com/pbahrynovskyi",
-    "githubUsername": "pbahrynovskyi",
-    "email": "pbahrynovskyi@gmail.com",
-    "photo": "../../../public/img/contacts/petro.jpg",
-    "about": "I will become a real software engineer once, I will."
+    "firstName": "Roman",
+    "lastName": "Danyliuk",
+    "github": "https://github.com/romkas228",
+    "githubUsername": "romkas228",
+    "email": "romandanuliyk@gmail.com",
+    "photo": "../../../public/img/contacts/roman.jpg",
+    "about": "An enthusiastic and driven developer, fascinated by innovation and creative problem-solving. Dedicated to learning continuously and transforming ideas into tangible solutions."
   }
 ]
