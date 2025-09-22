@@ -9,8 +9,10 @@
   text-decoration: none;
 
   &:hover {
-    color: $dark-accent;
+    text-decoration: underline;
   }
+
+  @include hover(color, $dark-accent);
 
   .textSpan {
     padding-top: 2px;

@@ -11,13 +11,12 @@
   color: $dark-white;
   cursor: pointer;
 
-  &:hover {
-    background-color: $dark-icons;
-  }
+  @include hover(background-color, $dark-icons);
 
   &:disabled {
     border: 1px solid $dark-elements;
     background-color: $dark-surface-1;
     color: $dark-surface-2;
+    cursor: default;
   }
 }

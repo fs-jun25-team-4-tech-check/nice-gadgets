@@ -1,0 +1,34 @@
+.catalogLayout {
+  display: flex;
+  flex-direction: column;
+}
+
+.headerSection {
+  margin-top: 32px;
+}
+
+.controlsSection {
+  margin-bottom: 24px;
+}
+
+.productsSection {
+  margin-bottom: 24px;
+}
+
+.paginationSection {
+  margin-bottom: 64px;
+}
+
+@include on-sm {
+  .headerSection {
+    margin-bottom: 40px;
+  }
+
+  .productsSection {
+    margin-bottom: 40px;
+  }
+
+  .paginationSection {
+    margin-bottom: 80px;
+  }
+}

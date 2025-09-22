@@ -6,6 +6,14 @@ $breakpoint-sm: 576px;
 $breakpoint-md: 744px;
 $breakpoint-lg: 992px;
 $breakpoint-xl: 1200px;
+// Transitions
+$icon-hover-scale: 1.2;
+$image-hover-scale: 1.1;
+$transition-duration: 0.15s;
+// Content Container
+$content-container-inline: 16px;
+$content-container-inline-sm: 24px;
+$content-container-inline-xl: 0px;
 // Dark Mode Colors
 $dark-secondary: #75767f;
 $dark-icons: #4a4d58;
@@ -18,3 +26,6 @@ $dark-accent: #905bff;
 $dark-green: #27ae60;
 $dark-red: #eb5757;
 $dark-accent-hover: #a378ff;
+$dark-skeleton-bg-start: #1c1e2d;
+$dark-skeleton-bg-highlight: #2a2d3d;
+$dark-skeleton-bg-end: #1c1e2d;

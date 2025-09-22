@@ -98,3 +98,56 @@ p,
   line-height: 11px;
   letter-spacing: 0.04em;
 }
+
+// negates @mixin content-container for full-width components
+.full-width {
+  margin-inline: variables.$content-container-inline * -1;
+
+  @include mixins.on-sm {
+    margin-inline: variables.$content-container-inline-sm * -1;
+  }
+}
+
+// negates @mixin content-container for full-width components (before xl only)
+.full-width-xl {
+  margin-inline: variables.$content-container-inline * -1;
+
+  @include mixins.on-sm {
+    margin-inline: variables.$content-container-inline-sm * -1;
+  }
+
+  @include mixins.on-xl {
+    margin-inline: 0;
+  }
+}
+
+// negates @mixin content-container for full-width components (mobile only)
+.full-width-sm {
+  margin-inline: variables.$content-container-inline * -1;
+
+  @include mixins.on-sm {
+    margin-inline: 0;
+  }
+}
+
+// #region Skeletons
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+%skeleton-base {
+  background: linear-gradient(
+    90deg,
+    variables.$dark-skeleton-bg-start 25%,
+    variables.$dark-skeleton-bg-highlight 50%,
+    variables.$dark-skeleton-bg-end 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+// #endregion

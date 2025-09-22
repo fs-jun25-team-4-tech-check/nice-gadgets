@@ -8,9 +8,7 @@
   outline: 1px solid $dark-elements;
   cursor: pointer;
 
-  &:hover {
-    outline-color: $dark-secondary;
-  }
+  @include hover(outline-color, $dark-secondary);
 }
 
 .isSelected {

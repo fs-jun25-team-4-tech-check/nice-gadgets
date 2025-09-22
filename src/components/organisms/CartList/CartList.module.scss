@@ -1,0 +1,14 @@
+.cartList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  grid-column: span 4;
+
+  @include on-md {
+    grid-column: span 12;
+  }
+
+  @include on-xl {
+    grid-column: span 16;
+  }
+}

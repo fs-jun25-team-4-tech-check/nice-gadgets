@@ -1,6 +1,6 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
+import { FreeMode, Navigation } from 'swiper/modules';
 import ProductCard from '../../molecules/ProductCard/ProductCard';
 import type { Product } from '../../../types';
 import { SCREEN_WIDTH } from '../../../constants/screenWidth';
@@ -9,7 +9,7 @@ import 'swiper/swiper.css';
 
 import styles from './ProductCardSlider.module.scss';
 import { SliderHeader } from '../../molecules/SliderHeader/SliderHeader';
-import Loader from '../../atoms/Loader/Loader';
+import ProductCardSkeleton from '../../molecules/ProductCard/ProductCardSkeleton';
 
 type Props = {
   id: string;
@@ -41,17 +41,33 @@ export const CardsSliderUI: React.FC<Props> = ({
 
       <div className={styles.cardsWrapper}>
         {isLoading ?
-          <Loader size={400} />
+          <div className={styles.skeletonWrapper}>
+            {Array.from({ length: 4 }).map((_, index) => (
+              <ProductCardSkeleton key={index} />
+            ))}
+          </div>
         : isError ?
           <SliderError />
         : <Swiper
-            modules={[Navigation]}
+            modules={[Navigation, FreeMode]}
             breakpoints={{
               [SCREEN_WIDTH.SLIDER_XL]: {
                 slidesPerView: 4,
                 spaceBetween: 16,
               },
+              [SCREEN_WIDTH.SLIDER_SM]: {
+                freeMode: {
+                  enabled: false,
+                  sticky: true,
+                },
+                slidesPerView: 'auto',
+                spaceBetween: 16,
+              },
               0: {
+                freeMode: {
+                  enabled: true,
+                  sticky: false,
+                },
                 slidesPerView: 'auto',
                 spaceBetween: 16,
               },
