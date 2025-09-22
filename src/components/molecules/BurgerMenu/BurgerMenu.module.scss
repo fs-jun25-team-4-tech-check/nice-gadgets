@@ -4,6 +4,7 @@
   left: 0;
   bottom: 0;
   right: 0;
+  z-index: 10;
   transform: translateX(-100%);
   transition: transform 0.3s ease-in-out;
   background-color: $dark-black;
@@ -24,6 +25,8 @@
       text-decoration: none;
       color: $dark-white;
       position: relative;
+
+      @include hover(color, $dark-accent-hover);
     }
     .isActive {
       &::after {

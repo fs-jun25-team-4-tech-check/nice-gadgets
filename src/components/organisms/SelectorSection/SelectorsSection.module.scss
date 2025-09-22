@@ -1,0 +1,193 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+
+  @include on-md {
+    flex: 1 22 50%;
+    max-width: 237px;
+  }
+
+  @include on-lg {
+    flex: 1 1 50%;
+    max-width: 320px;
+  }
+}
+
+.selectorGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-bottom: 1px solid $dark-elements;
+  padding-bottom: 24px;
+  border-bottom: 1px solid $dark-elements;
+  margin-bottom: 24px;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 700;
+  color: $dark-secondary;
+}
+
+.colorOptions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.colorCircle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid $dark-black;
+  box-shadow: 0 0 0 1px $dark-elements;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+
+  &.active {
+    box-shadow: 0 0 0 1px $dark-white;
+  }
+}
+
+.capacityOptions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.capacityBtn {
+  padding: 8px;
+  min-width: 56px;
+  border: 1px solid $dark-icons;
+  color: $dark-white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  background-color: inherit;
+
+  &.active {
+    background-color: $dark-white;
+    border-color: $dark-white;
+    color: $dark-black;
+  }
+
+  &:hover:not(.active) {
+    border-color: $dark-white;
+  }
+}
+
+.priceBlock {
+  padding-top: 8px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.newPrice {
+  font-size: 32px;
+  font-weight: 800;
+  color: $dark-white;
+  line-height: 1;
+
+  @include on-md {
+    font-size: 36px;
+  }
+}
+
+.oldPrice {
+  font-size: 22px;
+  font-weight: 600;
+  color: $dark-secondary;
+  text-decoration: line-through;
+
+  @include on-md {
+    font-size: 24px;
+  }
+}
+
+.specs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 32px;
+}
+
+.specRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  padding: 2px 0;
+
+  @include on-md {
+    font-size: 14px;
+    padding: 4px 0;
+  }
+}
+
+.specName {
+  color: $dark-secondary;
+  font-weight: 500;
+}
+
+.specValue {
+  font-weight: 600;
+  color: $dark-white;
+  text-align: right;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: auto;
+}
+
+@media (max-width: 639px) {
+  .section {
+    gap: 24px;
+  }
+
+  .capacityOptions {
+    gap: 6px;
+  }
+
+  .capacityBtn {
+    flex: 1;
+    min-width: auto;
+    padding: 8px 4px;
+    font-size: 13px;
+  }
+
+  .actions {
+    gap: 12px;
+  }
+
+  .favourite {
+    width: 44px;
+    height: 44px;
+  }
+
+  .newPrice {
+    font-size: 28px;
+  }
+
+  .oldPrice {
+    font-size: 18px;
+  }
+}
+
+// @media (min-width: 640px) and (max-width: 1199px) {
+//   .section {
+//     max-width: 400px;
+//   }
+
+//   .capacityOptions {
+//     justify-content: flex-start;
+//   }
+// }

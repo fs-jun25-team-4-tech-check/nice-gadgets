@@ -24,6 +24,24 @@
   }
 }
 
+@mixin on-sm-only {
+  @media (min-width: variables.$breakpoint-sm) and (max-width: (variables.$breakpoint-md - 1px)) {
+    @content;
+  }
+}
+
+@mixin on-md-only {
+  @media (min-width: variables.$breakpoint-md) and (max-width: (variables.$breakpoint-lg - 1px)) {
+    @content;
+  }
+}
+
+@mixin on-lg-only {
+  @media (min-width: variables.$breakpoint-lg) and (max-width: (variables.$breakpoint-xl - 1px)) {
+    @content;
+  }
+}
+
 @mixin page-grid {
   --columns: 4;
 
@@ -43,16 +61,27 @@
 @mixin content-container {
   max-width: variables.$max-container-width;
   width: 100%;
-  overflow: hidden;
+  // overflow: hidden;
 
   margin-inline: auto;
-  padding-inline: 16px;
+  padding-inline: variables.$content-container-inline;
 
   @include on-sm {
-    padding-inline: 24px;
+    padding-inline: variables.$content-container-inline-sm;
   }
 
   @include on-xl {
-    padding-inline: 0;
+    padding-inline: variables.$content-container-inline-xl;
+  }
+}
+
+@mixin hover(
+  $property,
+  $toValue,
+  $transition-duration: variables.$transition-duration
+) {
+  transition: #{$property} $transition-duration;
+  &:hover {
+    #{$property}: $toValue;
   }
 }
