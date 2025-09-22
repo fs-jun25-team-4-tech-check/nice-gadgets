@@ -1,4 +1,4 @@
-import { BackButton } from '../../atoms';
+// import { BackButton } from '../../atoms';
 import Loader from '../../atoms/Loader/Loader';
 import styles from './CartLayout.module.scss';
 
@@ -15,12 +15,12 @@ const CartLayout: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <BackButton
+      {/* <BackButton
         params={{}}
         className={styles.backButton}
       >
         Back
-      </BackButton>
+      </BackButton> */}
       <h1 className={styles.cartTitle}>Cart</h1>
       {isLoading ?
         <Loader size={70} />

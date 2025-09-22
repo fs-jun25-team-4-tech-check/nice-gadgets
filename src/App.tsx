@@ -1,6 +1,7 @@
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import './styles/main.scss';
 import { HomePage } from './pages';
+import CatalogPage from './pages/CatalogPage/CatalogPage';
 import RightsPage from './pages/RightsPage/RightsPage';
 import { MainLayout } from './components/templates';
 import ContactsPage from './pages/ContactsPage/ContactsPage';
@@ -20,7 +21,10 @@ function App() {
             index
             element={<HomePage />}
           />
-          <Route path="catalog/:category/:sortBy?/:itemsPerPage?" />
+          <Route
+            path="catalog/:category"
+            element={<CatalogPage />}
+          />
           <Route
             path="item/:productId"
             element={<ItemCardPage />}
