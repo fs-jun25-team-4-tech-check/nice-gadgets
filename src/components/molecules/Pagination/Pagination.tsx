@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import cn from 'classnames';
 import ActionButton from './../../atoms/Buttons/ActionButton/ActionButton';
-import { usePagination } from './../../../hooks/usePagination';
+import { usePagination } from '../../../hooks/usePagination';
 import styles from './Pagination.module.scss';
 
 interface PaginationProps {
@@ -12,7 +12,26 @@ interface PaginationProps {
 
 const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const pageNumbers = usePagination(currentPage, totalPages);
+  const [pagesToShowOnSide, setPagesToShowOnSide] = useState(2);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 576) {
+        setPagesToShowOnSide(1);
+      } else {
+        setPagesToShowOnSide(2);
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const pageNumbers = usePagination(currentPage, totalPages, pagesToShowOnSide);
 
   const handlePageChange = (page: number) => {
     const newSearchParams = new URLSearchParams(searchParams);

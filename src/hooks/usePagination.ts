@@ -3,37 +3,36 @@ import { useMemo } from 'react';
 const getPageNumbers = (
   currentPage: number,
   totalPages: number,
+  pagesToShowOnSide: number,
 ): (number | string)[] => {
-  const pageNumbers = new Set<number | string>();
-  const pagesToShowOnSide = 2;
-
-  pageNumbers.add(1);
-  pageNumbers.add(totalPages);
-
-  for (
-    let i = currentPage - pagesToShowOnSide;
-    i <= currentPage + pagesToShowOnSide;
-    i++
-  ) {
-    if (i > 1 && i < totalPages) {
-      pageNumbers.add(i);
-    }
+  if (totalPages <= 1) {
+    return [1];
   }
 
-  const sortedPages = Array.from(pageNumbers).sort(
-    (a, b) => Number(a) - Number(b),
-  );
   const finalPages: (number | string)[] = [];
 
-  sortedPages.forEach((page, index) => {
-    finalPages.push(page);
-    if (
-      index < sortedPages.length - 1 &&
-      Number(sortedPages[index + 1]) > Number(page) + 1
-    ) {
-      finalPages.push('...');
+  finalPages.push(1);
+
+  const start = Math.max(2, currentPage - pagesToShowOnSide);
+  const end = Math.min(totalPages - 1, currentPage + pagesToShowOnSide);
+
+  if (start > 2) {
+    finalPages.push('...');
+  }
+
+  for (let i = start; i <= end; i++) {
+    finalPages.push(i);
+  }
+
+  if (end < totalPages - 1) {
+    finalPages.push('...');
+  }
+
+  if (totalPages > 1) {
+    if (finalPages[finalPages.length - 1] !== totalPages) {
+      finalPages.push(totalPages);
     }
-  });
+  }
 
   return finalPages;
 };
@@ -41,9 +40,10 @@ const getPageNumbers = (
 export const usePagination = (
   currentPage: number,
   totalPages: number,
+  pagesToShowOnSide: number = 2,
 ): (number | string)[] => {
   return useMemo(
-    () => getPageNumbers(currentPage, totalPages),
-    [currentPage, totalPages],
+    () => getPageNumbers(currentPage, totalPages, pagesToShowOnSide),
+    [currentPage, totalPages, pagesToShowOnSide],
   );
 };
