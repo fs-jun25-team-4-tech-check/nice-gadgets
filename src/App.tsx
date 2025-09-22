@@ -4,6 +4,7 @@ import { HomePage } from './pages';
 import RightsPage from './pages/RightsPage/RightsPage';
 import { MainLayout } from './components/templates';
 import ContactsPage from './pages/ContactsPage/ContactsPage';
+import FavouritesPage from './pages/FavouritesPage/FavouritesPage';
 
 function App() {
   return (
@@ -19,7 +20,10 @@ function App() {
           />
           <Route path="catalog/:category/:sortBy?/:itemsPerPage?" />
           <Route path="item/:productId" />
-          <Route path="favourites" />
+          <Route
+            path="favourites"
+            element={<FavouritesPage />}
+          />
           <Route path="cart" />
           <Route
             path="contacts"

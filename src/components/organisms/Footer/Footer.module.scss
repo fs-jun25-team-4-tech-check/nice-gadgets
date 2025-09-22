@@ -21,6 +21,7 @@
   .logo {
     height: 32px;
     width: 89px;
+    @include hover(transform, scale($image-hover-scale));
   }
 
   .nav {
@@ -38,6 +39,7 @@
     .list a {
       color: $dark-white;
       text-decoration: none;
+      @include hover(color, $dark-accent-hover);
     }
   }
 
