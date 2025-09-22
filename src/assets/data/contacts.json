@@ -6,7 +6,7 @@
     "github": "https://github.com/derpedcatto",
     "githubUsername": "derpedcatto",
     "email": "alexandervannovskiy@gmail.com",
-    "photo": "../../../public/img/contacts/sasha.jpg",
+    "photo": "/img/contacts/sasha.jpg",
     "about": "Me make the code. Me review the code. Me help others with code. Looks like my life will revolve around code for a while."
   },
   {
@@ -16,7 +16,7 @@
     "github": "https://github.com/yanaovcharik",
     "githubUsername": "yanaovcharik",
     "email": "yanaovcharik@gmail.com",
-    "photo": "../../../public/img/contacts/yana.jpg",
+    "photo": "/img/contacts/yana.jpg",
     "about": "Recognized as one of the kindest and most supportive people in the group. A dedicated PM who loves helping others and spreading positive energy."
   },
   {
@@ -26,7 +26,7 @@
     "github": "https://github.com/pbahrynovskyi",
     "githubUsername": "pbahrynovskyi",
     "email": "pbahrynovskyi@gmail.com",
-    "photo": "../../../public/img/contacts/petro.jpg",
+    "photo": "/img/contacts/petro.jpg",
     "about": "Aspiring to become a real software engineer one day. Constantly learning, improving, and bringing ideas to life."
   },
   {
@@ -36,7 +36,7 @@
     "github": "https://github.com/PopelinovDanilo",
     "githubUsername": "PopelinovDanilo",
     "email": "popelinov.danilo@gmail.com",
-    "photo": "../../../public/img/contacts/danylo.jpg",
+    "photo": "/img/contacts/danylo.jpg",
     "about": "A young and ambitious programmer, passionate about technology and problem-solving. Striving to grow every day and turn ideas into real projects."
   },
   {
@@ -46,7 +46,7 @@
     "github": "https://github.com/romkas228",
     "githubUsername": "romkas228",
     "email": "romandanuliyk@gmail.com",
-    "photo": "../../../public/img/contacts/roman.jpg",
+    "photo": "/img/contacts/roman.jpg",
     "about": "An enthusiastic and driven developer, fascinated by innovation and creative problem-solving. Dedicated to learning continuously and transforming ideas into tangible solutions."
   }
 ]
