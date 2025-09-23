@@ -6,8 +6,8 @@
   padding: 32px;
   background-color: var(--color-surface-1);
   border: 1px solid var(--color-elements);
-
   box-sizing: border-box;
+  text-decoration: none;
 
   @include on-md {
     width: 237px;
@@ -50,6 +50,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: normal;
+    transition: color 0.3s ease;
   }
 
   .priceBlock {
@@ -107,14 +108,23 @@
     gap: 8px;
     margin-top: auto;
   }
+
+  &:hover {
+    .image {
+      transform: scale($image-hover-scale);
+    }
+
+    .title {
+      color: var(--color-accent-hover);
+    }
+  }
 }
 
 .image {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-
-  @include hover(transform, scale($image-hover-scale));
+  transition: transform 0.3s ease;
 }
 
 .card.grid-item {
