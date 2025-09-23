@@ -1,8 +1,11 @@
+import { Link } from 'react-router-dom';
 import { useCart } from '../../../hooks/useCart';
 import type { Product } from '../../../types';
 import { ActionButton } from '../../atoms';
 import styles from './CartItem.module.scss';
 import { TfiClose as CloseIcon } from 'react-icons/tfi';
+import { useState } from 'react';
+import Loader from '../../atoms/Loader/Loader';
 
 type Props = {
   product: Product;
@@ -17,6 +20,8 @@ const CartItem: React.FC<Props> = ({ product }) => {
   } = useCart();
   const quantity = getQuantityById(product.itemId);
 
+  const [isRemoving, setIsRemoving] = useState(false);
+
   const handleIncreaseQuantity = () => {
     increaseQuantity(product.itemId);
   };
@@ -26,23 +31,38 @@ const CartItem: React.FC<Props> = ({ product }) => {
   };
 
   const handleRemoveFromCart = () => {
-    removeFromCart(product.itemId);
+    setIsRemoving(true);
+
+    // невелика затримка, щоб показати лоадер / анімацію
+    setTimeout(() => {
+      removeFromCart(product.itemId);
+    }, 500);
   };
   return (
     <div className={styles.cartItem}>
       <div className={styles.contentWrapper}>
-        <button
-          className={styles.deleteButton}
-          onClick={handleRemoveFromCart}
+        {isRemoving ?
+          <Loader size={16} />
+        : <button
+            className={styles.deleteButton}
+            onClick={handleRemoveFromCart}
+          >
+            <CloseIcon className={styles.deleteIcon} />
+          </button>
+        }
+        <Link to={`/item/${product.itemId}`}>
+          <img
+            src={product.image}
+            alt={product.name}
+            className={styles.itemImage}
+          />
+        </Link>
+        <Link
+          to={`/item/${product.itemId}`}
+          className={styles.itemName}
         >
-          <CloseIcon className={styles.deleteIcon} />
-        </button>
-        <img
-          src={product.image}
-          alt={product.name}
-          className={styles.itemImage}
-        />
-        <p className={styles.itemName}>{product.name}</p>
+          {product.name}
+        </Link>
       </div>
       <div className={styles.quantityPriceWrapper}>
         <div className={styles.quantityControls}>
@@ -50,7 +70,7 @@ const CartItem: React.FC<Props> = ({ product }) => {
             variant="quantity"
             direction="left"
             onClick={handleDecreaseQuantity}
-            disabled={quantity === 1}
+            disabled={quantity <= 1}
           />
           <p className={styles.quantity}>{quantity}</p>
           <ActionButton

@@ -9,6 +9,10 @@
 .cartTitle {
   margin-bottom: 32px;
 }
+.loaderWrapper {
+  display: flex;
+  justify-content: center;
+}
 .cartContent {
   @include page-grid;
   row-gap: 32px;
