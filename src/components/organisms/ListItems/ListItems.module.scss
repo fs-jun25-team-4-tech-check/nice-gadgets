@@ -1,13 +1,10 @@
 .listContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(229px, 1fr));
-  column-gap: 16px;
-  row-gap: 40px;
-  align-items: stretch;
-  justify-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(229px, 272px));
+  gap: 40px 16px; // row-gap 40px, column-gap 16px
+  justify-content: center; // щоб картки вирівнювались зліва
 
   .listItem {
     width: 100%;
-    max-width: 560px;
   }
 }
