@@ -1,7 +1,7 @@
 .container {
   padding-top: 24px;
   padding-bottom: 40px;
-  color: $dark-white;
+  color: var(--color-white);
 }
 
 .title {
@@ -28,6 +28,6 @@
   }
 
   strong {
-    color: $dark-accent;
+    color: var(--color-accent);
   }
 }

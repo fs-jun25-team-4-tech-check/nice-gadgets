@@ -6,17 +6,21 @@
   width: 32px;
   height: 32px;
   padding: 0;
-  background-color: $dark-surface-2;
+  background-color: var(--color-surface-2);
   border: 0;
-  color: $dark-white;
+  color: var(--color-white);
   cursor: pointer;
 
-  @include hover(background-color, $dark-icons);
+  @include hover(background-color, var(--color-icons));
 
   &:disabled {
-    border: 1px solid $dark-elements;
-    background-color: $dark-surface-1;
-    color: $dark-surface-2;
+    border: 1px solid var(--color-elements);
+    background-color: var(--color-surface-1);
+    color: var(--color-secondary);
     cursor: default;
   }
+}
+
+[data-theme='light'] .sliderButton {
+  border: 2px solid var(--color-secondary);
 }

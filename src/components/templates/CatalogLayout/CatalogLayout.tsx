@@ -3,6 +3,8 @@ import styles from './CatalogLayout.module.scss';
 import type { ReactNode } from 'react';
 
 type Props = {
+  pageTitle: string;
+  backButtonSection: ReactNode;
   controlsBarSection: ReactNode;
   productCountSection: ReactNode;
   productListSection: ReactNode;
@@ -10,6 +12,8 @@ type Props = {
 };
 
 const CatalogLayout: React.FC<Props> = ({
+  pageTitle,
+  backButtonSection,
   controlsBarSection,
   productCountSection,
   productListSection,
@@ -18,8 +22,9 @@ const CatalogLayout: React.FC<Props> = ({
   return (
     <div className={styles.catalogLayout}>
       <div className={styles.headerSection}>
-        <h1>Category Page</h1>
-        {productCountSection}
+        {backButtonSection}
+        <h1>{pageTitle}</h1>
+        <div className={styles.countSection}>{productCountSection}</div>
       </div>
 
       <div className={styles.controlsSection}>{controlsBarSection}</div>

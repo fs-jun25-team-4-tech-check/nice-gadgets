@@ -1,5 +1,5 @@
 :global(.swiper-pagination-bullet-active) {
-  background-color: $dark-accent;
+  background-color: var(--color-accent);
 }
 
 .container {
@@ -75,7 +75,7 @@
   height: 4px;
   margin: 0 4px;
   border-radius: 2px;
-  background-color: #3a3a3a;
+  background-color: var(--color-tertiary);
   cursor: pointer;
   transition: background-color 0.3s ease;
 }

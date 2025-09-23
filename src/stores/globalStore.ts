@@ -1,9 +1,11 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import type { ThemeMode } from '../types/ThemeMode';
 
 type State = {
   cart: Record<string, number>;
   favs: string[];
+  theme: ThemeMode;
 };
 
 type Action = {
@@ -13,6 +15,7 @@ type Action = {
   removeFromFavs: (itemId: string) => void;
   increaseQuantity: (itemId: string) => void;
   decreaseQuantity: (itemId: string) => void;
+  setTheme: (theme: ThemeMode) => void;
 };
 
 export const useGlobalStore = create<State & Action>()(
@@ -20,6 +23,7 @@ export const useGlobalStore = create<State & Action>()(
     (set) => ({
       cart: {},
       favs: [],
+      theme: 'auto',
       addToCart: (itemId) =>
         set((state) => ({ cart: { ...state.cart, [itemId]: 1 } })),
       increaseQuantity: (itemId) =>
@@ -28,7 +32,7 @@ export const useGlobalStore = create<State & Action>()(
         })),
       decreaseQuantity: (itemId) =>
         set((state) => ({
-          cart: { ...state.cart, [itemId]: state.cart[itemId] - 1 },
+          cart: { ...state.cart, [itemId]: (state.cart[itemId] ?? 0) - 1 },
         })),
       addToFavs: (itemId) =>
         set((state) =>
@@ -44,6 +48,9 @@ export const useGlobalStore = create<State & Action>()(
         }),
       removeFromFavs: (itemId) =>
         set((state) => ({ favs: state.favs.filter((id) => id !== itemId) })),
+      setTheme: (theme) => {
+        set({ theme });
+      },
     }),
     {
       name: 'global-storage',

@@ -1,22 +1,22 @@
 .primaryButton {
   display: block;
-  background-color: $dark-accent;
-  color: $dark-white;
+  background-color: var(--color-accent);
+  color: var(--color-white);
   padding: 0;
   border: 0;
   cursor: pointer;
   flex-grow: 1;
 
-  @include hover(background-color, $dark-accent-hover);
+  @include hover(background-color, var(--color-accent-hover));
 
   &:disabled {
-    border: 1px solid $dark-elements;
-    background-color: $dark-surface-1;
-    color: $dark-surface-2;
+    border: 1px solid var(--color-elements);
+    background-color: var(--color-surface-1);
+    color: var(--color-surface-2);
     cursor: default;
   }
 }
 
 .isSelected {
-  background-color: $dark-surface-2;
+  background-color: var(--color-surface-2);
 }

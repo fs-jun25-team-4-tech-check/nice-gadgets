@@ -20,7 +20,7 @@
 
 .dropdownLabel {
   @extend small;
-  color: $dark-secondary;
+  color: var(--color-secondary);
   margin-bottom: 4px;
 }
 
@@ -32,30 +32,30 @@
   box-sizing: border-box;
   height: 40px;
   padding: 10px 12px;
-  background-color: $dark-surface-2;
-  border: 1px solid $dark-surface-2;
+  background-color: var(--color-surface-2);
+  border: 1px solid var(--color-surface-2);
   cursor: pointer;
 
   .dropdownPlaceholder {
-    color: $dark-white;
+    color: var(--color-white);
   }
 
   .dropdownIconWrapper {
-    color: $dark-secondary;
+    color: var(--color-secondary);
   }
 
   &:hover {
-    border-color: $dark-icons;
+    border-color: var(--color-icons);
 
     .dropdownIconWrapper {
-      color: $dark-icons;
+      color: var(--color-icons);
     }
   }
 
   &:focus,
   &[data-state='open'] {
     outline: none;
-    border-color: $dark-accent;
+    border-color: var(--color-accent);
   }
 
   .dropdownIcon {
@@ -67,11 +67,11 @@
 
 .dropdownContent {
   box-sizing: border-box;
-  background-color: $dark-black;
-  border: 1px solid $dark-elements;
+  background-color: var(--color-black);
+  border: 1px solid var(--color-elements);
   margin-top: 4px;
   padding: 8px 0;
-  box-shadow: 0 2px 15px 0 #0000000d;
+  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.05); /* Змінив на rgba для кращої адаптивності */
   min-width: 136px;
 
   &.dropdownSort {
@@ -97,13 +97,13 @@
   display: block;
   width: 100%;
   padding: 8px 12px;
-  color: $dark-secondary;
+  color: var(--color-secondary);
   cursor: pointer;
 
   &:hover,
   &:focus {
     outline: none;
-    background-color: $dark-surface-2;
-    color: $dark-white;
+    background-color: var(--color-surface-2);
+    color: var(--color-white);
   }
 }

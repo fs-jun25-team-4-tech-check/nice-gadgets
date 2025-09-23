@@ -10,22 +10,23 @@
 }
 
 .ToastRoot {
-  background-color: $dark-surface-2;
-  color: $dark-white;
+  background-color: var(--color-surface-2);
+  color: var(--color-white);
   padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 4px;
-  border: 1px solid $dark-secondary;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--color-secondary);
   position: relative;
 
   &.info {
-    border-color: $dark-accent;
+    border-color: var(--color-accent);
   }
 
   &.error {
-    color: $dark-red;
-    border-color: $dark-red;
+    color: var(--color-red);
+    border-color: var(--color-red);
   }
 
   &[data-state='open'] {
@@ -75,7 +76,7 @@
 }
 
 .ToastDescription {
-  color: $dark-secondary;
+  color: var(--color-secondary);
 }
 
 .CloseButton {
@@ -84,10 +85,10 @@
   right: 8px;
   background: transparent;
   border: none;
-  color: $dark-icons;
+  color: var(--color-icons);
   cursor: pointer;
 
-  @include hover(color, $dark-white);
+  @include hover(color, var(--color-white));
 }
 
 @keyframes hide {

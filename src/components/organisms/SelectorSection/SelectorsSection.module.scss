@@ -18,16 +18,16 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  border-bottom: 1px solid $dark-elements;
+  border-bottom: 1px solid var(--color-elements);
   padding-bottom: 24px;
-  border-bottom: 1px solid $dark-elements;
+  border-bottom: 1px solid var(--color-elements);
   margin-bottom: 24px;
 }
 
 .label {
   font-size: 12px;
   font-weight: 700;
-  color: $dark-secondary;
+  color: var(--color-secondary);
 }
 
 .colorOptions {
@@ -40,14 +40,14 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  border: 2px solid $dark-black;
-  box-shadow: 0 0 0 1px $dark-elements;
+  border: 2px solid var(--color-black);
+  box-shadow: 0 0 0 1px var(--color-elements);
   cursor: pointer;
   position: relative;
   padding: 0;
 
   &.active {
-    box-shadow: 0 0 0 1px $dark-white;
+    box-shadow: 0 0 0 1px var(--color-white);
   }
 }
 
@@ -60,8 +60,8 @@
 .capacityBtn {
   padding: 8px;
   min-width: 56px;
-  border: 1px solid $dark-icons;
-  color: $dark-white;
+  border: 1px solid var(--color-icons);
+  color: var(--color-white);
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -70,13 +70,13 @@
   background-color: inherit;
 
   &.active {
-    background-color: $dark-white;
-    border-color: $dark-white;
-    color: $dark-black;
+    background-color: var(--color-white);
+    border-color: var(--color-white);
+    color: var(--color-black);
   }
 
   &:hover:not(.active) {
-    border-color: $dark-white;
+    border-color: var(--color-white);
   }
 }
 
@@ -91,7 +91,7 @@
 .newPrice {
   font-size: 32px;
   font-weight: 800;
-  color: $dark-white;
+  color: var(--color-white);
   line-height: 1;
 
   @include on-md {
@@ -102,7 +102,7 @@
 .oldPrice {
   font-size: 22px;
   font-weight: 600;
-  color: $dark-secondary;
+  color: var(--color-secondary);
   text-decoration: line-through;
 
   @include on-md {
@@ -131,13 +131,13 @@
 }
 
 .specName {
-  color: $dark-secondary;
+  color: var(--color-secondary);
   font-weight: 500;
 }
 
 .specValue {
   font-weight: 600;
-  color: $dark-white;
+  color: var(--color-white);
   text-align: right;
 }
 
@@ -181,13 +181,3 @@
     font-size: 18px;
   }
 }
-
-// @media (min-width: 640px) and (max-width: 1199px) {
-//   .section {
-//     max-width: 400px;
-//   }
-
-//   .capacityOptions {
-//     justify-content: flex-start;
-//   }
-// }
