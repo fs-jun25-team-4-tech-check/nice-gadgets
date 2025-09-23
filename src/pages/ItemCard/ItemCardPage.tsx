@@ -23,8 +23,10 @@ const ItemCardPage = () => {
     const color = newColor ?? product.color;
     const capacity = newCapacity ?? product.capacity;
 
-    const variantId = `${product.namespaceId}-${capacity.toLowerCase()}-${color}`;
+    const normalize = (str: string) =>
+      str.toLowerCase().trim().split(' ').filter(Boolean).join('-');
 
+    const variantId = `${product.namespaceId}-${normalize(capacity)}-${normalize(color)}`;
     navigate(`/item/${variantId}`, { replace: true });
   };
 
