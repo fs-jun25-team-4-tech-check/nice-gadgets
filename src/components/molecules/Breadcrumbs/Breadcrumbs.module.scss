@@ -4,11 +4,7 @@
   margin-bottom: 24px;
   font-size: 12px;
   font-weight: 700;
-  color: $dark-white;
-
-  @include on-md {
-    margin-bottom: 40px;
-  }
+  color: var(--color-white);
 
   @include on-md {
     margin-bottom: 40px;
@@ -37,7 +33,7 @@
     a {
       display: block;
       white-space: nowrap;
-      color: $dark-white;
+      color: var(--color-white);
       text-decoration: none;
 
       &:hover {
@@ -47,12 +43,12 @@
 
     .separator {
       margin-inline: 8px;
-      color: $dark-icons;
+      color: var(--color-icons);
       flex-shrink: 0;
     }
 
     .homeLink {
-      @include hover(color, $dark-accent-hover);
+      @include hover(color, var(--color-accent-hover));
       @include hover(transform, scale($icon-hover-scale));
     }
 
@@ -60,7 +56,7 @@
       display: block;
       width: 100%;
       min-width: 0;
-      color: $dark-secondary;
+      color: var(--color-secondary);
       font-weight: 600;
       white-space: nowrap;
       overflow: hidden;
@@ -69,7 +65,7 @@
     }
 
     .activeLink {
-      @include hover(color, $dark-accent-hover);
+      @include hover(color, var(--color-accent-hover));
     }
   }
 }
