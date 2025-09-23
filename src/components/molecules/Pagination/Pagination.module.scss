@@ -15,7 +15,7 @@
 
 .ellipsis {
   font-size: $default-font-size;
-  color: $dark-secondary;
+  color: var(--color-secondary);
   margin: 0 4px;
   user-select: none;
 }

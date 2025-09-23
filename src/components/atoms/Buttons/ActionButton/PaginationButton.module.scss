@@ -1,18 +1,18 @@
 .paginationButton {
-  background-color: $dark-surface-1;
+  background-color: var(--color-surface-1);
   text-decoration: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: $dark-white;
+  color: var(--color-white);
   width: 32px;
   height: 32px;
   padding: 0;
   border: 0;
 
-  @include hover(background-color, $dark-icons);
+  @include hover(background-color, var(--color-icons));
 }
 
 .isSelected {
-  background-color: $dark-accent;
+  background-color: var(--color-accent);
 }

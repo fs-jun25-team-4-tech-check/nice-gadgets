@@ -1,13 +1,24 @@
 import React from 'react';
 import styles from './Footer.module.scss';
-import logo from '../../../assets/icons/brand/logo.svg';
+import logo_dark from './../../../assets/icons/brand/logo_dark.svg';
+import logo_light from './../../../assets/icons/brand/logo-light.svg';
 import { Link } from 'react-router-dom';
 import { ActionButton } from '../../atoms';
+import { useGlobalStore } from '../../../stores/globalStore';
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  const theme = useGlobalStore((state) => state.theme);
+
+  const currentTheme =
+    theme === 'auto' ?
+      window.matchMedia('(prefers-color-scheme: dark)').matches ?
+        'dark'
+      : 'light'
+    : theme;
 
   return (
     <footer className={styles.footer}>
@@ -15,7 +26,7 @@ export const Footer: React.FC = () => {
         <div className={styles.logo}>
           <Link to="/">
             <img
-              src={logo}
+              src={currentTheme === 'light' ? logo_light : logo_dark}
               alt="Nice Gadgets logo"
             />
           </Link>

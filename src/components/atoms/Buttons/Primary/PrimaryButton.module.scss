@@ -1,22 +1,17 @@
 .primaryButton {
-  display: block;
-  background-color: $dark-accent;
-  color: $dark-white;
-  padding: 0;
-  border: 0;
-  cursor: pointer;
-  flex-grow: 1;
+  background-color: var(--color-accent);
+  color: var(--color-white);
 
-  @include hover(background-color, $dark-accent-hover);
-
-  &:disabled {
-    border: 1px solid $dark-elements;
-    background-color: $dark-surface-1;
-    color: $dark-surface-2;
-    cursor: default;
+  // Apply this style only when the light theme is active
+  [data-theme='light'] & {
+    background-color: var(--color-white);
+    color: var(--color-black);
   }
-}
 
-.isSelected {
-  background-color: $dark-surface-2;
+  // Define hover styles
+  &:hover {
+    @include hover(background-color, var(--color-accent-hover));
+  }
+
+  // ... rest of your styles
 }

@@ -4,7 +4,7 @@
   gap: 16px;
   align-items: center;
   padding: 40px;
-  background-color: $dark-surface-1;
+  background-color: var(--color-surface-1);
   border-radius: 15px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
   transition:
@@ -44,16 +44,16 @@
 
 .name {
   margin: 0 0 6px 0;
-  color: $dark-white;
+  color: var(--color-white);
 }
 
 .line {
   margin: 4px 0;
   font-size: 0.9rem;
-  color: $dark-secondary;
+  color: var(--color-secondary);
 
   a {
-    color: $dark-white;
+    color: var(--color-white);
     text-decoration: underline;
   }
 }
@@ -61,7 +61,7 @@
 .about {
   margin-top: 8px;
   font-size: 0.95rem;
-  color: $dark-white;
+  color: var(--color-white);
 }
 
 @media (max-width: $breakpoint-sm) {

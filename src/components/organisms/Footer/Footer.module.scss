@@ -1,7 +1,11 @@
+// src/components/Footer/Footer.module.scss
+@use '../../../styles/variables';
+@use '../../../styles/mixins';
+
 .footer {
-  background-color: $dark-surface-1;
-  border-top: 1px solid $dark-elements;
-  color: $dark-white;
+  background-color: var(--color-surface-1);
+  border-top: 1px solid var(--color-elements);
+  color: var(--color-white);
   height: auto;
   display: flex;
   align-items: center;
@@ -14,14 +18,14 @@
     text-align: center;
     align-items: center;
     width: 100%;
-    max-width: $max-container-width;
+    max-width: variables.$max-container-width;
     margin: 0 auto;
   }
 
   .logo {
     height: 32px;
     width: 89px;
-    @include hover(transform, scale($image-hover-scale));
+    @include hover(transform, scale(variables.$image-hover-scale));
   }
 
   .nav {
@@ -37,9 +41,9 @@
 
     a,
     .list a {
-      color: $dark-white;
+      color: var(--color-secondary);
       text-decoration: none;
-      @include hover(color, $dark-accent-hover);
+      @include hover(color, var(--color-accent-hover));
     }
   }
 
@@ -47,14 +51,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: $dark-secondary;
+    color: var(--color-secondary);
     gap: 16px;
     small {
       cursor: pointer;
     }
   }
 
-  @include on-sm {
+  @include mixins.on-sm {
     height: 96px;
     padding: 32px;
 

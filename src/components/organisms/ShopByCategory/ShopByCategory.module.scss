@@ -38,7 +38,7 @@
       }
 
       &Wrapper {
-        background-color: $dark-secondary;
+        background-color: var(--color-secondary);
         margin-bottom: 24px;
         overflow: hidden;
       }
@@ -47,14 +47,14 @@
     &_link {
       @extend h4;
       text-decoration: none;
-      color: $dark-white;
+      color: var(--color-white);
       font-weight: normal;
 
-      @include hover(color, $dark-accent-hover);
+      @include hover(color, var(--color-accent-hover));
     }
 
     &_modelsNumber {
-      color: $dark-secondary;
+      color: var(--color-secondary);
       cursor: default;
     }
   }

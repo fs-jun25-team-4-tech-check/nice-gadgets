@@ -1,6 +1,6 @@
 .backButton {
   display: flex;
-  color: $dark-white;
+  color: var(--color-white);
   font-size: 12px;
   background: none;
   border: 0;
@@ -12,7 +12,7 @@
     text-decoration: underline;
   }
 
-  @include hover(color, $dark-accent);
+  @include hover(color, var(--color-accent));
 
   .textSpan {
     padding-top: 2px;
