@@ -20,7 +20,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const isInCart = isInCartFunc(product.itemId);
   const isFavourite = isInFavs(product.itemId);
 
-  const itemPageLink = `${product.category}/${product.itemId}`;
+  const itemPageLink = `item/${product.itemId}`;
 
   const handleAddToCart = () => {
     addToCart(product.itemId);

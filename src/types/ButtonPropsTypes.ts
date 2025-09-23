@@ -19,7 +19,7 @@ export interface ActionButtonProps extends BaseButtonProps {
   direction?: 'left' | 'right' | 'up';
   disabled?: boolean;
   params?: SearchParams;
-  variant: 'pagination' | 'favourites' | 'slider';
+  variant: 'pagination' | 'favourites' | 'slider' | 'quantity';
 }
 
 export interface ColorButtonProps extends BaseButtonProps {

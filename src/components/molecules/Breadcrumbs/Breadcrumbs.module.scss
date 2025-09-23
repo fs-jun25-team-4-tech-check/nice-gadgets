@@ -10,6 +10,10 @@
     margin-bottom: 40px;
   }
 
+  @include on-md {
+    margin-bottom: 40px;
+  }
+
   ul {
     display: flex;
     align-items: center;

@@ -8,6 +8,10 @@
   gap: 4px;
   text-decoration: none;
 
+  &:hover {
+    text-decoration: underline;
+  }
+
   @include hover(color, $dark-accent);
 
   .textSpan {
