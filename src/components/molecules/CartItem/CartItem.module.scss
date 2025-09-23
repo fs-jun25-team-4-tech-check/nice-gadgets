@@ -18,7 +18,7 @@
     }
 
     .deleteIcon {
-      font-size: 16px;
+      min-width: 16px;
     }
     .deleteButton {
       color: var(--color-icons);
@@ -35,6 +35,12 @@
       object-fit: contain;
       object-position: center;
       flex-shrink: 0;
+    }
+
+    .itemName {
+      @extend .body-text;
+      text-decoration: none;
+      color: $dark-white;
     }
   }
 
@@ -58,7 +64,9 @@
     }
 
     .price {
+      width: 80px;
       display: flex;
+      justify-content: flex-end;
       align-items: center;
       font-size: 22px;
       font-weight: 800;

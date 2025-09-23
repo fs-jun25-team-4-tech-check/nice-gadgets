@@ -1,0 +1,39 @@
+.catalogLayout {
+  display: flex;
+  flex-direction: column;
+}
+
+.headerSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+.countSection {
+  color: $dark-secondary;
+}
+.controlsSection {
+  margin-bottom: 24px;
+}
+
+.productsSection {
+  margin-bottom: 24px;
+}
+
+.paginationSection {
+  margin-bottom: 64px;
+}
+
+@include on-sm {
+  .headerSection {
+    margin-bottom: 40px;
+  }
+
+  .productsSection {
+    margin-bottom: 40px;
+  }
+
+  .paginationSection {
+    margin-bottom: 80px;
+  }
+}

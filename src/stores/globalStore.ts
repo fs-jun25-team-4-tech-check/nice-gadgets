@@ -28,7 +28,7 @@ export const useGlobalStore = create<State & Action>()(
         set((state) => ({ cart: { ...state.cart, [itemId]: 1 } })),
       increaseQuantity: (itemId) =>
         set((state) => ({
-          cart: { ...state.cart, [itemId]: (state.cart[itemId] ?? 0) + 1 },
+          cart: { ...state.cart, [itemId]: state.cart[itemId] + 1 },
         })),
       decreaseQuantity: (itemId) =>
         set((state) => ({

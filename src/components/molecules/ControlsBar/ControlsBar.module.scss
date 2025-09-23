@@ -1,5 +1,10 @@
 .controlsBarContainer {
   display: flex;
+  flex-direction: column;
   gap: 16px;
   justify-content: flex-start;
+
+  @include on-sm {
+    flex-direction: row;
+  }
 }
