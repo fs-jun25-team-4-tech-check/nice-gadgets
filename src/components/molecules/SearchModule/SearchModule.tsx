@@ -1,25 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { useProducts } from '../../../hooks/useProducts';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import styles from './SearchModule.module.scss';
 import SearchBar from './../../atoms/SearchBar/SearchBar';
 import SearchButton from './../../atoms/Buttons/SearchButton/SearchButton';
-import { ListItems } from './../../organisms/ListItems/ListItems';
 
 const SEARCH_QUERY_PARAM = 'query';
 
 const SearchModule = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const initialQuery = searchParams.get(SEARCH_QUERY_PARAM) || '';
   const [query, setQuery] = useState(initialQuery);
-
-  const { data, isLoading, isError } = useProducts(
-    1,
-    12,
-    initialQuery,
-    'name',
-    'asc',
-  );
 
   useEffect(() => {
     setQuery(initialQuery);
@@ -27,16 +18,12 @@ const SearchModule = () => {
 
   const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const newSearchParams = new URLSearchParams(searchParams);
     if (query.trim()) {
-      newSearchParams.set(SEARCH_QUERY_PARAM, query.trim());
-    } else {
-      newSearchParams.delete(SEARCH_QUERY_PARAM);
+      navigate(
+        `/catalog/search?${SEARCH_QUERY_PARAM}=${encodeURIComponent(query.trim())}`,
+      );
     }
-    setSearchParams(newSearchParams);
   };
-
-  const products = data?.data;
 
   return (
     <div className={styles.container}>
@@ -51,18 +38,6 @@ const SearchModule = () => {
         />
         <SearchButton className={styles.searchButton} />
       </form>
-      <div className={styles.resultsContainer}>
-        {isError && <p className={styles.error}>Error loading products.</p>}
-        {!isError && (
-          <ListItems
-            products={products}
-            isLoading={isLoading}
-          />
-        )}
-        {!isError && !isLoading && products?.length === 0 && (
-          <p className={styles.noResults}>No results found.</p>
-        )}
-      </div>
     </div>
   );
 };

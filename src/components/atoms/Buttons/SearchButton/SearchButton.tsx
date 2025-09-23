@@ -3,7 +3,7 @@ import styles from './SearchButton.module.scss';
 import { FiSearch } from 'react-icons/fi';
 
 interface SearchButtonProps {
-  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void; // Зроблено необов'язковим
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
 }
 

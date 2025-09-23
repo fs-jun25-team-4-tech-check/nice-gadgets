@@ -4,7 +4,7 @@ import { ControlsBar } from '../../components/molecules/ControlsBar/ControlsBar'
 import { ListItems } from '../../components/organisms/ListItems/ListItems';
 import Pagination from '../../components/molecules/Pagination/Pagination';
 import Breadcrumbs from '../../components/molecules/Breadcrumbs/Breadcrumbs';
-import { useProductsByCategory } from '../../hooks/useProducts';
+import { useProductsByCategory, useProducts } from '../../hooks/useProducts';
 import type { ProductCategory } from '../../services/api';
 import type {
   PaginationOption,
@@ -14,21 +14,7 @@ import type {
 const CatalogPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { category = '' } = useParams();
-
-  const getPageTitle = (cat: string) => {
-    switch (cat) {
-      case 'phones':
-        return 'Mobile phones';
-      case 'tablets':
-        return 'Tablets';
-      case 'accessories':
-        return 'Accessories';
-      default:
-        return 'Products';
-    }
-  };
-
-  const pageTitle = getPageTitle(category);
+  const query = searchParams.get('query') || '';
 
   const perPage = (Number(searchParams.get('perPage')) ||
     12) as PaginationOption;
@@ -50,7 +36,9 @@ const CatalogPage = () => {
 
   const { sortBy, sortOrder } = getSortParams(sortOption);
 
-  const { data, isLoading, isError } = useProductsByCategory(
+  const isSearchMode = !!query;
+
+  const categoryQueryResult = useProductsByCategory(
     category as ProductCategory,
     currentPage,
     perPage,
@@ -59,20 +47,31 @@ const CatalogPage = () => {
     sortOrder,
   );
 
+  const searchQueryResult = useProducts(
+    currentPage,
+    perPage,
+    query,
+    sortBy,
+    sortOrder,
+  );
+
+  const { data, isLoading, isError } =
+    isSearchMode ? searchQueryResult : categoryQueryResult;
+
   const handlePerPageChange = (items: PaginationOption) => {
-    setSearchParams({
+    setSearchParams((prev) => ({
+      ...Object.fromEntries(prev.entries()),
       page: '1',
       perPage: items.toString(),
-      sort: sortOption,
-    });
+    }));
   };
 
   const handleSortChange = (option: SortOption) => {
-    setSearchParams({
+    setSearchParams((prev) => ({
+      ...Object.fromEntries(prev.entries()),
       page: '1',
-      perPage: perPage.toString(),
       sort: option,
-    });
+    }));
   };
 
   const totalProducts = data?.totalItems || 0;
@@ -82,10 +81,30 @@ const CatalogPage = () => {
     return <div>Error: loading data.</div>;
   }
 
+  const getPageTitle = (cat: string) => {
+    switch (cat) {
+      case 'phones':
+        return 'Mobile phones';
+      case 'tablets':
+        return 'Tablets';
+      case 'accessories':
+        return 'Accessories';
+      default:
+        return 'Products';
+    }
+  };
+
+  const pageTitle = isSearchMode ? 'Search results' : getPageTitle(category);
+  const countText =
+    isSearchMode ? `${totalProducts} results found` : `${totalProducts} models`;
+
+  const breadcrumbs =
+    isSearchMode ? null : <Breadcrumbs categorySlug={category} />;
+
   return (
     <CatalogLayout
       pageTitle={pageTitle}
-      backButtonSection={<Breadcrumbs categorySlug={category} />}
+      backButtonSection={breadcrumbs}
       controlsBarSection={
         <ControlsBar
           sortOption={sortOption}
@@ -94,7 +113,7 @@ const CatalogPage = () => {
           onPerPageChange={handlePerPageChange}
         />
       }
-      productCountSection={<p>{totalProducts} models</p>}
+      productCountSection={<p>{countText}</p>}
       productListSection={
         isLoading ? <div>Loading...</div> : <ListItems products={data?.data} />
       }
