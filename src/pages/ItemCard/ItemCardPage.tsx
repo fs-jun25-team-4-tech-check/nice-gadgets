@@ -1,21 +1,25 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
-import { useProductDetails } from '../../hooks';
+import { useProductDisplay } from '../../hooks';
 import { ItemCardLayout } from '../../components/templates/ItemCardLayout/ItemCardLayout';
 import { CardsSlider } from '../../components/organisms/ProductCardSlider/ProductCardsSlider';
-import { BackButton } from '../../components/atoms';
 
 const ItemCardPage = () => {
   const { productId } = useParams<{
     productId: string;
   }>();
+  const location = useLocation();
   const navigate = useNavigate();
+
+  const fromCard = location.state?.fromCard || false;
 
   const {
     data: product,
     isLoading,
+    isPlaceholderData,
+    hasDetails,
     error,
-  } = useProductDetails(productId ?? '');
+  } = useProductDisplay(productId ?? '', fromCard);
 
   const updateVariant = (newColor?: string, newCapacity?: string) => {
     if (!product) return;
@@ -23,28 +27,28 @@ const ItemCardPage = () => {
     const color = newColor ?? product.color;
     const capacity = newCapacity ?? product.capacity;
 
-    const variantId = `${product.namespaceId}-${capacity.toLowerCase()}-${color}`;
+    const namespaceId =
+      'namespaceId' in product ?
+        product.namespaceId
+      : product.itemId.split('-')[0];
 
-    navigate(`/item/${variantId}`, { replace: true });
+    const variantId = `${namespaceId}-${capacity?.toLowerCase()}-${color}`;
+
+    navigate(`/item/${variantId}`, { replace: true, state: { fromCard } });
   };
 
   const handleColorChange = (color: string) => updateVariant(color);
+
   const handleCapacityChange = (capacity: string) =>
     updateVariant(undefined, capacity);
 
-  if (error || !product) {
-    return (
-      <div>
-        <BackButton fallbackPath="/">Back</BackButton>
-        <p>Product not found</p>
-      </div>
-    );
-  }
-
   return (
     <ItemCardLayout
-      items={[product]}
+      product={product}
       isLoading={isLoading}
+      isPlaceholderData={isPlaceholderData}
+      hasDetails={hasDetails}
+      error={error}
       onColorChange={handleColorChange}
       onCapacityChange={handleCapacityChange}
       youMayAlsoLikeSection={

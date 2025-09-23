@@ -1,4 +1,8 @@
-import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import {
+  keepPreviousData,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query';
 import {
   getAllProducts,
   getProductCategoryCounts,
@@ -10,6 +14,7 @@ import {
   type ProductDetails,
 } from '../services';
 import type { PaginatedResponse, Product } from '../types';
+import { ProductToProductDetails } from '../utils';
 
 const staleTime = 1000 * 60 * 5;
 
@@ -78,11 +83,107 @@ export const useProductCategoryCounts = () => {
   });
 };
 
-export const useProductDetails = (itemId: string) => {
-  return useQuery<ProductDetails | undefined, Error>({
+export const useSimplifiedProduct = (itemId: string) => {
+  const queryClient = useQueryClient();
+
+  return useQuery({
+    queryKey: ['product', 'simplified', itemId],
+    queryFn: async (): Promise<Product | null> => {
+      const cachedData = queryClient.getQueryData<Product>([
+        'product',
+        'simplified',
+        itemId,
+      ]);
+
+      if (cachedData) {
+        return cachedData;
+      }
+
+      // Search through products lists
+      const queryCache = queryClient.getQueryCache();
+      const productsQueries = queryCache.findAll({
+        queryKey: ['products'],
+        type: 'active',
+      });
+
+      for (const query of productsQueries) {
+        const response = query.state.data as
+          | PaginatedResponse<Product>
+          | undefined;
+
+        if (response?.data) {
+          const product = response.data.find((p) => p.itemId === itemId);
+          if (product) {
+            return product;
+          }
+        }
+      }
+      return null;
+    },
+    enabled: !!itemId,
+    staleTime: staleTime,
+    gcTime: staleTime,
+  });
+};
+
+export const useProductDetails = (
+  itemId: string,
+  simplifiedProduct?: Product | null,
+) => {
+  return useQuery<ProductDetails | undefined>({
     queryKey: ['product', 'details', itemId],
     queryFn: () => getProductDetails(itemId),
-    staleTime,
     enabled: !!itemId,
+    staleTime: staleTime,
+    placeholderData:
+      simplifiedProduct ?
+        ProductToProductDetails(simplifiedProduct)
+      : keepPreviousData,
   });
+};
+
+export const useProductDisplay = (
+  itemId: string,
+  fromCard: boolean = false,
+) => {
+  const {
+    data: simplifiedProduct,
+    isLoading: isSimplifiedLoading,
+    error: simplifiedError,
+  } = useSimplifiedProduct(itemId);
+
+  // Use simplified data as a placeholder only if coming from a card click
+  const placeholderProduct = fromCard ? simplifiedProduct : null;
+
+  const {
+    data: detailsData,
+    isLoading: isDetailsLoading,
+    isFetching: isDetailsFetching,
+    error: detailsError,
+    isPlaceholderData,
+    isSuccess: isDetailsSuccess,
+  } = useProductDetails(itemId, placeholderProduct);
+
+  const displayData = detailsData || simplifiedProduct;
+
+  return {
+    data: displayData,
+    isLoading: isSimplifiedLoading || (isDetailsLoading && !isPlaceholderData),
+    isFetching: isDetailsFetching,
+    isPlaceholderData,
+    hasSimplified: !!simplifiedProduct,
+    hasDetails: isDetailsSuccess && !isPlaceholderData,
+    error: detailsError || simplifiedError,
+  };
+};
+
+export const usePrefillSimplifiedProduct = () => {
+  const queryClient = useQueryClient();
+
+  return (product: Product) => {
+    queryClient.setQueryData(
+      ['product', 'simplified', product.itemId],
+      product,
+    );
+  };
 };
