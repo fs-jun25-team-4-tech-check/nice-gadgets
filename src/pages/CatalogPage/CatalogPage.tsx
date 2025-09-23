@@ -3,6 +3,7 @@ import CatalogLayout from '../../components/templates/CatalogLayout/CatalogLayou
 import { ControlsBar } from '../../components/molecules/ControlsBar/ControlsBar';
 import { ListItems } from '../../components/organisms/ListItems/ListItems';
 import Pagination from '../../components/molecules/Pagination/Pagination';
+import Breadcrumbs from '../../components/molecules/Breadcrumbs/Breadcrumbs';
 import { useProductsByCategory } from '../../hooks/useProducts';
 import type { ProductCategory } from '../../services/api';
 import type {
@@ -13,6 +14,21 @@ import type {
 const CatalogPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { category = '' } = useParams();
+
+  const getPageTitle = (cat: string) => {
+    switch (cat) {
+      case 'phones':
+        return 'Mobile phones';
+      case 'tablets':
+        return 'Tablets';
+      case 'accessories':
+        return 'Accessories';
+      default:
+        return 'Products';
+    }
+  };
+
+  const pageTitle = getPageTitle(category);
 
   const perPage = (Number(searchParams.get('perPage')) ||
     12) as PaginationOption;
@@ -68,6 +84,8 @@ const CatalogPage = () => {
 
   return (
     <CatalogLayout
+      pageTitle={pageTitle}
+      backButtonSection={<Breadcrumbs categorySlug={category} />}
       controlsBarSection={
         <ControlsBar
           sortOption={sortOption}
@@ -76,7 +94,7 @@ const CatalogPage = () => {
           onPerPageChange={handlePerPageChange}
         />
       }
-      productCountSection={<h2>{totalProducts} models</h2>}
+      productCountSection={<p>{totalProducts} models</p>}
       productListSection={
         isLoading ? <div>Loading...</div> : <ListItems products={data?.data} />
       }
