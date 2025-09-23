@@ -12,7 +12,7 @@ const CartList: React.FC<Props> = ({ products }) => {
       {products.map((product) => {
         return (
           <CartItem
-            key={product.itemId}
+            key={product.id}
             product={product}
           />
         );
