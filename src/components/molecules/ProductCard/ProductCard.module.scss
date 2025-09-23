@@ -4,12 +4,10 @@
   width: 212px;
   height: 439px;
   padding: 32px;
-  background-color: $dark-surface-1;
-  border: 1px solid transparent;
+  background-color: var(--color-surface-1);
+  border: 1px solid var(--color-elements);
 
   box-sizing: border-box;
-
-  @include hover(border, 1px solid $dark-surface-2);
 
   @include on-md {
     width: 237px;
@@ -42,18 +40,16 @@
     @extend p;
     padding-top: 16px;
     margin: 8px 0;
-    color: $dark-white;
+    color: var(--color-white);
     line-height: 1.4;
     text-decoration: none;
-
+    @include hover(color, var(--color-accent-hover));
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: normal;
-
-    @include hover(color, $dark-accent-hover);
   }
 
   .priceBlock {
@@ -63,7 +59,7 @@
     padding-bottom: 8px;
     height: 31px;
     margin-bottom: 8px;
-    border-bottom: 1px solid $dark-elements;
+    border-bottom: 1px solid var(--color-elements);
   }
 
   .title,
@@ -75,13 +71,13 @@
     font-size: 22px;
     line-height: 140%;
     font-weight: 800;
-    color: $dark-white;
+    color: var(--color-white);
     cursor: default;
   }
 
   .oldPrice {
     font-size: 22px;
-    color: $dark-secondary;
+    color: var(--color-secondary);
     text-decoration: line-through;
     cursor: default;
   }
@@ -97,10 +93,10 @@
       display: flex;
       justify-content: space-between;
       margin-bottom: 8px;
-      color: $dark-white;
+      color: var(--color-white);
 
       span {
-        color: $dark-secondary;
+        color: var(--color-secondary);
       }
     }
   }

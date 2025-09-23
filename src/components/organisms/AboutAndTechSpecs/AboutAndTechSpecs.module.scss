@@ -3,7 +3,7 @@
   justify-content: space-between;
   gap: 56px;
   padding-top: 56px;
-  color: $dark-white;
+  color: var(--color-white);
   flex-direction: column;
 
   @include on-md {
@@ -24,7 +24,7 @@
 .heading {
   font-weight: 700;
   margin-bottom: 32px;
-  border-bottom: 1px solid $dark-elements;
+  border-bottom: 1px solid var(--color-elements);
   padding-bottom: 16px;
 
   @include on-md {
@@ -35,7 +35,7 @@
 .headingSpecs {
   font-weight: 700;
   margin-bottom: 32px;
-  border-bottom: 1px solid $dark-elements;
+  border-bottom: 1px solid var(--color-elements);
   padding-bottom: 16px;
 
   @include on-md {
@@ -64,7 +64,7 @@
 
     p {
       margin-bottom: 16px;
-      color: #89939a;
+      color: var(--color-secondary);
     }
   }
 }
@@ -97,13 +97,13 @@
       }
 
       span:first-child {
-        color: #89939a;
+        color: var(--color-secondary);
         flex: 0 0 auto;
         margin-right: 16px;
       }
 
       span:last-child {
-        color: $dark-white;
+        color: var(--color-white);
         flex: 1 1 auto;
         text-align: right;
       }

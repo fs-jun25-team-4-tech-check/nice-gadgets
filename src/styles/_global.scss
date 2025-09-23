@@ -1,14 +1,86 @@
 @use './variables';
 @use './mixins';
 
+// CSS Variables for theming
+
+:root {
+  --color-secondary: #{variables.$dark-secondary};
+  --color-icons: #{variables.$dark-icons};
+  --color-elements: #{variables.$dark-elements};
+  --color-surface-2: #{variables.$dark-surface-2};
+  --color-surface-1: #{variables.$dark-surface-1};
+  --color-black: #{variables.$dark-black};
+  --color-white: #{variables.$dark-white};
+  --color-accent: #{variables.$dark-accent};
+  --color-green: #{variables.$dark-green};
+  --color-red: #{variables.$dark-red};
+  --color-accent-hover: #{variables.$dark-accent-hover};
+  --color-skeleton-bg-start: #{variables.$dark-skeleton-bg-start};
+  --color-skeleton-bg-highlight: #{variables.$dark-skeleton-bg-highlight};
+  --color-skeleton-bg-end: #{variables.$dark-skeleton-bg-end};
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-secondary: #{variables.$light-secondary};
+    --color-icons: #{variables.$light-icons};
+    --color-elements: #{variables.$light-elements};
+    --color-surface-2: #{variables.$light-surface-2};
+    --color-surface-1: #{variables.$light-surface-1};
+    --color-black: #{variables.$light-black};
+    --color-white: #{variables.$light-white};
+    --color-accent: #{variables.$light-accent};
+    --color-green: #{variables.$light-green};
+    --color-red: #{variables.$light-red};
+    --color-accent-hover: #{variables.$light-accent-hover};
+    --color-skeleton-bg-start: #{variables.$light-skeleton-bg-start};
+    --color-skeleton-bg-highlight: #{variables.$light-skeleton-bg-highlight};
+    --color-skeleton-bg-end: #{variables.$light-skeleton-bg-end};
+  }
+}
+
+[data-theme='light'] {
+  --color-secondary: #{variables.$light-secondary};
+  --color-icons: #{variables.$light-icons};
+  --color-elements: #{variables.$light-elements};
+  --color-surface-2: #{variables.$light-surface-2};
+  --color-surface-1: #{variables.$light-surface-1};
+  --color-black: #{variables.$light-black};
+  --color-white: #{variables.$light-white};
+  --color-accent: #{variables.$light-accent};
+  --color-green: #{variables.$light-green};
+  --color-red: #{variables.$light-red};
+  --color-accent-hover: #{variables.$light-accent-hover};
+  --color-skeleton-bg-start: #{variables.$light-skeleton-bg-start};
+  --color-skeleton-bg-highlight: #{variables.$light-skeleton-bg-highlight};
+  --color-skeleton-bg-end: #{variables.$light-skeleton-bg-end};
+}
+
+[data-theme='dark'] {
+  --color-secondary: #{variables.$dark-secondary};
+  --color-icons: #{variables.$dark-icons};
+  --color-elements: #{variables.$dark-elements};
+  --color-surface-2: #{variables.$dark-surface-2};
+  --color-surface-1: #{variables.$dark-surface-1};
+  --color-black: #{variables.$dark-black};
+  --color-white: #{variables.$dark-white};
+  --color-accent: #{variables.$dark-accent};
+  --color-green: #{variables.$dark-green};
+  --color-red: #{variables.$dark-red};
+  --color-accent-hover: #{variables.$dark-accent-hover};
+  --color-skeleton-bg-start: #{variables.$dark-skeleton-bg-start};
+  --color-skeleton-bg-highlight: #{variables.$dark-skeleton-bg-highlight};
+  --color-skeleton-bg-end: #{variables.$dark-skeleton-bg-end};
+}
+
 html {
   font-size: variables.$default-font-size;
 }
 
 body {
   font-family: 'Mont', sans-serif;
-  background-color: variables.$dark-black;
-  color: variables.$dark-white;
+  background-color: var(--color-black);
+  color: var(--color-white);
   font-size: 14px;
   line-height: 21px;
   letter-spacing: 0;
@@ -143,9 +215,9 @@ p,
 %skeleton-base {
   background: linear-gradient(
     90deg,
-    variables.$dark-skeleton-bg-start 25%,
-    variables.$dark-skeleton-bg-highlight 50%,
-    variables.$dark-skeleton-bg-end 75%
+    var(--color-skeleton-bg-start) 25%,
+    var(--color-skeleton-bg-highlight) 50%,
+    var(--color-skeleton-bg-end) 75%
   );
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;

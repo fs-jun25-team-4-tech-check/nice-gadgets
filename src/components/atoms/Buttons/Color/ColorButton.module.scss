@@ -4,13 +4,13 @@
   height: 32px;
   width: 32px;
   border-radius: 50%;
-  border: 2px solid $dark-black;
-  outline: 1px solid $dark-elements;
+  border: 2px solid var(--color-black);
+  outline: 1px solid var(--color-elements);
   cursor: pointer;
 
-  @include hover(outline-color, $dark-secondary);
+  @include hover(outline-color, var(--color-secondary));
 }
 
 .isSelected {
-  outline-color: $dark-white;
+  outline-color: var(--color-white);
 }

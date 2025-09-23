@@ -92,22 +92,6 @@
   }
 }
 
-.thumbsContainer {
-  display: flex;
-  gap: 8px;
-  padding-left: 0;
-
-  @include on-md {
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-  }
-
-  @include on-lg {
-    gap: 16px;
-  }
-}
-
 .thumb {
   width: 51.2px;
   height: 49px;
@@ -118,7 +102,7 @@
   padding: 0;
   cursor: pointer;
   background: none;
-  border: 1px solid $dark-elements;
+  border: 1px solid var(--color-elements);
 
   @include on-md {
     width: 35px;
@@ -132,5 +116,5 @@
 }
 
 .active {
-  border: 1px solid $dark-white;
+  border: 1px solid var(--color-white);
 }

@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 24px;
   padding: 24px;
-  border: 1px solid $dark-elements;
+  border: 1px solid var(--color-elements);
   position: relative;
   grid-column: span 4;
   @include on-md {
@@ -15,7 +15,7 @@
     align-self: start;
   }
   .countPriceWrapper {
-    border-bottom: 1px solid $dark-elements;
+    border-bottom: 1px solid var(--color-elements);
     .totalPrice {
       display: flex;
       justify-content: center;
@@ -24,7 +24,7 @@
     .countTitle {
       display: flex;
       justify-content: center;
-      color: $dark-secondary;
+      color: var(--color-secondary);
       margin-bottom: 25px;
     }
   }
