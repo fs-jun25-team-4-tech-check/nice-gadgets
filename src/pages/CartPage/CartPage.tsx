@@ -8,7 +8,7 @@ const CartPage = () => {
   const { cart } = useCart();
   const { data, isLoading } = useProductsById(Object.keys(cart));
   const totalPrice = Object.entries(cart).reduce((acc, curr) => {
-    const product = data?.find((p) => (p.itemId = curr[0]));
+    const product = data?.find((p) => p.itemId === curr[0]);
     return acc + (product?.price ?? 0) * curr[1];
   }, 0);
 
@@ -16,7 +16,12 @@ const CartPage = () => {
     <CartLayout
       isLoading={isLoading}
       cartListSection={<CartList products={data ?? []} />}
-      cartSummarySection={<CartSummary totalPrice={totalPrice} />}
+      cartSummarySection={
+        <CartSummary
+          isLoading={isLoading}
+          totalPrice={totalPrice}
+        />
+      }
     />
   );
 };

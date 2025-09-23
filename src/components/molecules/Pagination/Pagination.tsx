@@ -53,12 +53,14 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages }) => {
 
   return (
     <nav className={styles.paginationContainer}>
-      <ActionButton
-        variant="slider"
-        direction="left"
-        onClick={handlePrevClick}
-        disabled={currentPage === 1}
-      />
+      {pagesToShowOnSide > 1 && (
+        <ActionButton
+          variant="slider"
+          direction="left"
+          onClick={handlePrevClick}
+          disabled={currentPage === 1}
+        />
+      )}
 
       {pageNumbers.map((page, index) => {
         if (page === '...') {
@@ -90,12 +92,14 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages }) => {
         );
       })}
 
-      <ActionButton
-        variant="slider"
-        direction="right"
-        onClick={handleNextClick}
-        disabled={currentPage === totalPages}
-      />
+      {pagesToShowOnSide > 1 && (
+        <ActionButton
+          variant="slider"
+          direction="right"
+          onClick={handleNextClick}
+          disabled={currentPage === totalPages}
+        />
+      )}
     </nav>
   );
 };
