@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useProducts } from '../../../hooks/useProducts';
 import styles from './SearchModule.module.scss';
 import SearchBar from './../../atoms/SearchBar/SearchBar';
 import SearchButton from './../../atoms/Buttons/SearchButton/SearchButton';
+import { ListItems } from './../../organisms/ListItems/ListItems';
 
-// Визначаємо ім'я параметра пошуку в URL
 const SEARCH_QUERY_PARAM = 'query';
 
 const SearchModule = () => {
@@ -12,12 +13,18 @@ const SearchModule = () => {
   const initialQuery = searchParams.get(SEARCH_QUERY_PARAM) || '';
   const [query, setQuery] = useState(initialQuery);
 
-  // Оновлюємо внутрішній стан, коли параметр URL змінюється
+  const { data, isLoading, isError } = useProducts(
+    1,
+    12,
+    initialQuery,
+    'name',
+    'asc',
+  );
+
   useEffect(() => {
     setQuery(initialQuery);
   }, [initialQuery]);
 
-  // Виправлено: параметр 'e' тепер має ім'я 'event' та явний тип
   const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const newSearchParams = new URLSearchParams(searchParams);
@@ -29,18 +36,34 @@ const SearchModule = () => {
     setSearchParams(newSearchParams);
   };
 
+  const products = data?.data;
+
   return (
-    <form
-      className={styles.searchModule}
-      onSubmit={handleSearch}
-    >
-      <SearchBar
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search..."
-      />
-      <SearchButton className={styles.searchButton} />
-    </form>
+    <div className={styles.container}>
+      <form
+        className={styles.searchModule}
+        onSubmit={handleSearch}
+      >
+        <SearchBar
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search..."
+        />
+        <SearchButton className={styles.searchButton} />
+      </form>
+      <div className={styles.resultsContainer}>
+        {isError && <p className={styles.error}>Error loading products.</p>}
+        {!isError && (
+          <ListItems
+            products={products}
+            isLoading={isLoading}
+          />
+        )}
+        {!isError && !isLoading && products?.length === 0 && (
+          <p className={styles.noResults}>No results found.</p>
+        )}
+      </div>
+    </div>
   );
 };
 
