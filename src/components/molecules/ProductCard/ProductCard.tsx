@@ -25,19 +25,27 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
   const itemPageLink = `/item/${product.itemId}`;
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
     addToCart(product.itemId);
   };
 
-  const handleAddToFavorites = () => {
+  const handleAddToFavorites = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
     addToFavs(product.itemId);
   };
 
-  const handleRemovefromCart = () => {
+  const handleRemovefromCart = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
     removeFromCart(product.itemId);
   };
 
-  const handleRemovefromFavs = () => {
+  const handleRemovefromFavs = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
     removeFromFavs(product.itemId);
   };
 
@@ -46,7 +54,13 @@ const ProductCard: React.FC<ProductCardProps> = ({
   };
 
   return (
-    <div className={`${styles.card} ${className}`}>
+    <Link
+      to={itemPageLink}
+      state={{ fromCard: true }}
+      onClick={handleProductClick}
+      className={`${styles.card} ${className}`}
+      replace
+    >
       <div className={styles.imageWrapper}>
         <img
           src={product.image}
@@ -55,15 +69,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         />
       </div>
 
-      <Link
-        to={itemPageLink}
-        state={{ fromCard: true }}
-        onClick={handleProductClick}
-        className={styles.title}
-        replace
-      >
-        {product.name}
-      </Link>
+      <h3 className={styles.title}>{product.name}</h3>
 
       <div className={styles.priceBlock}>
         <span className={styles.price}>${product.price}</span>
@@ -98,7 +104,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           isSelected={isFavourite}
         />
       </div>
-    </div>
+    </Link>
   );
 };
 
