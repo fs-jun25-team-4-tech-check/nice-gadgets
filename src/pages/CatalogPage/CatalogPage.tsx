@@ -98,13 +98,10 @@ const CatalogPage = () => {
   const countText =
     isSearchMode ? `${totalProducts} results found` : `${totalProducts} models`;
 
-  const breadcrumbs =
-    isSearchMode ? null : <Breadcrumbs categorySlug={category} />;
-
   return (
     <CatalogLayout
       pageTitle={pageTitle}
-      backButtonSection={breadcrumbs}
+      backButtonSection={<Breadcrumbs categorySlug={category} />}
       controlsBarSection={
         <ControlsBar
           sortOption={sortOption}
