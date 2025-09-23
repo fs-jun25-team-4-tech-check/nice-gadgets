@@ -17,7 +17,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages }) => {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 576) {
-        setPagesToShowOnSide(1);
+        setPagesToShowOnSide(0);
       } else {
         setPagesToShowOnSide(2);
       }
@@ -53,14 +53,12 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages }) => {
 
   return (
     <nav className={styles.paginationContainer}>
-      {pagesToShowOnSide > 1 && (
-        <ActionButton
-          variant="slider"
-          direction="left"
-          onClick={handlePrevClick}
-          disabled={currentPage === 1}
-        />
-      )}
+      <ActionButton
+        variant="slider"
+        direction="left"
+        onClick={handlePrevClick}
+        disabled={currentPage === 1}
+      />
 
       {pageNumbers.map((page, index) => {
         if (page === '...') {
@@ -92,14 +90,12 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages }) => {
         );
       })}
 
-      {pagesToShowOnSide > 1 && (
-        <ActionButton
-          variant="slider"
-          direction="right"
-          onClick={handleNextClick}
-          disabled={currentPage === totalPages}
-        />
-      )}
+      <ActionButton
+        variant="slider"
+        direction="right"
+        onClick={handleNextClick}
+        disabled={currentPage === totalPages}
+      />
     </nav>
   );
 };
