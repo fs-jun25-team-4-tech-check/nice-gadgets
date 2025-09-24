@@ -36,7 +36,9 @@ const CatalogPage = () => {
 
   const { sortBy, sortOrder } = getSortParams(sortOption);
 
-  const { data, isLoading, isFetching, isError } = useProductsByCategory(
+  const isSearchMode = !!query;
+
+  const categoryQueryResult = useProductsByCategory(
     category as ProductCategory,
     currentPage,
     perPage,
@@ -96,10 +98,13 @@ const CatalogPage = () => {
   const countText =
     isSearchMode ? `${totalProducts} results found` : `${totalProducts} models`;
 
+  const breadcrumbs =
+    isSearchMode ? null : <Breadcrumbs categorySlug={category} />;
+
   return (
     <CatalogLayout
       pageTitle={pageTitle}
-      backButtonSection={<Breadcrumbs categorySlug={category} />}
+      backButtonSection={breadcrumbs}
       controlsBarSection={
         <ControlsBar
           sortOption={sortOption}
@@ -110,11 +115,7 @@ const CatalogPage = () => {
       }
       productCountSection={<p>{countText}</p>}
       productListSection={
-        <ListItems
-          products={data?.data}
-          isLoading={isLoading || isFetching}
-          itemsCount={perPage}
-        />
+        isLoading ? <div>Loading...</div> : <ListItems products={data?.data} />
       }
       paginationSection={
         !isLoading &&
