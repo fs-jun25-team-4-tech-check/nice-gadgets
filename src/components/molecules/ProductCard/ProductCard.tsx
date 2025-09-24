@@ -59,7 +59,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
       state={{ fromCard: true }}
       onClick={handleProductClick}
       className={`${styles.card} ${className}`}
-      replace
     >
       <div className={styles.imageWrapper}>
         <img
