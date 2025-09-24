@@ -15,7 +15,7 @@ const SearchModule = () => {
   const [query, setQuery] = useState(initialQuery);
   const [isInputFocused, setIsInputFocused] = useState(false);
 
-  const { data, isLoading } = useProducts(1, 10, query);
+  const { data, isLoading } = useProducts(1, 5, query);
 
   const suggestions = data?.data || [];
 

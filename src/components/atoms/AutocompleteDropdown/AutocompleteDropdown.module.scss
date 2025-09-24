@@ -1,29 +1,33 @@
+/* AutocompleteDropdown.module.scss */
+
 .dropdown {
   position: absolute;
   top: 100%;
   left: 0;
-  width: 100%;
+  right: 38px;
+  z-index: 100;
   background-color: var(--color-surface-1);
   border: 1px solid var(--color-elements);
-  border-top: none;
-  z-index: 999;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-height: 200px;
-  overflow-y: auto;
 }
 
 .item {
-  display: block;
-  padding: 10px 16px;
-  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  color: var(--color-dark);
   text-decoration: none;
-  border-bottom: 1px solid var(--color-elements);
+  transition: background-color 0.2s;
+  border: 1px solid var(--color-elements);
+}
 
-  &:hover {
-    background-color: var(--color-surface-2);
-  }
+.item:hover {
+  background-color: var(--color-surface-2);
+  scale: 1.01;
+}
 
-  &:last-child {
-    border-bottom: none;
-  }
+.itemImage {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin-right: 12px;
 }

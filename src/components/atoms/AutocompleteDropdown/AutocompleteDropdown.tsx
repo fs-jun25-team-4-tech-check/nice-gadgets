@@ -24,7 +24,12 @@ const AutocompleteDropdown: React.FC<AutocompleteDropdownProps> = ({
           to={`/item/${product.itemId}`}
           className={styles.item}
         >
-          {product.name}
+          <img
+            src={product.image}
+            alt={product.name}
+            className={styles.itemImage}
+          />
+          <span className={styles.itemName}>{product.name}</span>
         </NavLink>
       ))}
     </div>
