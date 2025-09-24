@@ -1,10 +1,10 @@
 import { NavigationMenu } from 'radix-ui';
 import styles from './CatalogueModal.module.scss';
-import { NavLink } from 'react-router-dom';
 import { CgAppleWatch } from 'react-icons/cg';
 import { IoPhonePortraitOutline } from 'react-icons/io5';
 import { FaTabletAlt } from 'react-icons/fa';
 import { PiCirclesFourLight } from 'react-icons/pi';
+import { CatalogueModalLink } from './catalogueModalLink';
 
 const CatalogueModal = () => {
   return (
@@ -17,45 +17,26 @@ const CatalogueModal = () => {
           </NavigationMenu.Trigger>
           <NavigationMenu.Content className={styles.content}>
             <ul className={styles.links}>
-              <li className={styles.linksItem}>
+              <CatalogueModalLink to="/catalog/phones">
                 <IoPhonePortraitOutline className={styles.linkIcon} />
                 <div className={styles.linkWrapper}>
-                  <NavLink
-                    to="/catalog/phones"
-                    className={({ isActive }) =>
-                      `uppercase-text ${styles.navLink} ${isActive ? styles.active : ''}`
-                    }
-                  >
-                    Phones
-                  </NavLink>
+                  <span className={styles.linkName}>Phones</span>
                 </div>
-              </li>
-              <li className={styles.linksItem}>
+              </CatalogueModalLink>
+
+              <CatalogueModalLink to="/catalog/tablets">
                 <FaTabletAlt className={styles.linkIcon} />
                 <div className={styles.linkWrapper}>
-                  <NavLink
-                    to="/catalog/tablets"
-                    className={({ isActive }) =>
-                      `uppercase-text ${styles.navLink} ${isActive ? styles.active : ''}`
-                    }
-                  >
-                    Tablets
-                  </NavLink>
+                  <span className={styles.linkName}>Tablets</span>
                 </div>
-              </li>
-              <li className={styles.linksItem}>
+              </CatalogueModalLink>
+
+              <CatalogueModalLink to="/catalog/accessories">
                 <CgAppleWatch className={styles.linkIcon} />
                 <div className={styles.linkWrapper}>
-                  <NavLink
-                    to="/catalog/accessories"
-                    className={({ isActive }) =>
-                      `uppercase-text ${styles.navLink} ${isActive ? styles.active : ''}`
-                    }
-                  >
-                    Accessories
-                  </NavLink>
+                  <span className={styles.linkName}>Accessories</span>
                 </div>
-              </li>
+              </CatalogueModalLink>
             </ul>
           </NavigationMenu.Content>
         </NavigationMenu.Item>

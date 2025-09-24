@@ -1,6 +1,4 @@
 .root {
-  width: 200px;
-
   .menuList {
     list-style-type: none;
     padding: 0;
@@ -8,15 +6,20 @@
   }
 
   .trigger {
-    all: unset;
+    cursor: pointer;
     display: flex;
     align-items: center;
     gap: 5px;
     border: 1px solid var(--color-white);
     padding: 8px;
-    border-radius: 7px;
     user-select: none;
     transition-duration: 0.2s;
+    background-color: var(--color-surface-1);
+    color: var(--color-white);
+    font-weight: 600;
+    line-height: 1;
+    @extend .uppercase-text;
+
     .catalogIcon {
       font-size: 15px;
     }
@@ -27,8 +30,8 @@
   }
 
   .content {
-    width: 95vw;
-    padding: 30px;
+    width: 100vw;
+    max-width: 400px;
     background-color: var(--color-black);
     animation-duration: 0.2s;
     animation-timing-function: ease;
@@ -41,17 +44,31 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 25px;
       .linksItem {
         display: flex;
         justify-content: center;
-        transition-duration: 0.2s;
-        transform-origin: top 80px;
-        &:hover {
-          transform: scale(1.2);
-          .navLink {
+        align-items: center;
+        transition: all 0.2s ease;
+        border: 1px solid var(--color-elements);
+        padding-block: 20px;
+        width: 100%;
+
+        &[data-active] {
+          background-color: var(--color-surface-1);
+          border-color: var(--color-accent);
+          .linkName {
             color: var(--color-accent);
-            border-color: var(--color-accent);
+          }
+          .linkIcon {
+            color: var(--color-accent);
+          }
+        }
+
+        &:hover {
+          background-color: var(--color-white);
+          transform: translateX(20px);
+          .linkName {
+            color: var(--color-accent);
           }
           .linkIcon {
             color: var(--color-accent);
@@ -59,28 +76,23 @@
         }
       }
 
-      .navLink {
+      .linkName {
         text-decoration: none;
-        font-size: 20px;
+        font-size: 17px;
         padding-bottom: 5px;
         font-weight: 400;
+        color: var(--color-white);
       }
       .linkWrapper {
         display: flex;
         justify-content: center;
         align-self: center;
-        width: 200px;
-      }
-
-      .active {
-        border-bottom: 1px solid var(--color-white);
-        color: var(--color-white);
+        width: 170px;
       }
 
       .linkIcon {
-        font-size: 30px;
+        font-size: 25px;
         color: var(--color-white);
-        align-self: center;
       }
     }
   }
@@ -88,11 +100,11 @@
   .ViewportPosition {
     position: absolute;
     display: flex;
-    justify-content: center;
+    justify-content: start;
+    padding-left: 50px;
     width: 100%;
     top: 100%;
     left: 0;
-    perspective: 2000px;
   }
 
   .Viewport {
@@ -100,10 +112,7 @@
     transform-origin: top center;
     width: 100%;
     border: 1px solid var(--color-elements);
-    overflow: hidden;
-    box-shadow:
-      hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
-      hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+    border-inline: 0;
     transition:
       width,
       height,
