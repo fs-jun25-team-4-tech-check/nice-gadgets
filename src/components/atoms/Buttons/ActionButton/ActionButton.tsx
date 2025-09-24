@@ -48,6 +48,7 @@ const ActionButton: React.FC<Props> = ({
           className={cn(toFavoriteStyles.toFavoritesButton, className, {
             [toFavoriteStyles.toFavoritesButtonSelected]: isSelected,
           })}
+          disabled={disabled}
         >
           {isSelected ?
             <FilledHeartIcon

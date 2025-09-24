@@ -5,19 +5,18 @@ export interface BaseButtonProps {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
   isSelected?: boolean;
+  disabled?: boolean;
 }
 
 export interface LinkButtonProps extends BaseButtonProps {
   params: SearchParams;
 }
 export interface PrimaryButtonProps extends BaseButtonProps {
-  disabled?: boolean;
   color?: string;
 }
 
 export interface ActionButtonProps extends BaseButtonProps {
   direction?: 'left' | 'right' | 'up';
-  disabled?: boolean;
   params?: SearchParams;
   variant: 'pagination' | 'favourites' | 'slider' | 'quantity';
 }

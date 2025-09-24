@@ -1,0 +1,48 @@
+.breadcrumbsSkeleton {
+  max-width: 100%;
+  margin-top: 24px;
+  margin-bottom: 24px;
+
+  @include on-md {
+    margin-bottom: 40px;
+  }
+
+  ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 8px;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+.homeIconSkeleton {
+  @extend %skeleton-base;
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+}
+
+.separatorSkeleton {
+  @extend %skeleton-base;
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+}
+
+.breadcrumbTextSkeleton {
+  @extend %skeleton-base;
+  height: 16px;
+  width: 80px;
+
+  &:last-child {
+    width: 120px;
+  }
+}
