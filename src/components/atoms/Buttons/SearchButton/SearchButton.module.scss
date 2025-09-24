@@ -1,0 +1,17 @@
+.searchButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background-color: var(--surface-1);
+  color: var(--color-white);
+  cursor: pointer;
+
+  @include hover(background-color, var(--color-icons));
+}
+.icon {
+  width: 16px;
+  height: 16px;
+}

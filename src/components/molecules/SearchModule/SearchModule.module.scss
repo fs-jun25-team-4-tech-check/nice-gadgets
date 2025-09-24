@@ -1,0 +1,28 @@
+.container {
+  position: relative;
+}
+
+.searchModule {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.searchBar {
+  width: 100%;
+  border: 1px solid var(--color-elements);
+  background-color: var(--color-surface-2);
+  color: var(--color-white);
+  font-size: $default-font-size;
+
+  &:focus {
+    border-color: var(--color-surface-1);
+    box-shadow: none;
+  }
+
+  &::placeholder {
+    color: var(--color-secondary);
+  }
+}
