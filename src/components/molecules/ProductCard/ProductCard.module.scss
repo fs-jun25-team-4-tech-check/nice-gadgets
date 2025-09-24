@@ -74,14 +74,12 @@
     line-height: 140%;
     font-weight: 800;
     color: var(--color-white);
-    cursor: default;
   }
 
   .oldPrice {
     font-size: 22px;
     color: var(--color-secondary);
     text-decoration: line-through;
-    cursor: default;
   }
 
   .specs {
@@ -89,7 +87,6 @@
     padding: 8px 0;
     font-size: 12px;
     font-weight: 700;
-    cursor: default;
 
     li {
       display: flex;
