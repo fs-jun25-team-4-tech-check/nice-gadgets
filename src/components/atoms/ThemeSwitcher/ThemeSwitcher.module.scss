@@ -23,7 +23,7 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
-  padding: 0;
+  padding: 22px; // !TODO: temporary measure to have icon look more in line with other header buttons (prev value 0)
   color: var(--color-icons);
   height: 100%;
   width: 100%;
@@ -82,7 +82,8 @@
 }
 
 .icon {
-  font-size: 24px;
+  color: var(--color-white);
+  font-size: 290px;
   flex-shrink: 0;
 }
 
