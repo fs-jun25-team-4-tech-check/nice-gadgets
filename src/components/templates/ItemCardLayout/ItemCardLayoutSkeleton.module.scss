@@ -1,0 +1,376 @@
+.breadcrumbsSkeleton {
+  max-width: 100%;
+  margin-top: 24px;
+  margin-bottom: 24px;
+
+  @include on-md {
+    margin-bottom: 40px;
+  }
+
+  ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 8px;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+.homeIconSkeleton {
+  @extend %skeleton-base;
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+}
+
+.separatorSkeleton {
+  @extend %skeleton-base;
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+}
+
+.breadcrumbTextSkeleton {
+  @extend %skeleton-base;
+  height: 16px;
+  width: 80px;
+
+  &:last-child {
+    width: 120px;
+  }
+}
+
+.productNameSkeleton {
+  @extend %skeleton-base;
+  height: 32px;
+  width: 60%;
+  margin-top: 16px;
+  margin-bottom: 36px;
+
+  @include on-md {
+    height: 36px;
+    margin-bottom: 40px;
+  }
+}
+
+.skeletonSection {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+
+  @include on-md {
+    flex: 1 1 50%;
+    max-width: 380px;
+  }
+
+  @include on-lg {
+    flex: 1 1 50%;
+    max-width: 320px;
+  }
+}
+
+.selectorGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-bottom: 1px solid var(--color-elements);
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+}
+
+.labelSkeleton {
+  @extend %skeleton-base;
+  height: 16px;
+  width: 120px;
+}
+
+.colorOptions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.colorButtonSkeleton {
+  @extend %skeleton-base;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.capacityOptions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.capacityBtnSkeleton {
+  @extend %skeleton-base;
+  padding: 8px;
+  min-width: 56px;
+  height: 36px;
+  border-radius: 0;
+
+  @media (max-width: 639px) {
+    flex: 1;
+    min-width: auto;
+    height: 33px;
+  }
+}
+
+.priceBlock {
+  padding-top: 8px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.newPriceSkeleton {
+  @extend %skeleton-base;
+  height: 32px;
+  width: 100px;
+
+  @include on-md {
+    height: 36px;
+    width: 120px;
+  }
+
+  @media (max-width: 639px) {
+    height: 28px;
+    width: 90px;
+  }
+}
+
+.oldPriceSkeleton {
+  @extend %skeleton-base;
+  height: 22px;
+  width: 60px;
+
+  @include on-md {
+    height: 24px;
+    width: 70px;
+  }
+
+  @media (max-width: 639px) {
+    height: 18px;
+    width: 50px;
+  }
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.primaryButtonSkeleton {
+  @extend %skeleton-base;
+  height: 48px;
+  flex: 1;
+  border-radius: 0;
+
+  @media (max-width: 639px) {
+    height: 44px;
+  }
+}
+
+.actionButtonSkeleton {
+  @extend %skeleton-base;
+  width: 48px;
+  height: 48px;
+  border-radius: 0;
+
+  @media (max-width: 639px) {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+.specs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 32px;
+}
+
+.specRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 0;
+
+  @include on-md {
+    padding: 4px 0;
+  }
+}
+
+.specNameSkeleton {
+  @extend %skeleton-base;
+  height: 12px;
+  width: 60px;
+
+  @include on-md {
+    height: 14px;
+    width: 70px;
+  }
+}
+
+.specValueSkeleton {
+  @extend %skeleton-base;
+  height: 12px;
+  width: 80px;
+
+  @include on-md {
+    height: 14px;
+    width: 90px;
+  }
+}
+
+.aboutTechWrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 56px;
+  padding-top: 56px;
+  flex-direction: column;
+
+  @include on-md {
+    gap: 64px;
+    padding-top: 64px;
+  }
+
+  @include on-lg {
+    padding-top: 80px;
+  }
+
+  @include on-xl {
+    flex-direction: row;
+    padding-top: 80px;
+  }
+}
+
+.aboutSection {
+  flex: none;
+
+  @include on-md {
+    flex: 1;
+  }
+
+  @include on-xl {
+    max-width: 560px;
+  }
+}
+
+.techSpecsSection {
+  flex: 1;
+
+  @media (max-width: $breakpoint-md) {
+    flex: none;
+  }
+
+  @include on-xl {
+    max-width: 512px;
+  }
+}
+
+.headingSkeleton {
+  @extend %skeleton-base;
+  height: 24px;
+  width: 120px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--color-elements);
+  padding-bottom: 16px;
+
+  @include on-md {
+    height: 28px;
+    width: 140px;
+  }
+}
+
+.aboutBlock {
+  margin-bottom: 32px;
+}
+
+.blockTitleSkeleton {
+  @extend %skeleton-base;
+  height: 20px;
+  width: 200px;
+  margin-bottom: 16px;
+}
+
+.paragraphSkeleton {
+  @extend %skeleton-base;
+  height: 16px;
+  margin-bottom: 16px;
+
+  &:nth-child(2) {
+    width: 100%;
+  }
+
+  &:nth-child(3) {
+    width: 85%;
+  }
+
+  &:nth-child(4) {
+    width: 70%;
+  }
+}
+
+.techSpecsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.techSpecRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 8px;
+}
+
+.techSpecNameSkeleton {
+  @extend %skeleton-base;
+  height: 12px;
+  width: 70px;
+  margin-right: 16px;
+
+  @include on-md {
+    height: 14px;
+    width: 80px;
+  }
+}
+
+.techSpecValueSkeleton {
+  @extend %skeleton-base;
+  height: 12px;
+  width: 100px;
+
+  @include on-md {
+    height: 14px;
+    width: 110px;
+  }
+
+  &:nth-of-type(2n) {
+    width: 80px;
+
+    @include on-md {
+      width: 90px;
+    }
+  }
+
+  &:nth-of-type(3n) {
+    width: 120px;
+
+    @include on-md {
+      width: 130px;
+    }
+  }
+}
