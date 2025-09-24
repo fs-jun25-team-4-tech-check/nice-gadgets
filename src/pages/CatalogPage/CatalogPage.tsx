@@ -16,6 +16,21 @@ const CatalogPage = () => {
   const { category = '' } = useParams();
   const query = searchParams.get('query') || '';
 
+  const getPageTitle = (cat: string) => {
+    switch (cat) {
+      case 'phones':
+        return 'Mobile phones';
+      case 'tablets':
+        return 'Tablets';
+      case 'accessories':
+        return 'Accessories';
+      default:
+        return 'Search results';
+    }
+  };
+
+  const pageTitle = getPageTitle(category);
+
   const perPage = (Number(searchParams.get('perPage')) ||
     12) as PaginationOption;
   const currentPage = Number(searchParams.get('page')) || 1;
@@ -70,6 +85,7 @@ const CatalogPage = () => {
     setSearchParams((prev) => ({
       ...Object.fromEntries(prev.entries()),
       page: '1',
+      perPage: perPage.toString(),
       sort: option,
     }));
   };
@@ -80,23 +96,6 @@ const CatalogPage = () => {
   if (isError) {
     return <div>Error: loading data.</div>;
   }
-
-  const getPageTitle = (cat: string) => {
-    switch (cat) {
-      case 'phones':
-        return 'Mobile phones';
-      case 'tablets':
-        return 'Tablets';
-      case 'accessories':
-        return 'Accessories';
-      default:
-        return 'Products';
-    }
-  };
-
-  const pageTitle = isSearchMode ? 'Search results' : getPageTitle(category);
-  const countText =
-    isSearchMode ? `${totalProducts} results found` : `${totalProducts} models`;
 
   return (
     <CatalogLayout
@@ -110,7 +109,7 @@ const CatalogPage = () => {
           onPerPageChange={handlePerPageChange}
         />
       }
-      productCountSection={<p>{countText}</p>}
+      productCountSection={<p>{totalProducts} models</p>}
       productListSection={
         <ListItems
           products={data?.data}
