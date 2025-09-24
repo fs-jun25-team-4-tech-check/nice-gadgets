@@ -33,10 +33,7 @@ const CartItem: React.FC<Props> = ({ product }) => {
   const handleRemoveFromCart = () => {
     setIsRemoving(true);
 
-    // невелика затримка, щоб показати лоадер / анімацію
-    setTimeout(() => {
-      removeFromCart(product.itemId);
-    }, 500);
+    removeFromCart(product.itemId);
   };
   return (
     <div className={styles.cartItem}>

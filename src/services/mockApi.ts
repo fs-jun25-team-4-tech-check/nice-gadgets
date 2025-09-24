@@ -6,7 +6,7 @@ import type {
 } from '../types';
 import { API_ENDPOINTS, BASE_URL } from '../constants';
 
-const mockNetworkDelay = 500;
+const mockNetworkDelay = 1000;
 
 const endpointMap: Record<ProductCategory, string> = {
   phones: API_ENDPOINTS.PHONES,

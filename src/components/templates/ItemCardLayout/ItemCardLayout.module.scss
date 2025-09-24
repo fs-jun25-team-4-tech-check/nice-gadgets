@@ -24,6 +24,7 @@ h2 {
   display: flex;
   flex-direction: column;
   gap: 40px;
+  width: 100%;
 
   @include on-md {
     gap: 17px;
@@ -33,4 +34,46 @@ h2 {
   @include on-lg {
     gap: 64px;
   }
+}
+
+.selectorSection {
+  width: 100%;
+}
+
+.loaderWrapper {
+  position: relative;
+}
+
+.loadingPageWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+}
+
+.fullPageLoaderWrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.errorContainer {
+  margin-top: 24px;
+}
+
+.detailsError {
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+  gap: 12px;
+}
+
+.errorIcon {
+  font-size: 3rem;
+}
+
+.detailsError small {
+  color: #666;
 }

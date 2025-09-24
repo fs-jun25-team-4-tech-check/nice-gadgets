@@ -5,7 +5,7 @@ import { useProductsById } from '../../hooks';
 import { useCart } from '../../hooks/useCart';
 
 const CartPage = () => {
-  const { cart } = useCart();
+  const { cart, count: cartCount } = useCart();
   const { data, isLoading } = useProductsById(Object.keys(cart));
   const totalPrice = Object.entries(cart).reduce((acc, curr) => {
     const product = data?.find((p) => p.itemId === curr[0]);
@@ -14,8 +14,13 @@ const CartPage = () => {
 
   return (
     <CartLayout
-      isLoading={isLoading}
-      cartListSection={<CartList products={data ?? []} />}
+      cartListSection={
+        <CartList
+          products={data ?? []}
+          cartCount={cartCount}
+          isLoading={isLoading}
+        />
+      }
       cartSummarySection={
         <CartSummary
           isLoading={isLoading}

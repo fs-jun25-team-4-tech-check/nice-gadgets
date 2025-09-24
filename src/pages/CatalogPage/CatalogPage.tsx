@@ -50,7 +50,7 @@ const CatalogPage = () => {
 
   const { sortBy, sortOrder } = getSortParams(sortOption);
 
-  const { data, isLoading, isError } = useProductsByCategory(
+  const { data, isLoading, isFetching, isError } = useProductsByCategory(
     category as ProductCategory,
     currentPage,
     perPage,
@@ -96,7 +96,11 @@ const CatalogPage = () => {
       }
       productCountSection={<p>{totalProducts} models</p>}
       productListSection={
-        isLoading ? <div>Loading...</div> : <ListItems products={data?.data} />
+        <ListItems
+          products={data?.data}
+          isLoading={isLoading || isFetching}
+          itemsCount={perPage}
+        />
       }
       paginationSection={
         !isLoading &&
