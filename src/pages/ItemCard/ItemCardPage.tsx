@@ -14,25 +14,21 @@ const ItemCardPage = () => {
   const fromCard = location.state?.fromCard || false;
 
   const {
-    data: product,
-    isLoading,
-    isPlaceholderData,
+    simplifiedData,
+    detailsData,
+    isDetailsLoading: isLoading,
+    isFetching,
     hasDetails,
     error,
   } = useProductDisplay(productId ?? '', fromCard);
 
   const updateVariant = (newColor?: string, newCapacity?: string) => {
-    if (!product) return;
+    if (!detailsData) return;
 
-    const color = newColor ?? product.color;
-    const capacity = newCapacity ?? product.capacity;
+    const color = newColor ?? detailsData.color;
+    const capacity = newCapacity ?? detailsData.capacity;
 
-    const namespaceId =
-      'namespaceId' in product ?
-        product.namespaceId
-      : product.itemId.split('-')[0];
-
-    const variantId = `${namespaceId}-${capacity?.toLowerCase()}-${color}`;
+    const variantId = `${detailsData.namespaceId}-${capacity?.toLowerCase()}-${color}`;
 
     navigate(`/item/${variantId}`, { replace: true, state: { fromCard } });
   };
@@ -44,9 +40,10 @@ const ItemCardPage = () => {
 
   return (
     <ItemCardLayout
-      product={product}
+      simplifiedProduct={simplifiedData}
+      detailedProduct={detailsData}
       isLoading={isLoading}
-      isPlaceholderData={isPlaceholderData}
+      isFetching={isFetching}
       hasDetails={hasDetails}
       error={error}
       onColorChange={handleColorChange}

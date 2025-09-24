@@ -146,14 +146,10 @@ export const useProductDisplay = (
   itemId: string,
   fromCard: boolean = false,
 ) => {
-  const {
-    data: simplifiedProduct,
-    isLoading: isSimplifiedLoading,
-    error: simplifiedError,
-  } = useSimplifiedProduct(itemId);
+  const { data: simplifiedData, error: simplifiedError } =
+    useSimplifiedProduct(itemId);
 
-  // Use simplified data as a placeholder only if coming from a card click
-  const placeholderProduct = fromCard ? simplifiedProduct : null;
+  const placeholderProduct = fromCard ? simplifiedData : null;
 
   const {
     data: detailsData,
@@ -164,14 +160,11 @@ export const useProductDisplay = (
     isSuccess: isDetailsSuccess,
   } = useProductDetails(itemId, placeholderProduct);
 
-  const displayData = detailsData || simplifiedProduct;
-
   return {
-    data: displayData,
-    isLoading: isSimplifiedLoading || (isDetailsLoading && !isPlaceholderData),
+    simplifiedData,
+    detailsData,
+    isDetailsLoading: isDetailsLoading && !isPlaceholderData,
     isFetching: isDetailsFetching,
-    isPlaceholderData,
-    hasSimplified: !!simplifiedProduct,
     hasDetails: isDetailsSuccess && !isPlaceholderData,
     error: detailsError || simplifiedError,
   };

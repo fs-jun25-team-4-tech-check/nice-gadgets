@@ -113,8 +113,16 @@
     width: 80px;
     height: 80px;
   }
+
+  &.skeleton {
+    @extend %skeleton-base;
+  }
 }
 
 .active {
   border: 1px solid var(--color-white);
+}
+
+.skeleton {
+  @extend %skeleton-base;
 }

@@ -6,24 +6,24 @@ import { AboutAndTechSpecs } from '../../organisms/AboutAndTechSpecs/AboutAndTec
 import { SelectorsSection } from '../../organisms/SelectorSection/SelectorsSection';
 import Loader from '../../atoms/Loader/Loader';
 import styles from './ItemCardLayout.module.scss';
+import LoaderOverlay from '../../atoms/Loader/LoaderOverlay';
 
-const ErrorComponent = ({
-  errorName = 'Unknown Error',
-  errorMessage = 'Unknown Message',
-}) => (
-  <div>
+const ErrorComponent = ({ error }: { error: Error }) => (
+  <>
     <BackButton fallbackPath="/">Back</BackButton>
-    <p>Product not found</p>
-    <p>
-      {errorName} - {errorMessage}
-    </p>
-  </div>
+
+    <div className={styles.detailsError}>
+      <h4>Could not load product details</h4>
+      <small>Error: {error.message}</small>
+    </div>
+  </>
 );
 
 interface ItemCardLayoutProps {
-  product: (Product | ProductDetails) | undefined | null;
+  simplifiedProduct: Product | undefined | null;
+  detailedProduct: ProductDetails | undefined | null;
   isLoading?: boolean;
-  isPlaceholderData?: boolean;
+  isFetching?: boolean;
   hasDetails?: boolean;
   error?: Error | null;
   onColorChange?: (color: string) => void;
@@ -32,30 +32,34 @@ interface ItemCardLayoutProps {
 }
 
 export const ItemCardLayout = ({
-  product,
+  simplifiedProduct,
+  detailedProduct,
   isLoading,
-  isPlaceholderData = false,
-  hasDetails = false,
+  isFetching,
   error,
   onColorChange,
   onCapacityChange,
   youMayAlsoLikeSection,
 }: ItemCardLayoutProps) => {
   if (error) {
+    return <ErrorComponent error={error} />;
+  }
+
+  if (!simplifiedProduct && !detailedProduct && (isLoading || isFetching)) {
     return (
-      <ErrorComponent
-        errorName={error.name}
-        errorMessage={error.message}
-      />
+      <div className={styles.loadingPageWrapper}>
+        <BackButton fallbackPath="/">Back</BackButton>
+        <div className={styles.fullPageLoaderWrapper}>
+          <Loader size={100} />
+        </div>
+      </div>
     );
   }
 
-  if (isLoading && !product) {
-    return <Loader />;
-  }
+  const product = detailedProduct || simplifiedProduct;
 
   if (!product) {
-    return <div>Product not found</div>;
+    return <ErrorComponent error={new Error('Product not found')} />;
   }
 
   const imageSources = 'images' in product ? product.images : [product.image];
@@ -69,41 +73,27 @@ export const ItemCardLayout = ({
 
       <BackButton fallbackPath="/">Back</BackButton>
 
-      <h2>{product.name}</h2>
+      <div className={styles.loaderWrapper}>
+        {isLoading || (isFetching && <LoaderOverlay loaderSize={100} />)}
 
-      <div className={styles.info}>
-        <div style={{ position: 'relative' }}>
+        <h2>{product.name}</h2>
+
+        <div className={styles.info}>
           <ImageGallery images={imageSources} />
-          {isPlaceholderData && (
-            <div className="loading-overlay">Loading full images...</div>
-          )}
-        </div>
 
-        <div style={{ position: 'relative' }}>
-          {/* Render selectors only when we have detailed data (or a placeholder with the right shape) */}
-          {(hasDetails || isPlaceholderData) && (
-            <SelectorsSection
-              product={product as ProductDetails}
-              onColorChange={onColorChange}
-              onCapacityChange={onCapacityChange}
-            />
-          )}
-          {isPlaceholderData && (
-            <div className="loading-overlay">Loading options...</div>
-          )}
+          <SelectorsSection
+            product={product as ProductDetails}
+            onColorChange={onColorChange}
+            onCapacityChange={onCapacityChange}
+          />
         </div>
       </div>
 
-      {/* Show full specs only when details have loaded, otherwise show a loader */}
-      {hasDetails ?
+      <div className={styles.loaderWrapper}>
+        {isLoading || (isFetching && <LoaderOverlay loaderSize={100} />)}
+
         <AboutAndTechSpecs product={product as ProductDetails} />
-      : <div style={{ position: 'relative' }}>
-          <Loader />
-          <div className="partial-data-notice">
-            Loading complete product specifications...
-          </div>
-        </div>
-      }
+      </div>
 
       {youMayAlsoLikeSection}
     </div>
