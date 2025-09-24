@@ -4,6 +4,9 @@ import { useProductDisplay } from '../../hooks';
 import { ItemCardLayout } from '../../components/templates/ItemCardLayout/ItemCardLayout';
 import { CardsSlider } from '../../components/organisms/ProductCardSlider/ProductCardsSlider';
 
+const normalize = (str: string) =>
+  str.toLowerCase().trim().split(' ').filter(Boolean).join('-');
+
 const ItemCardPage = () => {
   const { productId } = useParams<{
     productId: string;
@@ -28,7 +31,7 @@ const ItemCardPage = () => {
     const color = newColor ?? detailsData.color;
     const capacity = newCapacity ?? detailsData.capacity;
 
-    const variantId = `${detailsData.namespaceId}-${capacity?.toLowerCase()}-${color}`;
+    const variantId = `${detailsData.namespaceId}-${normalize(capacity)}-${normalize(color)}`;
 
     navigate(`/item/${variantId}`, { replace: true, state: { fromCard } });
   };
