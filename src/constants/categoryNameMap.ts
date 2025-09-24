@@ -1,5 +1,5 @@
 export const categoryNameMap: Record<string, string> = {
-  phones: 'Mobile phones',
+  phones: 'Phones',
   tablets: 'Tablets',
   accessories: 'Accessories',
   search: 'Search',
