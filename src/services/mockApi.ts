@@ -228,4 +228,45 @@ export async function mockGetProductCategoryCounts(): Promise<
 
   return counts;
 }
+
+export async function mockGetHotDeals(limit: number): Promise<Product[]> {
+  await waitDelay(mockNetworkDelay);
+
+  const allProducts = await fetchJson<Product[]>(API_ENDPOINTS.PRODUCTS);
+
+  const sortedByDiscount = allProducts.sort((a, b) => {
+    const discountA = a.fullPrice - a.price;
+    const discountB = b.fullPrice - b.price;
+    return discountB - discountA;
+  });
+
+  const hotDeals = sortedByDiscount.slice(0, limit);
+
+  return addFullImagePaths(hotDeals);
+}
+
+export async function mockGetRecommendedProducts(
+  limit: number,
+): Promise<Product[]> {
+  await waitDelay(mockNetworkDelay);
+
+  const allProducts = await fetchJson<Product[]>(API_ENDPOINTS.PRODUCTS);
+
+  const shuffled = allProducts.sort(() => 0.5 - Math.random());
+  const recommended = shuffled.slice(0, limit);
+
+  return addFullImagePaths(recommended);
+}
+
+export async function mockGetBrandNewModels(limit: number): Promise<Product[]> {
+  await waitDelay(mockNetworkDelay);
+
+  const allProducts = await fetchJson<Product[]>(API_ENDPOINTS.PRODUCTS);
+
+  const sortedByYear = allProducts.sort((a, b) => b.year - a.year);
+
+  const brandNewModels = sortedByYear.slice(0, limit);
+
+  return addFullImagePaths(brandNewModels);
+}
 // #endregion

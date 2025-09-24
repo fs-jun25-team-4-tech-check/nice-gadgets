@@ -54,7 +54,7 @@ const ItemCardPage = () => {
       youMayAlsoLikeSection={
         <CardsSlider
           id="youMayAlsoLikeSlider"
-          type="hotPrices"
+          type="recommended"
           headerText="You may also like"
         />
       }
