@@ -61,7 +61,6 @@
 
       .navLink {
         text-decoration: none;
-
         font-size: 20px;
         padding-bottom: 5px;
         font-weight: 400;
@@ -75,6 +74,7 @@
 
       .active {
         border-bottom: 1px solid var(--color-white);
+        color: var(--color-white);
       }
 
       .linkIcon {
