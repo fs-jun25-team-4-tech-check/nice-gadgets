@@ -58,3 +58,22 @@ h2 {
   align-items: center;
   margin-top: 30px;
 }
+
+.errorContainer {
+  margin-top: 24px;
+}
+
+.detailsError {
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+  gap: 12px;
+}
+
+.errorIcon {
+  font-size: 3rem;
+}
+
+.detailsError small {
+  color: #666;
+}

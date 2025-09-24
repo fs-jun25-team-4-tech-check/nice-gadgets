@@ -7,16 +7,20 @@ import { SelectorsSection } from '../../organisms/SelectorSection/SelectorsSecti
 import Loader from '../../atoms/Loader/Loader';
 import styles from './ItemCardLayout.module.scss';
 import LoaderOverlay from '../../atoms/Loader/LoaderOverlay';
+import { FaExclamationTriangle } from 'react-icons/fa';
 
 const ErrorComponent = ({ error }: { error: Error }) => (
-  <>
+  <div className={styles.errorContainer}>
     <BackButton fallbackPath="/">Back</BackButton>
 
     <div className={styles.detailsError}>
-      <h4>Could not load product details</h4>
+      <div className={styles.errorIcon}>
+        <FaExclamationTriangle />
+      </div>
+      <h4>Oops! We couldn&apos;t fetch the product details.</h4>
       <small>Error: {error.message}</small>
     </div>
-  </>
+  </div>
 );
 
 interface ItemCardLayoutProps {
