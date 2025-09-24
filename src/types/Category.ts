@@ -5,8 +5,9 @@ export interface CategoryBannerData {
   categorySlug: ProductCategory;
   imgLink: string;
   backgroundColor: string;
+  videoLink: string;
 }
 
 export interface CategoryBanner extends CategoryBannerData {
-  productCount: number;
+  productCount?: number;
 }
