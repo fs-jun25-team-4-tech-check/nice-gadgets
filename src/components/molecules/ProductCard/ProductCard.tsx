@@ -4,6 +4,7 @@ import type { Product } from '../../../types';
 import { useCart } from '../../../hooks/useCart';
 import { useFavs } from '../../../hooks/useFavs';
 import { Link } from 'react-router-dom';
+import { usePrefillSimplifiedProduct } from '../../../hooks';
 
 interface ProductCardProps {
   product: Product;
@@ -19,6 +20,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
   const isInCart = isInCartFunc(product.itemId);
   const isFavourite = isInFavs(product.itemId);
+
+  const prefillSimplified = usePrefillSimplifiedProduct();
 
   const itemPageLink = `/item/${product.itemId}`;
 
@@ -46,10 +49,17 @@ const ProductCard: React.FC<ProductCardProps> = ({
     removeFromFavs(product.itemId);
   };
 
+  const handleProductClick = () => {
+    prefillSimplified(product);
+  };
+
   return (
     <Link
       to={itemPageLink}
+      state={{ fromCard: true }}
+      onClick={handleProductClick}
       className={`${styles.card} ${className}`}
+      replace
     >
       <div className={styles.imageWrapper}>
         <img
