@@ -55,7 +55,7 @@ const CatalogPage = () => {
     sortOrder,
   );
 
-  const { data, isLoading, isError } =
+  const { data, isFetching, isLoading, isError } =
     isSearchMode ? searchQueryResult : categoryQueryResult;
 
   const handlePerPageChange = (items: PaginationOption) => {
@@ -98,13 +98,10 @@ const CatalogPage = () => {
   const countText =
     isSearchMode ? `${totalProducts} results found` : `${totalProducts} models`;
 
-  const breadcrumbs =
-    isSearchMode ? null : <Breadcrumbs categorySlug={category} />;
-
   return (
     <CatalogLayout
       pageTitle={pageTitle}
-      backButtonSection={breadcrumbs}
+      backButtonSection={<Breadcrumbs categorySlug={category} />}
       controlsBarSection={
         <ControlsBar
           sortOption={sortOption}
@@ -115,7 +112,11 @@ const CatalogPage = () => {
       }
       productCountSection={<p>{countText}</p>}
       productListSection={
-        isLoading ? <div>Loading...</div> : <ListItems products={data?.data} />
+        <ListItems
+          products={data?.data}
+          isLoading={isLoading || isFetching}
+          itemsCount={perPage}
+        />
       }
       paginationSection={
         !isLoading &&
