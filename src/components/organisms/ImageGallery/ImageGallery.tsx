@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import styles from './ImageGallery.module.scss';
+import { ImageGallerySkeleton } from './ImageGallerySkeleton';
 
 interface ImageGalleryProps {
-  images: string[];
+  images?: string[];
 }
 
 export const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
@@ -43,6 +44,10 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
     };
   }, [mainEmblaApi, onSelect]);
 
+  if (!images || images.length === 0) {
+    return <ImageGallerySkeleton />;
+  }
+
   return (
     <div className={styles.gallery}>
       <div className={styles.images}>
@@ -65,6 +70,14 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
                 />
               </button>
             ))}
+
+            {images.length === 1 &&
+              [...Array(4)].map((_, i) => (
+                <div
+                  key={`skeleton-${i}`}
+                  className={`${styles.thumb} ${styles.skeleton}`}
+                />
+              ))}
           </div>
         </div>
 

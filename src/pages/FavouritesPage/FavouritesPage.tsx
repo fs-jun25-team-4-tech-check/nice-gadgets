@@ -5,7 +5,7 @@ import { useFavs } from '../../hooks/useFavs';
 import styles from './FavouritesPage.module.scss';
 
 const FavouritesPage = () => {
-  const { favs } = useFavs();
+  const { favs, count: favsCount } = useFavs();
   const { data, isLoading } = useProductsById(favs);
 
   return (
@@ -14,6 +14,7 @@ const FavouritesPage = () => {
         <ListItems
           isLoading={isLoading}
           products={data}
+          itemsCount={favsCount}
           className={styles.favouritesList}
         />
       }

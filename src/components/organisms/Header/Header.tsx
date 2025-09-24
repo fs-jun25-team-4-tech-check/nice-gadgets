@@ -11,7 +11,7 @@ import { useFavs } from '../../../hooks/useFavs';
 import { useGlobalStore } from '../../../stores/globalStore';
 
 const Header = () => {
-  const { cart } = useCart();
+  const { count } = useCart();
   const { favs } = useFavs();
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
 
@@ -118,7 +118,7 @@ const Header = () => {
           <HeaderButton
             variant="cart"
             className={styles.desktopIcons}
-            notifCount={cart.length}
+            notifCount={count}
           />
           <HeaderButton
             variant={isBurgerMenuOpen ? 'close' : 'burger'}
