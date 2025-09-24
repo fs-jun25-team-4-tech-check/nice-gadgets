@@ -4,10 +4,10 @@ import Breadcrumbs from '../../molecules/Breadcrumbs/Breadcrumbs';
 import { ImageGallery } from '../../organisms/ImageGallery/ImageGallery';
 import { AboutAndTechSpecs } from '../../organisms/AboutAndTechSpecs/AboutAndTechSpecs';
 import { SelectorsSection } from '../../organisms/SelectorSection/SelectorsSection';
-import Loader from '../../atoms/Loader/Loader';
 import styles from './ItemCardLayout.module.scss';
-import LoaderOverlay from '../../atoms/Loader/LoaderOverlay';
 import { FaExclamationTriangle } from 'react-icons/fa';
+import ItemCardLayoutSkeleton from './ItemCardLayoutSkeleton';
+import AboutAndTechSpecsSkeleton from '../../organisms/AboutAndTechSpecs/AboutAndTechSpecsSkeleton';
 
 const ErrorComponent = ({ error }: { error: Error }) => (
   <div className={styles.errorContainer}>
@@ -48,17 +48,8 @@ export const ItemCardLayout = ({
     return <ErrorComponent error={error} />;
   }
 
-  const product = detailedProduct ?? simplifiedProduct;
-
-  if (!product && (isLoading || isFetching)) {
-    return (
-      <div className={styles.loadingPageWrapper}>
-        <BackButton fallbackPath="/">Back</BackButton>
-        <div className={styles.fullPageLoaderWrapper}>
-          <Loader size={100} />
-        </div>
-      </div>
-    );
+  if (!simplifiedProduct && !detailedProduct && (isLoading || isFetching)) {
+    return <ItemCardLayoutSkeleton />;
   }
 
   if (!product) {
@@ -76,31 +67,32 @@ export const ItemCardLayout = ({
 
       <BackButton fallbackPath="/">Back</BackButton>
 
-      <div className={styles.loaderWrapper}>
-        {(isLoading || isFetching) && <LoaderOverlay loaderSize={100} />}
+      <h2>{product.name}</h2>
 
-        <h2>{product.name}</h2>
+      <div className={styles.info}>
+        <ImageGallery
+          images={imageSources}
+          isLoading={isLoading || isFetching}
+        />
 
-        <div className={styles.info}>
-          <ImageGallery images={imageSources} />
-
-          {'colorsAvailable' in product && (
-            <SelectorsSection
-              product={product as ProductDetails}
-              onColorChange={onColorChange}
-              onCapacityChange={onCapacityChange}
-            />
-          )}
-        </div>
+        <SelectorsSection
+          product={product}
+          isFetching={isFetching}
+          isLoading={isLoading}
+          onColorChange={onColorChange}
+          onCapacityChange={onCapacityChange}
+        />
       </div>
 
-      <div className={styles.loaderWrapper}>
-        {(isLoading || isFetching) && <LoaderOverlay loaderSize={100} />}
-
-        {'description' in product && (
-          <AboutAndTechSpecs product={product as ProductDetails} />
-        )}
-      </div>
+      {isLoading ?
+        <AboutAndTechSpecsSkeleton />
+      : detailedProduct && (
+          <AboutAndTechSpecs
+            product={detailedProduct}
+            disabled={isFetching}
+          />
+        )
+      }
 
       {youMayAlsoLikeSection}
     </div>

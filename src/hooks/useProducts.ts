@@ -5,11 +5,14 @@ import {
 } from '@tanstack/react-query';
 import {
   getAllProducts,
+  getBrandNewModels,
+  getHotDeals,
   getProductCategoryCounts,
   getProductDetails,
   getProducts,
   getProductsByCategory,
   getProductsById,
+  getRecommendedProducts,
   type ProductCategory,
   type ProductDetails,
 } from '../services';
@@ -17,6 +20,8 @@ import type { PaginatedResponse, Product } from '../types';
 import { ProductToProductDetails } from '../utils';
 
 const staleTime = 1000 * 60 * 5;
+
+export type CardsSliderType = 'newestModels' | 'hotPrices' | 'recommended';
 
 // `enabled: !!prop` - will not run until prop is provided
 
@@ -79,6 +84,58 @@ export const useProductCategoryCounts = () => {
     queryKey: ['products', 'category', 'counts'],
     queryFn: getProductCategoryCounts,
     staleTime,
+    placeholderData: keepPreviousData,
+  });
+};
+
+export const useRecommendedProducts = (limit: number) => {
+  return useQuery<Product[], Error>({
+    queryKey: ['products', 'recommended', { limit }],
+    queryFn: () => getRecommendedProducts(limit),
+    staleTime,
+    enabled: !!limit,
+    placeholderData: keepPreviousData,
+  });
+};
+
+export const useHotDeals = (limit: number) => {
+  return useQuery<Product[], Error>({
+    queryKey: ['products', 'hot-deals', { limit }],
+    queryFn: () => getHotDeals(limit),
+    staleTime,
+    enabled: !!limit,
+    placeholderData: keepPreviousData,
+  });
+};
+
+export const useBrandNewModels = (limit: number) => {
+  return useQuery<Product[], Error>({
+    queryKey: ['products', 'brand-new', { limit }],
+    queryFn: () => getBrandNewModels(limit),
+    staleTime,
+    enabled: !!limit,
+    placeholderData: keepPreviousData,
+  });
+};
+
+export const useSliderProducts = (type: CardsSliderType, limit: number) => {
+  const queryKeyMap = {
+    newestModels: ['products', 'brand-new', { limit }],
+    hotPrices: ['products', 'hot-deals', { limit }],
+    recommended: ['products', 'recommended', { limit }],
+  };
+
+  const queryFnMap = {
+    newestModels: () => getBrandNewModels(limit),
+    hotPrices: () => getHotDeals(limit),
+    recommended: () => getRecommendedProducts(limit),
+  };
+
+  return useQuery<Product[], Error>({
+    queryKey: queryKeyMap[type],
+    queryFn: queryFnMap[type],
+    staleTime,
+    enabled: !!limit,
     placeholderData: keepPreviousData,
   });
 };
