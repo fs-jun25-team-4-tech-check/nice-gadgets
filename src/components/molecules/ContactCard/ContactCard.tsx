@@ -25,13 +25,6 @@ const ContactCard: React.FC<ContactCardProps> = ({ person }) => {
           className={styles.photo}
         />
       </div>
-      <div className={styles.photoContainer}>
-        <img
-          src={imageUrl}
-          alt={`${person.firstName} ${person.lastName}`}
-          className={styles.photo}
-        />
-      </div>
 
       <div className={styles.info}>
         <h3 className={styles.name}>
@@ -81,7 +74,6 @@ const ContactCard: React.FC<ContactCardProps> = ({ person }) => {
               target="_blank"
               rel="noopener noreferrer"
               className={styles.iconLink}
-              aria-label={`Telegram account of ${person.firstName}`}
             >
               <FaTelegramPlane className={styles.icon} />
             </a>
