@@ -1,0 +1,20 @@
+[
+  {
+    "imgUrl": "banner-phones.png",
+    "videoUrl": "banner-phones.mp4",
+    "linkUrl": "/catalog/phones",
+    "alt": "Banner Slider Image - Phones"
+  },
+  {
+    "imgUrl": "banner-accessories.png",
+    "videoUrl": "banner-accessories.mp4",
+    "linkUrl": "/catalog/accessories",
+    "alt": "Banner Slider Image - Accessories"
+  },
+  {
+    "imgUrl": "banner-tablets.png",
+    "videoUrl": "banner-tablets.mp4",
+    "linkUrl": "/catalog/tablets",
+    "alt": "Banner Slider Image - Tablets"
+  }
+]
