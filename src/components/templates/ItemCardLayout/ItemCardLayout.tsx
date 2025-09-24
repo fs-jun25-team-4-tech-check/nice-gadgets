@@ -28,7 +28,6 @@ interface ItemCardLayoutProps {
   detailedProduct: ProductDetails | undefined | null;
   isLoading?: boolean;
   isFetching?: boolean;
-  hasDetails?: boolean;
   error?: Error | null;
   onColorChange?: (color: string) => void;
   onCapacityChange?: (capacity: string) => void;
@@ -49,7 +48,9 @@ export const ItemCardLayout = ({
     return <ErrorComponent error={error} />;
   }
 
-  if (!simplifiedProduct && !detailedProduct && (isLoading || isFetching)) {
+  const product = detailedProduct ?? simplifiedProduct;
+
+  if (!product && (isLoading || isFetching)) {
     return (
       <div className={styles.loadingPageWrapper}>
         <BackButton fallbackPath="/">Back</BackButton>
@@ -59,8 +60,6 @@ export const ItemCardLayout = ({
       </div>
     );
   }
-
-  const product = detailedProduct || simplifiedProduct;
 
   if (!product) {
     return <ErrorComponent error={new Error('Product not found')} />;
@@ -78,25 +77,29 @@ export const ItemCardLayout = ({
       <BackButton fallbackPath="/">Back</BackButton>
 
       <div className={styles.loaderWrapper}>
-        {isLoading || (isFetching && <LoaderOverlay loaderSize={100} />)}
+        {(isLoading || isFetching) && <LoaderOverlay loaderSize={100} />}
 
         <h2>{product.name}</h2>
 
         <div className={styles.info}>
           <ImageGallery images={imageSources} />
 
-          <SelectorsSection
-            product={product as ProductDetails}
-            onColorChange={onColorChange}
-            onCapacityChange={onCapacityChange}
-          />
+          {'colorsAvailable' in product && (
+            <SelectorsSection
+              product={product as ProductDetails}
+              onColorChange={onColorChange}
+              onCapacityChange={onCapacityChange}
+            />
+          )}
         </div>
       </div>
 
       <div className={styles.loaderWrapper}>
-        {isLoading || (isFetching && <LoaderOverlay loaderSize={100} />)}
+        {(isLoading || isFetching) && <LoaderOverlay loaderSize={100} />}
 
-        <AboutAndTechSpecs product={product as ProductDetails} />
+        {'description' in product && (
+          <AboutAndTechSpecs product={product as ProductDetails} />
+        )}
       </div>
 
       {youMayAlsoLikeSection}

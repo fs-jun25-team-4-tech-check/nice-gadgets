@@ -58,10 +58,10 @@ const SearchModule = () => {
         <SearchButton />
       </form>
       {isInputFocused && !isLoading && suggestions.length > 0 && (
-        <AutocompleteDropdown products={suggestions} />
-      )}
-      {isInputFocused && isLoading && (
-        <div className={styles.loadingMessage}>Loading suggestions...</div>
+        <AutocompleteDropdown
+          products={suggestions}
+          searchQuery={query}
+        />
       )}
     </div>
   );

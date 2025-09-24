@@ -5,12 +5,14 @@ import type { Product } from '../../../types';
 
 type AutocompleteDropdownProps = {
   products: Product[];
+  searchQuery: string;
 };
 
 const AutocompleteDropdown: React.FC<AutocompleteDropdownProps> = ({
   products,
+  searchQuery,
 }) => {
-  if (products.length === 0) {
+  if (products.length === 0 || searchQuery.trim() === '') {
     return null;
   }
 
@@ -19,7 +21,7 @@ const AutocompleteDropdown: React.FC<AutocompleteDropdownProps> = ({
       {products.map((product) => (
         <NavLink
           key={product.id}
-          to={`/catalog/search?query=${product.name}`}
+          to={`/item/${product.itemId}`}
           className={styles.item}
         >
           {product.name}

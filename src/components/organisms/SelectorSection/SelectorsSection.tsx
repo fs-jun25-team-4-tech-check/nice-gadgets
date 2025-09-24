@@ -30,7 +30,7 @@ export const SelectorsSection = ({
       <div className={styles.selectorGroup}>
         <p className={styles.label}>Available colors</p>
         <div className={styles.colorOptions}>
-          {product.colorsAvailable.map((color) => (
+          {product.colorsAvailable?.map((color) => (
             <ColorButton
               key={color}
               isSelected={product.color === color}
@@ -48,7 +48,7 @@ export const SelectorsSection = ({
       <div className={styles.selectorGroup}>
         <p className={styles.label}>Select capacity</p>
         <div className={styles.capacityOptions}>
-          {product.capacityAvailable.map((capacity) => (
+          {product.capacityAvailable?.map((capacity) => (
             <button
               key={capacity}
               className={`${styles.capacityBtn} ${product.capacity === capacity ? styles.active : ''}`}
