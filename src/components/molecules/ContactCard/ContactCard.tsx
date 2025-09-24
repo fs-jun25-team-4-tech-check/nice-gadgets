@@ -3,10 +3,8 @@ import styles from './ContactCard.module.scss';
 import type { Contact } from '../../../types/Contact';
 import { BASE_URL } from '../../../constants';
 
-import githubIcon from '../../../assets/icons/contacts/github.svg';
-import emailIcon from '../../../assets/icons/contacts/email.svg';
-import linkedinIcon from '../../../assets/icons/contacts/linkedin.svg';
-import telegramIcon from '../../../assets/icons/contacts/telegram.svg';
+import { FaGithub, FaLinkedin, FaTelegramPlane } from 'react-icons/fa';
+import { BsEnvelopeFill } from 'react-icons/bs';
 
 interface ContactCardProps {
   person: Contact;
@@ -44,11 +42,7 @@ const ContactCard: React.FC<ContactCardProps> = ({ person }) => {
               className={styles.iconLink}
               aria-label={`GitHub profile of ${person.firstName}`}
             >
-              <img
-                src={githubIcon}
-                alt="GitHub"
-                className={styles.icon}
-              />
+              <FaGithub className={styles.icon} />
             </a>
           )}
 
@@ -58,11 +52,7 @@ const ContactCard: React.FC<ContactCardProps> = ({ person }) => {
               className={styles.iconLink}
               aria-label={`Send an email to ${person.firstName}`}
             >
-              <img
-                src={emailIcon}
-                alt="Email"
-                className={styles.icon}
-              />
+              <BsEnvelopeFill className={styles.icon} />
             </a>
           )}
 
@@ -74,11 +64,7 @@ const ContactCard: React.FC<ContactCardProps> = ({ person }) => {
               className={styles.iconLink}
               aria-label={`LinkedIn profile of ${person.firstName}`}
             >
-              <img
-                src={linkedinIcon}
-                alt="LinkedIn"
-                className={styles.icon}
-              />
+              <FaLinkedin className={styles.icon} />
             </a>
           )}
 
@@ -90,11 +76,7 @@ const ContactCard: React.FC<ContactCardProps> = ({ person }) => {
               className={styles.iconLink}
               aria-label={`Telegram account of ${person.firstName}`}
             >
-              <img
-                src={telegramIcon}
-                alt="Telegram"
-                className={styles.icon}
-              />
+              <FaTelegramPlane className={styles.icon} />
             </a>
           )}
         </div>
