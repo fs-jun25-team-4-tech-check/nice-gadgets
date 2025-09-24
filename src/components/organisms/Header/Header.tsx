@@ -106,10 +106,10 @@ const Header = () => {
             </li>
           </ul>
         </nav>
+        <div className={styles.search}>
+          <SearchModule />
+        </div>
         <div className={styles.icons}>
-          <div className={styles.search}>
-            <SearchModule />
-          </div>
           <ThemeSwitcher />
           <HeaderButton
             variant="favourites"

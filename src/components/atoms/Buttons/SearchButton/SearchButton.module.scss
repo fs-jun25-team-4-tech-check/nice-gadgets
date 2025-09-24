@@ -2,26 +2,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   border: none;
-  background-color: $dark-surface-1;
-  color: $dark-white;
+  background-color: var(--surface-1);
+  color: var(--color-white);
   cursor: pointer;
-  transition:
-    background-color 0.3s ease,
-    transform 0.1s ease;
 
-  &:hover {
-    background-color: $dark-icons;
-  }
-
-  &:active {
-    transform: scale(0.98);
-  }
+  @include hover(background-color, var(--color-icons));
 }
 .icon {
-  width: 100%;
-  height: 100%;
-  stroke: currentColor;
+  width: 16px;
+  height: 16px;
 }

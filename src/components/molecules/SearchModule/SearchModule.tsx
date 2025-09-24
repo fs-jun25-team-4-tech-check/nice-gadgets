@@ -36,7 +36,7 @@ const SearchModule = () => {
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search..."
         />
-        <SearchButton className={styles.searchButton} />
+        <SearchButton />
       </form>
     </div>
   );
