@@ -5,9 +5,13 @@ import { ImageGallerySkeleton } from './ImageGallerySkeleton';
 
 interface ImageGalleryProps {
   images?: string[];
+  isLoading?: boolean;
 }
 
-export const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
+export const ImageGallery: React.FC<ImageGalleryProps> = ({
+  images,
+  isLoading = false,
+}) => {
   const [mainEmblaRef, mainEmblaApi] = useEmblaCarousel();
   const [thumbsEmblaRef, thumbsEmblaApi] = useEmblaCarousel({
     containScroll: 'keepSnaps',
@@ -49,7 +53,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
   }
 
   return (
-    <div className={styles.gallery}>
+    <div className={`${styles.gallery} ${isLoading ? styles.disabled : ''}`}>
       <div className={styles.images}>
         <div
           className={styles.thumbs}

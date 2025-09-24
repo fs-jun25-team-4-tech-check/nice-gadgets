@@ -7,6 +7,7 @@ import { SelectorsSection } from '../../organisms/SelectorSection/SelectorsSecti
 import styles from './ItemCardLayout.module.scss';
 import { FaExclamationTriangle } from 'react-icons/fa';
 import ItemCardLayoutSkeleton from './ItemCardLayoutSkeleton';
+import AboutAndTechSpecsSkeleton from '../../organisms/AboutAndTechSpecs/AboutAndTechSpecsSkeleton';
 
 const ErrorComponent = ({ error }: { error: Error }) => (
   <div className={styles.errorContainer}>
@@ -72,16 +73,29 @@ export const ItemCardLayout = ({
       <h2>{product.name}</h2>
 
       <div className={styles.info}>
-        <ImageGallery images={imageSources} />
+        <ImageGallery
+          images={imageSources}
+          isLoading={isLoading || isFetching}
+        />
 
         <SelectorsSection
-          product={product as ProductDetails}
+          product={product}
+          isFetching={isFetching}
+          isLoading={isLoading}
           onColorChange={onColorChange}
           onCapacityChange={onCapacityChange}
         />
       </div>
 
-      <AboutAndTechSpecs product={product as ProductDetails} />
+      {isLoading ?
+        <AboutAndTechSpecsSkeleton />
+      : detailedProduct && (
+          <AboutAndTechSpecs
+            product={detailedProduct}
+            disabled={isFetching}
+          />
+        )
+      }
 
       {youMayAlsoLikeSection}
     </div>
