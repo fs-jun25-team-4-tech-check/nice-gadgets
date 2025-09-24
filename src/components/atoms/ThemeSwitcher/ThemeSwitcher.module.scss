@@ -30,7 +30,7 @@
 
 .dropdownMenu {
   position: absolute;
-  top: 100%;
+  top: 110%;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -53,6 +53,7 @@
     flex-direction: row;
     justify-content: space-between;
     min-width: 250px;
+    margin: 0;
   }
 
   .label {

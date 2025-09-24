@@ -126,3 +126,10 @@
 .skeleton {
   @extend %skeleton-base;
 }
+
+.disabled {
+  opacity: 0.4;
+  cursor: default;
+  pointer-events: none;
+  @include hover(outline-color, var(--color-elements));
+}

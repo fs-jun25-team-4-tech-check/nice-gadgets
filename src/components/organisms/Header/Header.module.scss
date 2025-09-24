@@ -56,13 +56,25 @@
       background-color: var(--color-white);
     }
   }
+  .search {
+    flex-grow: 1;
+
+    display: none;
+
+    @include on-lg {
+      display: block;
+    }
+  }
 
   .icons {
+    flex-grow: 1;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    flex-grow: 1;
     gap: 0;
+    @include on-lg {
+      flex-grow: 0;
+    }
   }
 
   .iconLink {

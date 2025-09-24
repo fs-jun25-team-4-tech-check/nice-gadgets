@@ -7,6 +7,12 @@
   cursor: pointer;
 
   @include hover(background-color, var(--color-icons));
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    @include hover(outline-color, var(--color-elements));
+  }
 }
 
 .toFavoritesButtonSelected {
