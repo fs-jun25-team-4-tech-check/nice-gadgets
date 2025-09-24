@@ -36,21 +36,6 @@
   flex-wrap: wrap;
 }
 
-.colorCircle {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 2px solid var(--color-black);
-  box-shadow: 0 0 0 1px var(--color-elements);
-  cursor: pointer;
-  position: relative;
-  padding: 0;
-
-  &.active {
-    box-shadow: 0 0 0 1px var(--color-white);
-  }
-}
-
 .capacityOptions {
   display: flex;
   gap: 8px;

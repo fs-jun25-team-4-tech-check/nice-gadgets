@@ -1,0 +1,37 @@
+.deleteIcon {
+  cursor: default;
+}
+
+.skeletonContentWrapper {
+  width: 100%;
+}
+
+.skeletonImage {
+  @extend %skeleton-base;
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+.skeletonText {
+  @extend %skeleton-base;
+  height: 20px;
+  width: 80%;
+  flex-grow: 1;
+  margin-left: 16px;
+}
+
+.skeletonQuantity {
+  @extend %skeleton-base;
+  width: 32px;
+  height: 0;
+  color: transparent;
+  user-select: none;
+}
+
+.skeletonPrice {
+  @extend %skeleton-base;
+  width: 80px;
+  height: 30px;
+  align-self: center;
+}

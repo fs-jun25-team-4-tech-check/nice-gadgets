@@ -1,7 +1,7 @@
 import { useCart } from '../../../hooks/useCart';
 import { useFavs } from '../../../hooks/useFavs';
 import type { ProductDetails } from '../../../types';
-import { ActionButton, PrimaryButton } from '../../atoms';
+import { ActionButton, ColorButton, PrimaryButton } from '../../atoms';
 import productColorOptions from '../../../assets/data/productColorOptions.json';
 
 import styles from './SelectorsSection.module.scss';
@@ -31,14 +31,13 @@ export const SelectorsSection = ({
         <p className={styles.label}>Available colors</p>
         <div className={styles.colorOptions}>
           {product.colorsAvailable.map((color) => (
-            <button
+            <ColorButton
               key={color}
-              className={`${styles.colorCircle} ${product.color === color ? styles.active : ''}`}
-              style={{
-                backgroundColor:
-                  productColorOptions[color as ColorKey] ||
-                  productColorOptions['out-of-stock'],
-              }}
+              isSelected={product.color === color}
+              color={
+                productColorOptions[color as ColorKey] ||
+                productColorOptions['out-of-stock']
+              }
               onClick={() => onColorChange?.(color)}
               aria-label={`Select ${color} color`}
             />
