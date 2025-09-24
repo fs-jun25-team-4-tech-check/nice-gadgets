@@ -18,6 +18,7 @@
   --color-skeleton-bg-start: #{variables.$dark-skeleton-bg-start};
   --color-skeleton-bg-highlight: #{variables.$dark-skeleton-bg-highlight};
   --color-skeleton-bg-end: #{variables.$dark-skeleton-bg-end};
+  --color-icon-filter: brightness(0) invert(1);
 }
 
 @media (prefers-color-scheme: light) {
@@ -54,6 +55,7 @@
   --color-skeleton-bg-start: #{variables.$light-skeleton-bg-start};
   --color-skeleton-bg-highlight: #{variables.$light-skeleton-bg-highlight};
   --color-skeleton-bg-end: #{variables.$light-skeleton-bg-end};
+  --color-icon-filter: brightness(0) invert(0);
 }
 
 [data-theme='dark'] {

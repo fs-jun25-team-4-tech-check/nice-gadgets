@@ -7,4 +7,7 @@ export interface Contact {
   email: string;
   photo: string;
   about: string;
+  status?: string;
+  telegram: string;
+  linkedin: string;
 }
