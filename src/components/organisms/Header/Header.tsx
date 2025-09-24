@@ -12,7 +12,7 @@ import { useGlobalStore } from '../../../stores/globalStore';
 import SearchModule from '../../molecules/SearchModule/SearchModule';
 
 const Header = () => {
-  const { cart } = useCart();
+  const { count } = useCart();
   const { favs } = useFavs();
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
   const location = useLocation();
@@ -119,7 +119,7 @@ const Header = () => {
           <HeaderButton
             variant="cart"
             className={styles.desktopIcons}
-            notifCount={cart.length}
+            notifCount={count}
           />
           <HeaderButton
             variant={isBurgerMenuOpen ? 'close' : 'burger'}

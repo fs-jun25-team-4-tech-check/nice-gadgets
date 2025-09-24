@@ -6,28 +6,101 @@
 
 .title {
   text-align: center;
-  margin-bottom: 24px;
-  font-weight: bold;
-  font-size: 28px;
+  margin-bottom: 8px;
+  @extend h1;
 
   @include on-md {
     font-size: 36px;
-    margin-bottom: 32px;
   }
 }
 
+.subtitle {
+  text-align: center;
+  margin-bottom: 32px;
+  color: var(--color-secondary);
+  font-size: 16px;
+}
+
 .content {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  display: grid;
+  gap: 24px;
   line-height: 1.6;
   font-size: 16px;
 
   @include on-md {
-    font-size: 18px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+
+  @include on-xl {
+    grid-template-columns: repeat(3, 1fr);
   }
 
   strong {
     color: var(--color-accent);
   }
+}
+
+.policyCard {
+  background-color: var(--color-surface-1);
+  padding: 24px;
+  border-radius: 0;
+  border: 1px solid var(--color-elements);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  p {
+    @extend .body-text;
+    margin-bottom: 16px;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  ul,
+  ol {
+    margin: 0 0 16px 20px;
+    padding: 0;
+  }
+
+  li {
+    margin-bottom: 8px;
+  }
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-bottom: 1px solid var(--color-elements);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+
+  h3 {
+    @extend h3;
+    margin: 0;
+    color: var(--color-primary);
+  }
+}
+
+.icon {
+  color: var(--color-accent);
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.endingText {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-top: 16px;
+  font-style: italic;
+  color: var(--color-secondary);
 }

@@ -4,6 +4,7 @@ import type { Product } from '../../../types';
 import { useCart } from '../../../hooks/useCart';
 import { useFavs } from '../../../hooks/useFavs';
 import { Link } from 'react-router-dom';
+import { usePrefillSimplifiedProduct } from '../../../hooks';
 
 interface ProductCardProps {
   product: Product;
@@ -20,26 +21,46 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const isInCart = isInCartFunc(product.itemId);
   const isFavourite = isInFavs(product.itemId);
 
-  const itemPageLink = `item/${product.itemId}`;
+  const prefillSimplified = usePrefillSimplifiedProduct();
 
-  const handleAddToCart = () => {
+  const itemPageLink = `/item/${product.itemId}`;
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
     addToCart(product.itemId);
   };
 
-  const handleAddToFavorites = () => {
+  const handleAddToFavorites = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
     addToFavs(product.itemId);
   };
 
-  const handleRemovefromCart = () => {
+  const handleRemovefromCart = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
     removeFromCart(product.itemId);
   };
 
-  const handleRemovefromFavs = () => {
+  const handleRemovefromFavs = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
     removeFromFavs(product.itemId);
   };
 
+  const handleProductClick = () => {
+    prefillSimplified(product);
+  };
+
   return (
-    <div className={`${styles.card} ${className}`}>
+    <Link
+      to={itemPageLink}
+      state={{ fromCard: true }}
+      onClick={handleProductClick}
+      className={`${styles.card} ${className}`}
+      replace
+    >
       <div className={styles.imageWrapper}>
         <img
           src={product.image}
@@ -48,12 +69,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         />
       </div>
 
-      <Link
-        to={itemPageLink}
-        className={styles.title}
-      >
-        {product.name}
-      </Link>
+      <h3 className={styles.title}>{product.name}</h3>
 
       <div className={styles.priceBlock}>
         <span className={styles.price}>${product.price}</span>
@@ -88,7 +104,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           isSelected={isFavourite}
         />
       </div>
-    </div>
+    </Link>
   );
 };
 
