@@ -23,7 +23,7 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
-  padding: 0;
+  padding: 22px; // !TODO: temporary measure to have icon look more in line with other header buttons (prev value 0)
   color: var(--color-icons);
   height: 100%;
   width: 100%;
@@ -64,7 +64,7 @@
   text-align: left;
   white-space: nowrap;
 
-  @include hover(background-color, var(--color-surface-1));
+  @include hover(background-color, var(--color-elements));
 }
 
 .text {
@@ -74,12 +74,13 @@
 }
 
 .icon {
-  font-size: 24px;
+  color: var(--color-white);
+  font-size: 16px;
   flex-shrink: 0;
 }
 
 .active {
   background-color: var(--color-accent);
   color: var(--color-white);
-  @include hover(background-color, var(--color-accent));
+  @include hover(background-color, var(--color-accent-hover));
 }
