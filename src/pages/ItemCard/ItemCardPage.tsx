@@ -33,7 +33,7 @@ const ItemCardPage = () => {
 
     const variantId = `${detailsData.namespaceId}-${normalize(capacity)}-${normalize(color)}`;
 
-    navigate(`/item/${variantId}`, { replace: true, state: { fromCard } });
+    navigate(`/item/${variantId}`, { replace: true });
   };
 
   const handleColorChange = (color: string) => updateVariant(color);
