@@ -1,0 +1,12 @@
+.productNameSkeleton {
+  @extend %skeleton-base;
+  height: 32px;
+  width: 60%;
+  margin-top: 16px;
+  margin-bottom: 36px;
+
+  @include on-md {
+    height: 36px;
+    margin-bottom: 40px;
+  }
+}
