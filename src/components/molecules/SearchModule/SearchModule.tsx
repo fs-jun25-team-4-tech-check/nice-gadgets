@@ -3,6 +3,8 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import styles from './SearchModule.module.scss';
 import SearchBar from './../../atoms/SearchBar/SearchBar';
 import SearchButton from './../../atoms/Buttons/SearchButton/SearchButton';
+import AutocompleteDropdown from './../../atoms/AutocompleteDropdown/AutocompleteDropdown';
+import { useProducts } from '../../../hooks/useProducts';
 
 const SEARCH_QUERY_PARAM = 'query';
 
@@ -11,6 +13,11 @@ const SearchModule = () => {
   const navigate = useNavigate();
   const initialQuery = searchParams.get(SEARCH_QUERY_PARAM) || '';
   const [query, setQuery] = useState(initialQuery);
+  const [isInputFocused, setIsInputFocused] = useState(false);
+
+  const { data, isLoading } = useProducts(1, 10, query);
+
+  const suggestions = data?.data || [];
 
   useEffect(() => {
     setQuery(initialQuery);
@@ -25,11 +32,23 @@ const SearchModule = () => {
     }
   };
 
+  const handleInputFocus = () => {
+    setIsInputFocused(true);
+  };
+
+  const handleInputBlur = () => {
+    setTimeout(() => {
+      setIsInputFocused(false);
+    }, 200);
+  };
+
   return (
     <div className={styles.container}>
       <form
         className={styles.searchModule}
         onSubmit={handleSearch}
+        onFocus={handleInputFocus}
+        onBlur={handleInputBlur}
       >
         <SearchBar
           value={query}
@@ -38,6 +57,12 @@ const SearchModule = () => {
         />
         <SearchButton />
       </form>
+      {isInputFocused && !isLoading && suggestions.length > 0 && (
+        <AutocompleteDropdown products={suggestions} />
+      )}
+      {isInputFocused && isLoading && (
+        <div className={styles.loadingMessage}>Loading suggestions...</div>
+      )}
     </div>
   );
 };
