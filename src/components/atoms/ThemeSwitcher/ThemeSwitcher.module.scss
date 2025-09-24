@@ -23,7 +23,7 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
-  padding: 22px; // !TODO: temporary measure to have icon look more in line with other header buttons (prev value 0)
+  padding: 0;
   color: var(--color-icons);
   height: 100%;
   width: 100%;
@@ -31,7 +31,7 @@
 
 .dropdownMenu {
   position: absolute;
-  top: 100%;
+  top: 110%;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -44,11 +44,13 @@
   z-index: 10;
   min-width: 150px;
   margin-top: 4px;
+  margin: 0 5px;
 
   @include on-md {
     flex-direction: row;
     justify-content: space-between;
     min-width: 250px;
+    margin: 0;
   }
 }
 
@@ -64,23 +66,28 @@
   text-align: left;
   white-space: nowrap;
 
-  @include hover(background-color, var(--color-elements));
+  @include hover(background-color, var(--color-surface-1));
+
+  > * {
+    font-size: 24px;
+    flex-shrink: 0;
+  }
 }
 
 .text {
+  font-size: 12px;
   @include on-md {
     display: inline;
   }
 }
 
 .icon {
-  color: var(--color-white);
-  font-size: 16px;
+  font-size: 24px;
   flex-shrink: 0;
 }
 
 .active {
   background-color: var(--color-accent);
   color: var(--color-white);
-  @include hover(background-color, var(--color-accent-hover));
+  @include hover(background-color, var(--color-accent));
 }

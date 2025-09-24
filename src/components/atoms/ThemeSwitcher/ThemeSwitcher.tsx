@@ -2,10 +2,16 @@ import { useState } from 'react';
 import cn from 'classnames';
 import { useGlobalStore } from '../../../stores/globalStore';
 import styles from './ThemeSwitcher.module.scss';
-import type { ThemeMode } from '../../../types/ThemeMode';
-import { PiDesktop, PiMoon, PiSunDim } from 'react-icons/pi';
+import {
+  MdOutlineWbSunny,
+  MdModeNight,
+  MdDesktopWindows,
+} from 'react-icons/md';
+import type { FC } from 'react';
 
-const ThemeSwitcher = () => {
+type ThemeMode = 'light' | 'dark' | 'auto';
+
+const ThemeSwitcher: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme } = useGlobalStore();
 
@@ -18,28 +24,28 @@ const ThemeSwitcher = () => {
     switch (theme) {
       case 'light':
         return (
-          <PiSunDim
+          <MdOutlineWbSunny
             size={24}
             className={styles.icon}
           />
         );
       case 'dark':
         return (
-          <PiMoon
+          <MdModeNight
             size={24}
             className={styles.icon}
           />
         );
       case 'auto':
         return (
-          <PiDesktop
+          <MdDesktopWindows
             size={24}
             className={styles.icon}
           />
         );
       default:
         return (
-          <PiDesktop
+          <MdDesktopWindows
             size={24}
             className={styles.icon}
           />
@@ -50,7 +56,7 @@ const ThemeSwitcher = () => {
   return (
     <div className={styles.container}>
       <button
-        className={cn(styles.mainButton, 'header-button')}
+        className={cn(styles.mainButton)}
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
       >
@@ -65,7 +71,7 @@ const ThemeSwitcher = () => {
             })}
             onClick={() => handleThemeChange('light')}
           >
-            <PiSunDim
+            <MdOutlineWbSunny
               size={24}
               className={styles.icon}
             />
@@ -78,7 +84,7 @@ const ThemeSwitcher = () => {
             })}
             onClick={() => handleThemeChange('dark')}
           >
-            <PiMoon
+            <MdModeNight
               size={24}
               className={styles.icon}
             />
@@ -91,7 +97,7 @@ const ThemeSwitcher = () => {
             })}
             onClick={() => handleThemeChange('auto')}
           >
-            <PiDesktop
+            <MdDesktopWindows
               size={24}
               className={styles.icon}
             />
