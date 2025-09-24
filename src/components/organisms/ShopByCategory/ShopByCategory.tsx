@@ -1,8 +1,8 @@
 import type { CategoryBanner } from '../../../types/Category';
 import type React from 'react';
 import { useProductCategoryCounts } from '../../../hooks';
-import { staticCategoryData } from '../../../data';
 import { ShopByCategoryUI } from './ShopByCategoryUI';
+import { staticCategoryData } from '../../../assets/data/staticCategoryData';
 
 export const ShopByCategory: React.FC = () => {
   const { data: counts, isLoading } = useProductCategoryCounts();

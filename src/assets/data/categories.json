@@ -1,0 +1,23 @@
+[
+  {
+    "categorySlug": "phones",
+    "name": "Mobile Phones",
+    "imgLink": "categories/category-phones.png",
+    "backgroundColor": "#c69d76",
+    "videoLink": "categories/phones.mp4"
+  },
+  {
+    "categorySlug": "tablets",
+    "name": "Tablets",
+    "imgLink": "categories/category-tablets.png",
+    "backgroundColor": "#848caf",
+    "videoLink": "categories/tablets.mp4"
+  },
+  {
+    "categorySlug": "accessories",
+    "name": "Accessories",
+    "imgLink": "categories/category-accessories.png",
+    "backgroundColor": "#ce9999",
+    "videoLink": "categories/accessories.mp4"
+  }
+]
