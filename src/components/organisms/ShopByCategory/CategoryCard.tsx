@@ -1,7 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import type { CategoryBanner } from '../../../types/Category';
 import styles from './ShopByCategory.module.scss';
+import { BASE_URL } from '../../../constants';
 
 type Props = {
   category: CategoryBanner;
@@ -14,25 +15,23 @@ export const CategoryCard: React.FC<Props> = ({
   baseCategoryUrl,
   isLoading,
 }) => {
+  const imageUrl = `${BASE_URL}/gallery/categories/${category.imgLink}`;
+  const videoUrl = `${BASE_URL}/gallery/categories/${category.videoLink}`;
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [hovered, setHovered] = useState(false);
 
-  const handleEnter = () => {
-    setHovered(true);
+  const handleHover = (enter: boolean) => {
     const v = videoRef.current;
     if (!v) return;
-    v.muted = true;
-    v.playsInline = true;
-    const p = v.play();
-    if (p && typeof p.then === 'function') p.catch(() => {});
-  };
-
-  const handleLeave = () => {
-    setHovered(false);
-    const v = videoRef.current;
-    if (!v) return;
-    v.pause();
-    v.currentTime = 0;
+    if (enter) {
+      v.muted = true;
+      v.playsInline = true;
+      v.play().catch(() => {});
+      v.style.opacity = '1';
+    } else {
+      v.pause();
+      v.currentTime = 0;
+      v.style.opacity = '0';
+    }
   };
 
   return (
@@ -40,10 +39,10 @@ export const CategoryCard: React.FC<Props> = ({
       <Link to={`${baseCategoryUrl}/${category.categorySlug}`}>
         <div
           className={styles.categories_imageWrapper}
-          onMouseEnter={handleEnter}
-          onMouseLeave={handleLeave}
-          onFocus={handleEnter}
-          onBlur={handleLeave}
+          onMouseEnter={() => handleHover(true)}
+          onMouseLeave={() => handleHover(false)}
+          onFocus={() => handleHover(true)}
+          onBlur={() => handleHover(false)}
         >
           <div
             className={styles.categories_bg}
@@ -52,21 +51,21 @@ export const CategoryCard: React.FC<Props> = ({
 
           <img
             className={styles.categories_image}
-            src={category.imgLink}
+            src={imageUrl}
             alt={category.name}
           />
 
           {category.videoLink && (
             <video
               ref={videoRef}
-              className={`${styles.categories_video} ${hovered ? styles.visible : ''}`}
+              className={styles.categories_video}
               muted
               loop
               playsInline
               preload="auto"
             >
               <source
-                src={category.videoLink}
+                src={videoUrl}
                 type="video/mp4"
               />
             </video>

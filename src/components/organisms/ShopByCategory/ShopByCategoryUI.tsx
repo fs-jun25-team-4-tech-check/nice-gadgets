@@ -2,14 +2,15 @@ import React from 'react';
 import type { CategoryBanner } from '../../../types/Category';
 import styles from './ShopByCategory.module.scss';
 import { CategoryCard } from './CategoryCard';
-import { staticCategoryData } from '../../../assets/data/staticCategoryData';
+import categoryData from '../../../assets/data/categories.json';
+
 type Props = {
   banners: CategoryBanner[];
   isLoading: boolean;
 };
 
 export const ShopByCategoryUI: React.FC<Props> = ({
-  banners = staticCategoryData,
+  banners = categoryData as Omit<CategoryBanner, 'productCount'>[],
   isLoading,
 }) => {
   const baseCategoryUrl = '/catalog';

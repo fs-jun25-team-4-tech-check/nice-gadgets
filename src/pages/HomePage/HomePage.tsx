@@ -2,14 +2,12 @@ import { CardsSlider } from '../../components/organisms/ProductCardSlider/Produc
 import { GallerySlider } from '../../components/organisms/GallerySlider/GallerySlider';
 import { ShopByCategory } from '../../components/organisms/ShopByCategory';
 import { HomeLayout } from '../../components/templates';
-import { staticGallerySliderData } from '../../data/gallerySliderData';
+import gallerySlider from './../../assets/data/gallerySlider.json';
 
 const HomePage = () => {
-  const gallerySlides = staticGallerySliderData;
-
   return (
     <HomeLayout
-      bannerSliderSection={<GallerySlider gallerySlides={gallerySlides} />}
+      bannerSliderSection={<GallerySlider gallerySlides={gallerySlider} />}
       brandNewModelsSection={
         <CardsSlider
           id="brandNewModelsSlider"

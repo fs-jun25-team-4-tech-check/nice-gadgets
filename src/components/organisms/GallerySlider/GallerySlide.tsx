@@ -2,12 +2,16 @@ import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './GallerySlider.module.scss';
 import type { GallerySliderItem } from '../../../types/GallerySliderItem';
+import { BASE_URL } from '../../../constants';
 
 interface Props {
   slide: GallerySliderItem;
 }
 
 export const GallerySlide: React.FC<Props> = ({ slide }) => {
+  const videoUrl = `${BASE_URL}/gallery/banners/${slide.videoUrl}`;
+  const imgUrl = `${BASE_URL}/gallery/banners/${slide.imgUrl}`;
+
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const handleHover = (enter: boolean) => {
@@ -35,11 +39,11 @@ export const GallerySlide: React.FC<Props> = ({ slide }) => {
       className={styles.linkWrapper}
     >
       <img
-        src={slide.imgUrl}
+        src={imgUrl}
         alt={slide.alt}
         className={styles.slideImage}
       />
-      {slide.videoUrl && (
+      {videoUrl && (
         <video
           ref={videoRef}
           className={styles.slideVideo}
@@ -49,7 +53,7 @@ export const GallerySlide: React.FC<Props> = ({ slide }) => {
           muted
         >
           <source
-            src={slide.videoUrl}
+            src={videoUrl}
             type="video/mp4"
           />
         </video>
