@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import { useCart } from '../../../hooks/useCart';
 import { useFavs } from '../../../hooks/useFavs';
 import { useGlobalStore } from '../../../stores/globalStore';
+import CatalogueModal from '../../molecules/CatalogueModal/CatalogueModal';
 
 const Header = () => {
   const { count } = useCart();
@@ -77,34 +78,7 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink
-                to="/catalog/phones"
-                className={({ isActive }) =>
-                  `uppercase-text ${styles.navLink} ${isActive ? styles.active : ''}`
-                }
-              >
-                Phones
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/catalog/tablets"
-                className={({ isActive }) =>
-                  `uppercase-text ${styles.navLink} ${isActive ? styles.active : ''}`
-                }
-              >
-                Tablets
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/catalog/accessories"
-                className={({ isActive }) =>
-                  `uppercase-text ${styles.navLink} ${isActive ? styles.active : ''}`
-                }
-              >
-                Accessories
-              </NavLink>
+              <CatalogueModal />
             </li>
           </ul>
         </nav>

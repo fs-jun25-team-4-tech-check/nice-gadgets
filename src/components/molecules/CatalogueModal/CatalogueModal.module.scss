@@ -1,0 +1,143 @@
+.root {
+  width: 200px;
+
+  .menuList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .trigger {
+    all: unset;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid var(--color-white);
+    padding: 8px;
+    border-radius: 7px;
+    user-select: none;
+    transition-duration: 0.2s;
+    .catalogIcon {
+      font-size: 15px;
+    }
+    &:hover {
+      background-color: var(--color-white);
+      color: var(--color-black);
+    }
+  }
+
+  .content {
+    width: 95vw;
+    padding: 30px;
+    background-color: var(--color-black);
+    animation-duration: 0.2s;
+    animation-timing-function: ease;
+    animation-fill-mode: both;
+
+    .links {
+      list-style-type: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 25px;
+      .linksItem {
+        display: flex;
+        justify-content: center;
+        transition-duration: 0.2s;
+        transform-origin: top 80px;
+        &:hover {
+          transform: scale(1.2);
+          .navLink {
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+          }
+          .linkIcon {
+            color: var(--color-accent);
+          }
+        }
+      }
+
+      .navLink {
+        text-decoration: none;
+
+        font-size: 20px;
+        padding-bottom: 5px;
+        font-weight: 400;
+      }
+      .linkWrapper {
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        width: 200px;
+      }
+
+      .active {
+        border-bottom: 1px solid var(--color-white);
+      }
+
+      .linkIcon {
+        font-size: 30px;
+        color: var(--color-white);
+        align-self: center;
+      }
+    }
+  }
+
+  .ViewportPosition {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    top: 100%;
+    left: 0;
+    perspective: 2000px;
+  }
+
+  .Viewport {
+    position: relative;
+    transform-origin: top center;
+    width: 100%;
+    border: 1px solid var(--color-elements);
+    overflow: hidden;
+    box-shadow:
+      hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+      hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+    transition:
+      width,
+      height,
+      300ms ease;
+    &[data-state='open'] {
+      animation: scaleIn 200ms ease;
+    }
+    &[data-state='closed'] {
+      animation: scaleOut 200ms ease;
+    }
+    @media only screen and (min-width: 600px) {
+      width: var(--radix-navigation-menu-viewport-width);
+    }
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: rotateX(-30deg) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: rotateX(0deg) scale(1);
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+    transform: rotateX(0deg) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: rotateX(-10deg) scale(0.95);
+  }
+}
