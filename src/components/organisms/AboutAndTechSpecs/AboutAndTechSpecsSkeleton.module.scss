@@ -1,0 +1,140 @@
+.aboutTechWrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 56px;
+  padding-top: 56px;
+  flex-direction: column;
+
+  @include on-md {
+    gap: 64px;
+    padding-top: 64px;
+  }
+
+  @include on-lg {
+    padding-top: 80px;
+  }
+
+  @include on-xl {
+    flex-direction: row;
+    padding-top: 80px;
+  }
+}
+
+.aboutSection {
+  flex: none;
+
+  @include on-md {
+    flex: 1;
+  }
+
+  @include on-xl {
+    max-width: 560px;
+  }
+}
+
+.techSpecsSection {
+  flex: 1;
+
+  @media (max-width: $breakpoint-md) {
+    flex: none;
+  }
+
+  @include on-xl {
+    max-width: 512px;
+  }
+}
+
+.headingSkeleton {
+  @extend %skeleton-base;
+  height: 24px;
+  width: 120px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--color-elements);
+  padding-bottom: 16px;
+
+  @include on-md {
+    height: 28px;
+    width: 140px;
+  }
+}
+
+.aboutBlock {
+  margin-bottom: 32px;
+}
+
+.blockTitleSkeleton {
+  @extend %skeleton-base;
+  height: 20px;
+  width: 200px;
+  margin-bottom: 16px;
+}
+
+.paragraphSkeleton {
+  @extend %skeleton-base;
+  height: 16px;
+  margin-bottom: 16px;
+
+  &:nth-child(2) {
+    width: 100%;
+  }
+
+  &:nth-child(3) {
+    width: 85%;
+  }
+
+  &:nth-child(4) {
+    width: 70%;
+  }
+}
+
+.techSpecsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.techSpecRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 8px;
+}
+
+.techSpecNameSkeleton {
+  @extend %skeleton-base;
+  height: 12px;
+  width: 70px;
+  margin-right: 16px;
+
+  @include on-md {
+    height: 14px;
+    width: 80px;
+  }
+}
+
+.techSpecValueSkeleton {
+  @extend %skeleton-base;
+  height: 12px;
+  width: 100px;
+
+  @include on-md {
+    height: 14px;
+    width: 110px;
+  }
+
+  &:nth-of-type(2n) {
+    width: 80px;
+
+    @include on-md {
+      width: 90px;
+    }
+  }
+
+  &:nth-of-type(3n) {
+    width: 120px;
+
+    @include on-md {
+      width: 130px;
+    }
+  }
+}

@@ -6,7 +6,7 @@ import { AboutAndTechSpecs } from '../../organisms/AboutAndTechSpecs/AboutAndTec
 import { SelectorsSection } from '../../organisms/SelectorSection/SelectorsSection';
 import styles from './ItemCardLayout.module.scss';
 import { FaExclamationTriangle } from 'react-icons/fa';
-import { ItemCardLayoutSkeleton } from './ItemCardLayoutSkeleton';
+import ItemCardLayoutSkeleton from './ItemCardLayoutSkeleton';
 
 const ErrorComponent = ({ error }: { error: Error }) => (
   <div className={styles.errorContainer}>
