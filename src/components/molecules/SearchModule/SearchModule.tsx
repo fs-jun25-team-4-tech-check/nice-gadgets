@@ -15,7 +15,7 @@ const SearchModule = () => {
   const [query, setQuery] = useState(initialQuery);
   const [isInputFocused, setIsInputFocused] = useState(false);
 
-  const { data, isLoading } = useProducts(1, 5, query);
+  const { data, isFetching } = useProducts(1, 5, query);
 
   const suggestions = data?.data || [];
 
@@ -42,6 +42,8 @@ const SearchModule = () => {
     }, 200);
   };
 
+  const showDropdown = isInputFocused && query.trim() !== '';
+
   return (
     <div className={styles.container}>
       <form
@@ -57,10 +59,11 @@ const SearchModule = () => {
         />
         <SearchButton />
       </form>
-      {isInputFocused && !isLoading && suggestions.length > 0 && (
+      {showDropdown && (
         <AutocompleteDropdown
           products={suggestions}
           searchQuery={query}
+          isFetching={isFetching}
         />
       )}
     </div>
