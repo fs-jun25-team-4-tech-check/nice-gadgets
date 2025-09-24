@@ -1,83 +1,213 @@
 .card {
+  position: relative;
   display: flex;
+  flex-direction: column;
   width: 100%;
-  gap: 16px;
-  align-items: center;
-  padding: 40px;
+  max-width: 800px;
+  padding: 30px;
   background-color: var(--color-surface-1);
-  border-radius: 15px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
   transition:
-    transform 180ms ease,
-    box-shadow 180ms ease;
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   overflow: hidden;
-
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
-  }
+  border-radius: 0;
 
   @include on-md {
-    gap: 24px;
-    padding: 20px;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+    padding: 50px;
   }
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  }
+}
+
+.card::before,
+.card::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  z-index: -1;
+}
+
+.card::before {
+  background: linear-gradient(
+    45deg,
+    var(--color-primary),
+    var(--color-accent-light)
+  );
+  filter: blur(10px);
+  opacity: 0;
+}
+
+.card::after {
+  background: var(--color-surface-1);
+  border: 1px solid var(--color-primary);
+  opacity: 0;
+}
+
+.card:hover::before {
+  opacity: 0.8;
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+.photoContainer {
+  flex-shrink: 0;
+  width: 180px;
+  height: 180px;
+  position: relative;
+  overflow: hidden;
+  border: 4px solid var(--color-primary);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.card:hover .photoContainer {
+  transform: scale(1.05);
 }
 
 .photo {
-  width: 120px;
-  height: 120px;
-  min-width: 120px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 8px;
-  flex-shrink: 0;
-
-  @include on-md {
-    width: 140px;
-    height: 140px;
-  }
 }
 
 .info {
+  flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 }
 
 .name {
-  margin: 0 0 6px 0;
+  margin: 0 0 8px 0;
+  font-size: 32px;
   color: var(--color-white);
+  position: relative;
+  transition: color 0.3s ease;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-accent-light);
+    transition: width 0.3s ease;
+  }
 }
 
-.line {
-  margin: 4px 0;
-  font-size: 0.9rem;
-  color: var(--color-secondary);
+.card:hover .name {
+  color: var(--color-accent-light);
 
-  a {
-    color: var(--color-white);
-    text-decoration: underline;
+  &::after {
+    width: 100%;
   }
+}
+
+.status {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--color-secondary);
+  margin-bottom: 20px;
 }
 
 .about {
-  margin-top: 8px;
-  font-size: 0.95rem;
+  font-size: 18px;
   color: var(--color-white);
+  margin-top: 15px;
+  line-height: 1.6;
 }
 
-@media (max-width: $breakpoint-sm) {
+.links {
+  display: flex;
+  gap: 20px;
+  margin-top: 25px;
+}
+
+.iconLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  transition:
+    transform 200ms ease,
+    background-color 200ms ease;
+
+  &:hover {
+    transform: scale(1.15);
+    background-color: var(--color-accent-light);
+  }
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+  fill: var(--color-white);
+}
+
+@media (max-width: 760px) {
   .card {
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
+    text-align: center;
+    padding: 25px;
+    gap: 20px;
+  }
+
+  .photoContainer {
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    position: relative;
+    margin-bottom: 20px;
   }
 
   .photo {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    min-width: 0;
-    border-radius: 8px;
+    object-fit: cover;
   }
 
   .info {
-    padding-top: 12px;
+    align-items: center;
+  }
+
+  .name {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .status {
+    font-size: 14px;
+  }
+
+  .about {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .links {
+    justify-content: center;
   }
 }
