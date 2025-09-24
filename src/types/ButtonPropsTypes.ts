@@ -2,7 +2,7 @@ import type { SearchParams } from '../utils';
 
 export interface BaseButtonProps {
   children?: React.ReactNode;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
   isSelected?: boolean;
 }

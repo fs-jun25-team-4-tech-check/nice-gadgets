@@ -1,50 +1,54 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
-import { useProductDetails } from '../../hooks';
+import { useProductDisplay } from '../../hooks';
 import { ItemCardLayout } from '../../components/templates/ItemCardLayout/ItemCardLayout';
 import { CardsSlider } from '../../components/organisms/ProductCardSlider/ProductCardsSlider';
-import { BackButton } from '../../components/atoms';
+
+const normalize = (str: string) =>
+  str.toLowerCase().trim().split(' ').filter(Boolean).join('-');
 
 const ItemCardPage = () => {
   const { productId } = useParams<{
     productId: string;
   }>();
+  const location = useLocation();
   const navigate = useNavigate();
 
+  const fromCard = location.state?.fromCard || false;
+
   const {
-    data: product,
-    isLoading,
+    simplifiedData,
+    detailsData,
+    isDetailsLoading: isLoading,
+    isFetching,
+    hasDetails,
     error,
-  } = useProductDetails(productId ?? '');
+  } = useProductDisplay(productId ?? '', fromCard);
 
   const updateVariant = (newColor?: string, newCapacity?: string) => {
-    if (!product) return;
+    if (!detailsData) return;
 
-    const color = newColor ?? product.color;
-    const capacity = newCapacity ?? product.capacity;
+    const color = newColor ?? detailsData.color;
+    const capacity = newCapacity ?? detailsData.capacity;
 
-    const variantId = `${product.namespaceId}-${capacity.toLowerCase()}-${color}`;
+    const variantId = `${detailsData.namespaceId}-${normalize(capacity)}-${normalize(color)}`;
 
-    navigate(`/item/${variantId}`, { replace: true });
+    navigate(`/item/${variantId}`, { replace: true, state: { fromCard } });
   };
 
   const handleColorChange = (color: string) => updateVariant(color);
+
   const handleCapacityChange = (capacity: string) =>
     updateVariant(undefined, capacity);
 
-  if (error || !product) {
-    return (
-      <div>
-        <BackButton fallbackPath="/">Back</BackButton>
-        <p>Product not found</p>
-      </div>
-    );
-  }
-
   return (
     <ItemCardLayout
-      items={[product]}
+      simplifiedProduct={simplifiedData}
+      detailedProduct={detailsData}
       isLoading={isLoading}
+      isFetching={isFetching}
+      hasDetails={hasDetails}
+      error={error}
       onColorChange={handleColorChange}
       onCapacityChange={handleCapacityChange}
       youMayAlsoLikeSection={

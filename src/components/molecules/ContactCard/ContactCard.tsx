@@ -25,6 +25,13 @@ const ContactCard: React.FC<ContactCardProps> = ({ person }) => {
           className={styles.photo}
         />
       </div>
+      <div className={styles.photoContainer}>
+        <img
+          src={imageUrl}
+          alt={`${person.firstName} ${person.lastName}`}
+          className={styles.photo}
+        />
+      </div>
 
       <div className={styles.info}>
         <h3 className={styles.name}>
