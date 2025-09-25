@@ -1,37 +1,41 @@
 import React from 'react';
 import styles from './AboutAndTechSpecs.module.scss';
 import type { ProductDetails } from '../../../types';
+import classNames from 'classnames';
 
 interface AboutAndTechSpecsProps {
   product: ProductDetails;
+  disabled?: boolean;
 }
 
 export const AboutAndTechSpecs: React.FC<AboutAndTechSpecsProps> = ({
   product,
+  disabled,
 }) => {
-  if (!product) return null;
-
   return (
     <section className={styles.wrapper}>
       <div className={styles.about}>
         <h3 className={styles.heading}>About</h3>
 
-        {product.description.map((block, i) => (
-          <div
-            key={i}
-            className={styles.block}
-          >
-            <h4>{block.title}</h4>
-            {block.text.map((p, j) => (
-              <p key={j}>{p}</p>
-            ))}
-          </div>
-        ))}
+        <div className={classNames({ [styles.disabled]: disabled })}>
+          {product.description.map((block, i) => (
+            <div
+              key={i}
+              className={styles.block}
+            >
+              <h4>{block.title}</h4>
+              {block.text.map((p, j) => (
+                <p key={j}>{p}</p>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className={styles.specs}>
         <h3 className={styles.headingSpecs}>Tech specs</h3>
-        <ul>
+
+        <ul className={classNames({ [styles.disabled]: disabled })}>
           <li>
             <span>Screen</span>
             <span>{product.screen}</span>

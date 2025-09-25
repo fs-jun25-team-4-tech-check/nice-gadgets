@@ -8,8 +8,6 @@
   text-align: center;
   margin-bottom: 8px;
   @extend h1;
-  margin-bottom: 8px;
-  @extend h1;
 
   @include on-md {
     font-size: 36px;
@@ -23,28 +21,13 @@
   font-size: 16px;
 }
 
-.subtitle {
-  text-align: center;
-  margin-bottom: 32px;
-  color: var(--color-secondary);
-  font-size: 16px;
-}
-
 .content {
-  display: grid;
-  gap: 24px;
   display: grid;
   gap: 24px;
   line-height: 1.6;
   font-size: 16px;
 
   @include on-md {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
-  }
-
-  @include on-xl {
-    grid-template-columns: repeat(3, 1fr);
     grid-template-columns: repeat(2, 1fr);
     gap: 32px;
   }
@@ -88,6 +71,7 @@
 
   li {
     margin-bottom: 8px;
+    font-size: 14px;
   }
 }
 

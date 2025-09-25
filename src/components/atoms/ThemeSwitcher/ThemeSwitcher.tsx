@@ -2,10 +2,12 @@ import { useState } from 'react';
 import cn from 'classnames';
 import { useGlobalStore } from '../../../stores/globalStore';
 import styles from './ThemeSwitcher.module.scss';
-import type { ThemeMode } from '../../../types/ThemeMode';
 import { PiDesktop, PiMoon, PiSunDim } from 'react-icons/pi';
+import type { FC } from 'react';
 
-const ThemeSwitcher = () => {
+type ThemeMode = 'light' | 'dark' | 'auto';
+
+const ThemeSwitcher: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme } = useGlobalStore();
 
@@ -50,7 +52,7 @@ const ThemeSwitcher = () => {
   return (
     <div className={styles.container}>
       <button
-        className={cn(styles.mainButton, 'header-button')}
+        className={cn(styles.mainButton)}
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
       >

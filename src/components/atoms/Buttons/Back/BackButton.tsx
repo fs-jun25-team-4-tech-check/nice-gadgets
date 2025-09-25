@@ -6,18 +6,25 @@ import styles from './BackButton.module.scss';
 interface BackButtonProps {
   children?: React.ReactNode;
   fallbackPath?: string;
+  alwaysUseFallback?: boolean;
   className?: string;
 }
 
 const BackButton: React.FC<BackButtonProps> = ({
   children = 'Back',
   fallbackPath = '/',
+  alwaysUseFallback = false,
   className,
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleBackClick = () => {
+    if (alwaysUseFallback) {
+      navigate(fallbackPath);
+      return;
+    }
+
     if (location.key !== 'default') {
       navigate(-1);
     } else {
