@@ -8,7 +8,8 @@ import { useProductsByCategory, useProducts } from '../../hooks/useProducts';
 import type { ProductCategory } from '../../services/api';
 import type {
   PaginationOption,
-  SortOption,
+  SortField,
+  SortDirection,
 } from '../../types/ControlsBarTypes';
 
 const CatalogPage = () => {
@@ -34,22 +35,9 @@ const CatalogPage = () => {
   const perPage = (Number(searchParams.get('perPage')) ||
     12) as PaginationOption;
   const currentPage = Number(searchParams.get('page')) || 1;
-  const sortOption = (searchParams.get('sort') || 'Newest') as SortOption;
 
-  const getSortParams = (option: SortOption) => {
-    switch (option) {
-      case 'Newest':
-        return { sortBy: 'year' as const, sortOrder: 'desc' as const };
-      case 'Price_ascending':
-        return { sortBy: 'price' as const, sortOrder: 'asc' as const };
-      case 'Price_descending':
-        return { sortBy: 'price' as const, sortOrder: 'desc' as const };
-      default:
-        return { sortBy: 'year' as const, sortOrder: 'desc' as const };
-    }
-  };
-
-  const { sortBy, sortOrder } = getSortParams(sortOption);
+  const sortBy = (searchParams.get('sortBy') || 'year') as SortField;
+  const sortOrder = (searchParams.get('sortOrder') || 'desc') as SortDirection;
 
   const isSearchMode = !!query;
 
@@ -78,15 +66,28 @@ const CatalogPage = () => {
       ...Object.fromEntries(prev.entries()),
       page: '1',
       perPage: items.toString(),
+      sortBy: sortBy,
+      sortOrder: sortOrder,
     }));
   };
 
-  const handleSortChange = (option: SortOption) => {
+  const handleSortByChange = (field: SortField) => {
     setSearchParams((prev) => ({
       ...Object.fromEntries(prev.entries()),
       page: '1',
       perPage: perPage.toString(),
-      sort: option,
+      sortBy: field,
+      sortOrder: sortOrder,
+    }));
+  };
+
+  const handleSortOrderChange = (order: SortDirection) => {
+    setSearchParams((prev) => ({
+      ...Object.fromEntries(prev.entries()),
+      page: '1',
+      perPage: perPage.toString(),
+      sortBy: sortBy,
+      sortOrder: order,
     }));
   };
 
@@ -103,8 +104,10 @@ const CatalogPage = () => {
       backButtonSection={<Breadcrumbs categorySlug={category} />}
       controlsBarSection={
         <ControlsBar
-          sortOption={sortOption}
-          onSortChange={handleSortChange}
+          sortBy={sortBy}
+          onSortByChange={handleSortByChange}
+          sortOrder={sortOrder}
+          onSortOrderChange={handleSortOrderChange}
           perPage={perPage}
           onPerPageChange={handlePerPageChange}
         />
