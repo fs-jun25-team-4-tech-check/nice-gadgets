@@ -1,4 +1,5 @@
 import { useGlobalStore } from '../stores/globalStore';
+import { getItemNameByItemId } from '../utils/string';
 import { useToast } from './useToast';
 
 export const useCart = () => {
@@ -15,17 +16,21 @@ export const useCart = () => {
   };
 
   const addToCart = (itemId: string) => {
+    const itemName = getItemNameByItemId(itemId);
+
     if (Object.keys(cart).find((id) => itemId === id)) {
-      showToast('Product already in cart', 'error', 'Oops...');
+      showToast('Product already in cart', 'error', 'Oops...', 2000);
     } else {
       addToCartStore(itemId);
-      showToast('Added to cart', 'info', 'Nice!');
+      showToast(`Added to cart: ${itemName}`, 'info', 'Nice!', 2000);
     }
   };
 
   const removeFromCart = (itemId: string) => {
+    const itemName = getItemNameByItemId(itemId);
+
     removeFromCartStore(itemId);
-    showToast('Removed from cart', 'info', 'Nice!');
+    showToast(`Removed from cart: ${itemName}`, 'info', 'Nice!', 2000);
   };
 
   const isInCart = (itemId: string) => {

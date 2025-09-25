@@ -1,15 +1,21 @@
 export type ToastType = 'info' | 'error';
 
-export interface ToastContextType {
-  showToast: (
-    description: string,
-    type?: ToastType,
-    title?: string,
-    duration?: number,
-  ) => void;
-  open: boolean;
+export type ToastItem = {
+  id: string;
   title?: string;
   description: string;
+  duration?: number;
   type: ToastType;
-  setOpen: (value: boolean) => void;
+  open: boolean;
+};
+
+export interface ToastContextType {
+  showToast: (
+    desc: string,
+    toastType: ToastType,
+    customTitle?: string,
+    duration?: number,
+  ) => void;
+  removeToast: (id: string) => void;
+  toasts: ToastItem[];
 }
