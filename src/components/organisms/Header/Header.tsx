@@ -103,6 +103,7 @@ const Header = () => {
           />
           <HeaderButton
             variant={isBurgerMenuOpen ? 'close' : 'burger'}
+            className={styles.burgerButton}
             onClick={() => {
               setIsBurgerMenuOpen(!isBurgerMenuOpen);
             }}

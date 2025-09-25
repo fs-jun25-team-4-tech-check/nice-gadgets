@@ -21,28 +21,28 @@ const ThemeSwitcher: FC = () => {
       case 'light':
         return (
           <PiSunDim
-            size={24}
+            size={16}
             className={styles.icon}
           />
         );
       case 'dark':
         return (
           <PiMoon
-            size={24}
+            size={16}
             className={styles.icon}
           />
         );
       case 'auto':
         return (
           <PiDesktop
-            size={24}
+            size={16}
             className={styles.icon}
           />
         );
       default:
         return (
           <PiDesktop
-            size={24}
+            size={16}
             className={styles.icon}
           />
         );
@@ -68,7 +68,7 @@ const ThemeSwitcher: FC = () => {
             onClick={() => handleThemeChange('light')}
           >
             <PiSunDim
-              size={24}
+              size={16}
               className={styles.icon}
             />
             <span className={styles.text}>Light</span>
@@ -81,7 +81,7 @@ const ThemeSwitcher: FC = () => {
             onClick={() => handleThemeChange('dark')}
           >
             <PiMoon
-              size={24}
+              size={16}
               className={styles.icon}
             />
             <span className={styles.text}>Dark</span>
@@ -94,7 +94,7 @@ const ThemeSwitcher: FC = () => {
             onClick={() => handleThemeChange('auto')}
           >
             <PiDesktop
-              size={24}
+              size={16}
               className={styles.icon}
             />
             <span className={styles.text}>Auto</span>
