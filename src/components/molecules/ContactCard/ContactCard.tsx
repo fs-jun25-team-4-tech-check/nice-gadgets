@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './ContactCard.module.scss';
 import type { Contact } from '../../../types/Contact';
-import { BASE_URL } from '../../../constants';
+import { BASE_URL_IMAGE } from '../../../constants';
 
 import { FaGithub, FaLinkedin, FaTelegramPlane } from 'react-icons/fa';
 import { BsEnvelopeFill } from 'react-icons/bs';
@@ -11,7 +11,7 @@ interface ContactCardProps {
 }
 
 const ContactCard: React.FC<ContactCardProps> = ({ person }) => {
-  const imageUrl = `${BASE_URL}/img/contacts/${person.photo}`;
+  const imageUrl = `${BASE_URL_IMAGE}/img/contacts/${person.photo}`;
 
   return (
     <article
