@@ -5,15 +5,20 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 16px;
-  height: 64px;
-  background-color: var(--color-surface-1);
+  gap: 24px;
+  background-color: var(--color-black);
   border-bottom: 1px solid var(--color-elements);
+  @include header-height;
 
   .logo {
-    width: 128px;
-    padding: 18px 24px;
-    flex-shrink: 0;
+    width: 96px;
+    padding: 13px 16px;
+
+    @include on-lg {
+      width: 128px;
+      padding: 18px 24px;
+    }
+
     @include hover(transform, scale($image-hover-scale));
   }
 
@@ -22,21 +27,24 @@
     padding: 0;
     display: none;
     align-items: center;
-    gap: 25px;
-    width: 190 px;
+    gap: 32px;
 
     @include on-md {
       display: flex;
+
+      @include on-lg {
+        gap: 64px;
+      }
+
       a {
         position: relative;
         color: var(--color-secondary);
         text-decoration: none;
+        display: flex;
+        align-items: center;
+        @include header-height;
 
         @include hover(color, var(--color-white));
-
-        &:hover {
-          color: var(--color-white);
-        }
       }
     }
   }
@@ -47,15 +55,23 @@
     &::after {
       content: '';
       position: absolute;
-      bottom: -23px;
+      bottom: 0;
       left: 0;
       width: 100%;
       height: 2px;
       background-color: var(--color-white);
     }
   }
+
   .search {
     flex-grow: 1;
+    margin: 48px;
+
+    display: none;
+
+    @include on-lg {
+      display: block;
+    }
   }
 
   .icons {
@@ -83,15 +99,23 @@
 
   .desktopIcons {
     display: none;
+    @include header-height;
+    width: 48px;
 
     @include on-md {
       display: flex;
+    }
+
+    @include on-lg {
+      width: 64px;
     }
   }
 
   .burgerButton {
     padding: 0;
     border: 0;
+    width: 48px;
+    height: 48px;
     background: none;
     border-left: 1px solid var(--color-elements);
 
