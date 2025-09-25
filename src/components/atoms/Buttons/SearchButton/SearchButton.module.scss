@@ -8,8 +8,10 @@
   background-color: var(--surface-1);
   color: var(--color-white);
   cursor: pointer;
-
   @include hover(background-color, var(--color-icons));
+  @include on-sm {
+    display: none;
+  }
 }
 .icon {
   width: 16px;

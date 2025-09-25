@@ -2,18 +2,25 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 24px;
-  height: 64px;
-  background-color: var(--color-surface-1);
+  gap: 10px;
+  background-color: var(--color-black);
   border-bottom: 1px solid var(--color-elements);
-
+  @include header-height;
+  @include on-sm {
+    gap: 24px;
+  }
   .logo {
-    width: 128px;
-    padding: 18px 24px;
+    width: 96px;
+    padding: 13px 16px;
+    flex-shrink: 0;
+
+    @include on-lg {
+      width: 128px;
+      padding: 18px 24px;
+    }
 
     @include hover(transform, scale($image-hover-scale));
   }
@@ -23,22 +30,24 @@
     padding: 0;
     display: none;
     align-items: center;
-    gap: 64px;
-    width: 425px;
+    gap: 32px;
 
     @include on-md {
       display: flex;
+
+      @include on-lg {
+        gap: 64px;
+      }
 
       a {
         position: relative;
         color: var(--color-secondary);
         text-decoration: none;
+        display: flex;
+        align-items: center;
+        @include header-height;
 
         @include hover(color, var(--color-white));
-
-        &:hover {
-          color: var(--color-white);
-        }
       }
     }
   }
@@ -49,29 +58,27 @@
     &::after {
       content: '';
       position: absolute;
-      bottom: -23px;
+      bottom: 0px;
       left: 0;
       width: 100%;
       height: 2px;
       background-color: var(--color-white);
     }
   }
+
   .search {
     flex-grow: 1;
-
-    display: none;
-
-    @include on-lg {
-      display: block;
-    }
+    display: flex;
+    justify-content: flex-end;
   }
 
   .icons {
-    flex-grow: 1;
+    flex-grow: 0;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     gap: 0;
+
     @include on-lg {
       flex-grow: 0;
     }
@@ -94,15 +101,23 @@
 
   .desktopIcons {
     display: none;
+    @include header-height;
+    width: 48px;
 
     @include on-md {
       display: flex;
+    }
+
+    @include on-lg {
+      width: 64px;
     }
   }
 
   .burgerButton {
     padding: 0;
     border: 0;
+    width: 48px;
+    height: 48px;
     background: none;
     border-left: 1px solid var(--color-elements);
 

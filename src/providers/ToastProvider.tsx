@@ -1,13 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { ToastContext } from '../contexts/ToastContext';
-import type { ToastType } from '../types/toast';
+import type { ToastItem, ToastType } from '../types/toast';
+import { getNewToastId } from '../utils/toastHelper';
 
 const ToastProvider = ({ children }: { children: React.ReactNode }) => {
-  const [open, setOpen] = useState(false);
-  const [type, setType] = useState<ToastType>('info');
-  const [title, setTitle] = useState<string | undefined>(undefined);
-  const [description, setDescription] = useState('');
-  const timeoutRef = useRef<number | null>(null);
+  const [toasts, setToasts] = useState<ToastItem[]>([]);
 
   const showToast = (
     desc: string,
@@ -15,32 +12,35 @@ const ToastProvider = ({ children }: { children: React.ReactNode }) => {
     customTitle?: string,
     duration: number = 5000,
   ) => {
-    if (timeoutRef.current !== null) {
-      clearTimeout(timeoutRef.current);
-    }
+    const newToast = {
+      id: getNewToastId(),
+      title: customTitle,
+      description: desc,
+      duration: duration,
+      type: toastType,
+      open: true,
+    };
 
-    setDescription(desc);
-    setType(toastType);
-    setTitle(customTitle || (toastType === 'error' ? 'Error' : 'Info'));
-    setOpen(true);
+    setToasts((prev) => [...prev, newToast]);
 
-    timeoutRef.current = window.setTimeout(() => {
-      setOpen(false);
-      timeoutRef.current = null;
+    setTimeout(() => {
+      removeToast(newToast.id);
     }, duration);
+  };
+  const removeToast = (id: string) => {
+    setToasts((prev) =>
+      prev.map((toast) =>
+        toast.id === id ? { ...toast, open: false } : toast,
+      ),
+    );
+
+    setTimeout(() => {
+      setToasts((prev) => prev.filter((toast) => toast.id !== id));
+    }, 200);
   };
 
   return (
-    <ToastContext.Provider
-      value={{
-        showToast,
-        open,
-        title,
-        description,
-        type,
-        setOpen,
-      }}
-    >
+    <ToastContext.Provider value={{ toasts, showToast, removeToast }}>
       {children}
     </ToastContext.Provider>
   );

@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import type { CategoryBanner } from '../../../types/Category';
 import styles from './ShopByCategory.module.scss';
-import { BASE_URL } from '../../../constants';
+import { BASE_URL_IMAGE } from '../../../constants';
 
 type Props = {
   category: CategoryBanner;
@@ -15,8 +15,8 @@ export const CategoryCard: React.FC<Props> = ({
   baseCategoryUrl,
   isLoading,
 }) => {
-  const imageUrl = `${BASE_URL}/gallery/categories/${category.imgLink}`;
-  const videoUrl = `${BASE_URL}/gallery/categories/${category.videoLink}`;
+  const imageUrl = `${BASE_URL_IMAGE}/gallery/categories/${category.imgLink}`;
+  const videoUrl = `${BASE_URL_IMAGE}/gallery/categories/${category.videoLink}`;
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const handleHover = (enter: boolean) => {

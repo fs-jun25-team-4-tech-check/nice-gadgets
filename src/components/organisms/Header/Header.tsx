@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import { useCart } from '../../../hooks/useCart';
 import { useFavs } from '../../../hooks/useFavs';
 import { useGlobalStore } from '../../../stores/globalStore';
+import CatalogueModal from '../../molecules/CatalogueModal/CatalogueModal';
 import SearchModule from '../../molecules/SearchModule/SearchModule';
 
 const Header = () => {
@@ -81,28 +82,7 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink
-                to="/catalog/phones"
-                className={({ isActive }) => getNavLinkClass(isActive)}
-              >
-                Phones
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/catalog/tablets"
-                className={({ isActive }) => getNavLinkClass(isActive)}
-              >
-                Tablets
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/catalog/accessories"
-                className={({ isActive }) => getNavLinkClass(isActive)}
-              >
-                Accessories
-              </NavLink>
+              <CatalogueModal />
             </li>
           </ul>
         </nav>
@@ -123,6 +103,7 @@ const Header = () => {
           />
           <HeaderButton
             variant={isBurgerMenuOpen ? 'close' : 'burger'}
+            className={styles.burgerButton}
             onClick={() => {
               setIsBurgerMenuOpen(!isBurgerMenuOpen);
             }}

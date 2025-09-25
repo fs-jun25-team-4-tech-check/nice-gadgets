@@ -187,7 +187,7 @@ export const useProductDetails = (
   itemId: string,
   simplifiedProduct?: Product | null,
 ) => {
-  return useQuery<ProductDetails | undefined>({
+  return useQuery<ProductDetails | null>({
     queryKey: ['product', 'details', itemId],
     queryFn: () => getProductDetails(itemId),
     enabled: !!itemId,
