@@ -41,6 +41,8 @@ export const SelectorsSection = ({
   const regularPrice = isDetailed ? product.priceRegular : product.fullPrice;
   const discountPrice = isDetailed ? product.priceDiscount : product.price;
 
+  const showSkeletons = isLoading || isFetching;
+
   return (
     <section className={styles.section}>
       <div className={styles.selectorGroup}>
@@ -61,7 +63,8 @@ export const SelectorsSection = ({
             />
           ))}
 
-          {colorOptions.length === 1 &&
+          {showSkeletons &&
+            colorOptions.length === 1 &&
             [1, 2, 3, 4].map((i) => (
               <div
                 key={i}
@@ -86,7 +89,8 @@ export const SelectorsSection = ({
             </ItemOptionSelectButton>
           ))}
 
-          {capacityOptions.length === 1 &&
+          {showSkeletons &&
+            capacityOptions.length === 1 &&
             [1, 2, 3].map((i) => (
               <div
                 key={i}
