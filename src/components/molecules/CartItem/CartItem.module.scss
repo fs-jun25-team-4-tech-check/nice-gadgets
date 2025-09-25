@@ -20,12 +20,15 @@
     .deleteIcon {
       min-width: 16px;
     }
+
     .deleteButton {
       color: var(--color-icons);
       border: 0;
       background-color: transparent;
       padding: 0;
       cursor: pointer;
+
+      @include hover(color, var(--color-accent-hover));
     }
 
     .itemImage {
@@ -35,12 +38,15 @@
       object-fit: contain;
       object-position: center;
       flex-shrink: 0;
+
+      @include hover(transform, scale($image-hover-scale));
     }
 
     .itemName {
       @extend .body-text;
       text-decoration: none;
-      color: $dark-white;
+      color: var(--color-white);
+      @include hover(color, var(--color-accent-hover));
     }
   }
 

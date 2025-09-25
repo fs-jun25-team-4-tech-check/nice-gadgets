@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, ScrollRestoration } from 'react-router-dom';
 import styles from './MainLayout.module.scss';
 import { Footer } from '../../organisms/Footer/Footer';
 import Header from '../../organisms/Header/Header';
@@ -13,6 +13,7 @@ const MainLayout = () => {
       </main>
 
       <Footer />
+      <ScrollRestoration />
     </div>
   );
 };

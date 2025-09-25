@@ -1,10 +1,13 @@
 import {
   mockGetAllProducts,
+  mockGetBrandNewModels,
+  mockGetHotDeals,
   mockGetProductCategoryCounts,
   mockGetProductDetails,
   mockGetProducts,
   mockGetProductsByCategory,
   mockGetProductsById,
+  mockGetRecommendedProducts,
 } from './mockApi';
 import type {
   PaginatedResponse,
@@ -64,6 +67,20 @@ export async function getProductCategoryCounts(): Promise<
   Record<ProductCategory, number>
 > {
   return mockGetProductCategoryCounts();
+}
+
+export async function getHotDeals(limit: number): Promise<Product[]> {
+  return mockGetHotDeals(limit);
+}
+
+export async function getRecommendedProducts(
+  limit: number,
+): Promise<Product[]> {
+  return mockGetRecommendedProducts(limit);
+}
+
+export async function getBrandNewModels(limit: number): Promise<Product[]> {
+  return mockGetBrandNewModels(limit);
 }
 
 // This function will be used when switching to real API

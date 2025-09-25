@@ -1,5 +1,5 @@
 import styles from './Header.module.scss';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import logo_dark from './../../../assets/icons/brand/logo_dark.svg';
 import logo_light from './../../../assets/icons/brand/logo-light.svg';
 import { HeaderButton } from '../../atoms/Buttons/HeaderButton';
@@ -10,11 +10,13 @@ import { useCart } from '../../../hooks/useCart';
 import { useFavs } from '../../../hooks/useFavs';
 import { useGlobalStore } from '../../../stores/globalStore';
 import CatalogueModal from '../../molecules/CatalogueModal/CatalogueModal';
+import SearchModule from '../../molecules/SearchModule/SearchModule';
 
 const Header = () => {
   const { count } = useCart();
   const { favs } = useFavs();
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
+  const location = useLocation();
 
   const theme = useGlobalStore((state) => state.theme);
   useEffect(() => {
@@ -50,29 +52,31 @@ const Header = () => {
       : 'light'
     : theme;
 
+  const hasSearchQuery = new URLSearchParams(location.search).has('query');
+
+  const getNavLinkClass = (isActive: boolean) => {
+    return `uppercase-text ${styles.navLink} ${isActive && !hasSearchQuery ? styles.active : ''}`;
+  };
+
   return (
     <>
       <header className={styles.header}>
-        {' '}
         <NavLink
           onClick={() => setIsBurgerMenuOpen(false)}
           to={'/'}
           className={styles.logo}
         >
-          {' '}
           <img
             src={currentTheme === 'light' ? logo_light : logo_dark}
             alt="Nice Gadgets Logo"
-          />{' '}
+          />
         </NavLink>
         <nav>
           <ul className={styles.nav}>
             <li>
               <NavLink
                 to="/"
-                className={({ isActive }) =>
-                  `uppercase-text ${styles.navLink} ${isActive ? styles.active : ''}`
-                }
+                className={({ isActive }) => getNavLinkClass(isActive)}
               >
                 Home
               </NavLink>
@@ -82,6 +86,9 @@ const Header = () => {
             </li>
           </ul>
         </nav>
+        <div className={styles.search}>
+          <SearchModule />
+        </div>
         <div className={styles.icons}>
           <ThemeSwitcher />
           <HeaderButton

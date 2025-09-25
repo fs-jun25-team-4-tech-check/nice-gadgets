@@ -1,79 +1,115 @@
 import { useCart } from '../../../hooks/useCart';
 import { useFavs } from '../../../hooks/useFavs';
-import type { ProductDetails } from '../../../types';
-import { ActionButton, PrimaryButton } from '../../atoms';
+import type { Product, ProductDetails } from '../../../types';
+import { ActionButton, ColorButton, PrimaryButton } from '../../atoms';
 import productColorOptions from '../../../assets/data/productColorOptions.json';
 
 import styles from './SelectorsSection.module.scss';
+import skeletonStyles from './SelectorsSectionSkeleton.module.scss';
+import ItemOptionSelectButton from '../../atoms/Buttons/ItemOptionSelectButton/ItemOptionSelectButton';
 
 type ColorKey = keyof typeof productColorOptions;
 
 interface SelectorsSectionProps {
-  product: ProductDetails;
+  product: Product | ProductDetails;
+  isFetching?: boolean;
+  isLoading?: boolean;
   onColorChange?: (color: string) => void;
   onCapacityChange?: (capacity: string) => void;
 }
 
 export const SelectorsSection = ({
   product,
+  isFetching,
+  isLoading,
   onColorChange,
   onCapacityChange,
 }: SelectorsSectionProps) => {
   const { addToCart, removeFromCart, isInCart } = useCart();
   const { addToFavs, removeFromFavs, isInFavs } = useFavs();
 
-  const isInCartState = isInCart(product.id);
-  const isFavourite = isInFavs(product.id);
+  const isDetailed = !('itemId' in product);
+
+  const productId = isDetailed ? product.id : product.itemId;
+
+  const isInCartState = isInCart(productId);
+  const isFavourite = isInFavs(productId);
+
+  const colorOptions = isDetailed ? product.colorsAvailable : [product.color];
+  const capacityOptions =
+    isDetailed ? product.capacityAvailable : [product.capacity];
+  const regularPrice = isDetailed ? product.priceRegular : product.fullPrice;
+  const discountPrice = isDetailed ? product.priceDiscount : product.price;
 
   return (
     <section className={styles.section}>
       <div className={styles.selectorGroup}>
         <p className={styles.label}>Available colors</p>
+
         <div className={styles.colorOptions}>
-          {product.colorsAvailable.map((color) => (
-            <button
+          {colorOptions.map((color) => (
+            <ColorButton
               key={color}
-              className={`${styles.colorCircle} ${product.color === color ? styles.active : ''}`}
-              style={{
-                backgroundColor:
-                  productColorOptions[color as ColorKey] ||
-                  productColorOptions['out-of-stock'],
-              }}
+              isSelected={product.color === color}
+              color={
+                productColorOptions[color as ColorKey] ||
+                productColorOptions['out-of-stock']
+              }
               onClick={() => onColorChange?.(color)}
+              disabled={isLoading || isFetching}
               aria-label={`Select ${color} color`}
             />
           ))}
+
+          {colorOptions.length === 1 &&
+            [1, 2, 3, 4].map((i) => (
+              <div
+                key={i}
+                className={skeletonStyles.colorButtonSkeleton}
+              ></div>
+            ))}
         </div>
       </div>
 
       <div className={styles.selectorGroup}>
         <p className={styles.label}>Select capacity</p>
+
         <div className={styles.capacityOptions}>
-          {product.capacityAvailable.map((capacity) => (
-            <button
+          {capacityOptions.map((capacity) => (
+            <ItemOptionSelectButton
               key={capacity}
-              className={`${styles.capacityBtn} ${product.capacity === capacity ? styles.active : ''}`}
               onClick={() => onCapacityChange?.(capacity)}
+              isSelected={product.capacity === capacity}
+              disabled={isLoading || isFetching}
             >
               {capacity}
-            </button>
+            </ItemOptionSelectButton>
           ))}
+
+          {capacityOptions.length === 1 &&
+            [1, 2, 3].map((i) => (
+              <div
+                key={i}
+                className={skeletonStyles.capacityBtnSkeleton}
+              ></div>
+            ))}
         </div>
       </div>
 
       <div className={styles.priceBlock}>
-        <span className={styles.newPrice}>${product.priceDiscount}</span>
-        <span className={styles.oldPrice}>${product.priceRegular}</span>
+        <span className={styles.newPrice}>${discountPrice}</span>
+        <span className={styles.oldPrice}>${regularPrice}</span>
       </div>
 
       <div className={styles.buttonGroup}>
         <PrimaryButton
           onClick={
             isInCartState ?
-              () => removeFromCart(product.id)
-            : () => addToCart(product.id)
+              () => removeFromCart(productId)
+            : () => addToCart(productId)
           }
           isSelected={isInCartState}
+          disabled={isLoading || isFetching}
         >
           {isInCartState ? 'Added' : 'Add to cart'}
         </PrimaryButton>
@@ -82,10 +118,11 @@ export const SelectorsSection = ({
           variant="favourites"
           onClick={
             isFavourite ?
-              () => removeFromFavs(product.id)
-            : () => addToFavs(product.id)
+              () => removeFromFavs(productId)
+            : () => addToFavs(productId)
           }
           isSelected={isFavourite}
+          disabled={isLoading || isFetching}
         />
       </div>
 
@@ -94,14 +131,21 @@ export const SelectorsSection = ({
           <span className={styles.specName}>Screen</span>
           <span className={styles.specValue}>{product.screen}</span>
         </div>
-        <div className={styles.specRow}>
-          <span className={styles.specName}>Resolution</span>
-          <span className={styles.specValue}>{product.resolution}</span>
-        </div>
-        <div className={styles.specRow}>
-          <span className={styles.specName}>Processor</span>
-          <span className={styles.specValue}>{product.processor}</span>
-        </div>
+
+        {isDetailed && (
+          <div className={styles.specRow}>
+            <span className={styles.specName}>Resolution</span>
+            <span className={styles.specValue}>{product.resolution}</span>
+          </div>
+        )}
+
+        {isDetailed && (
+          <div className={styles.specRow}>
+            <span className={styles.specName}>Processor</span>
+            <span className={styles.specValue}>{product.processor}</span>
+          </div>
+        )}
+
         <div className={styles.specRow}>
           <span className={styles.specName}>RAM</span>
           <span className={styles.specValue}>{product.ram}</span>
