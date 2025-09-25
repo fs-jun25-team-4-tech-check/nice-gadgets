@@ -15,7 +15,7 @@ jobs:
     steps:
       # Checkout the code
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4 # Updated to v4 for best practice
 
       # Set up Node.js
       - name: Set up Node.js
@@ -32,6 +32,9 @@ jobs:
       - name: Build the app
         run: |
           npm run build
+        env: # <-- ADD THIS BLOCK
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
 
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
@@ -39,5 +42,4 @@ jobs:
         with:
           branch: gh-pages # Branch where the app will be deployed
           folder: dist # Folder containing the built React app
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Automatically generated token for authentication
+          # The GITHUB_TOKEN is implicitly available and doesn't need to be passed in the `env` block for this action
