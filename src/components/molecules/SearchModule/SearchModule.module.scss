@@ -1,28 +1,110 @@
 .container {
   position: relative;
+  width: 100%;
 }
 
-.searchModule {
+/* --- Десктопна форма пошуку --- */
+.searchModuleDesktop {
   width: 100%;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   gap: 8px;
+
+  @include on-sm {
+    display: flex;
+  }
 }
 
-.searchBar {
-  width: 100%;
-  border: 1px solid var(--color-elements);
-  background-color: var(--color-surface-2);
-  color: var(--color-white);
-  font-size: $default-font-size;
+/* --- Мобільна кнопка пошуку --- */
+.searchMobileButton {
+  display: flex;
+  justify-content: flex-end;
 
-  &:focus {
-    border-color: var(--color-surface-1);
-    box-shadow: none;
+  @include on-md {
+    display: none;
   }
+}
 
-  &::placeholder {
-    color: var(--color-secondary);
+/* --- Оверлей (мобільний пошук) --- */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.overlayContent {
+  background: var(--color-surface-2);
+  display: flex;
+  width: 100%;
+  padding: 16px;
+  color: var(--color-white);
+  animation: slideDown 0.3s ease-in-out;
+  position: relative;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-white);
+  padding: 8px;
+  z-index: 10;
+}
+
+.searchForm {
+  width: 100%;
+  display: flex;
+  flex-grow: 1;
+  gap: 8px;
+
+  .searchBar {
+    width: 100%;
+  }
+}
+
+// Автодоповнення
+.autocompleteDropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: var(--color-surface-2);
+  border: 1px solid var(--color-elements);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  z-index: 998;
+}
+
+// Анімації
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+  }
+  to {
+    transform: translateY(0);
   }
 }
