@@ -6,30 +6,34 @@
   }
 
   .trigger {
+    @include header-height;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 5px;
-    border: 1px solid var(--color-white);
+    border: 2px solid var(--color-secondary);
     padding: 8px;
     user-select: none;
     transition-duration: 0.2s;
-    background-color: var(--color-surface-1);
-    color: var(--color-white);
-    font-weight: 600;
+    background-color: var(--color-black);
+    color: var(--color-secondary);
+
     line-height: 1;
+    font-size: 12px;
     @extend .uppercase-text;
+
+    &:hover {
+      border-color: var(--color-white);
+      color: var(--color-white);
+    }
 
     .catalogIcon {
       font-size: 15px;
     }
-    &:hover {
-      background-color: var(--color-white);
-      color: var(--color-black);
-    }
   }
 
   .content {
+    position: absolute;
+    top: 100%;
     width: 100vw;
     max-width: 400px;
     background-color: var(--color-black);
@@ -77,8 +81,7 @@
 
       .linkName {
         text-decoration: none;
-        font-size: 19px;
-        font-weight: 400;
+        @extend .uppercase-text;
         color: var(--color-white);
       }
       .linkWrapper {
@@ -89,7 +92,7 @@
       }
 
       .linkIcon {
-        font-size: 25px;
+        font-size: 15px;
         color: var(--color-white);
       }
     }
