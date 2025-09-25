@@ -31,7 +31,6 @@ export const ControlsBar: React.FC<ControlsBarProps> = ({
     { value: 'name', displayName: 'Name' },
     { value: 'price', displayName: 'Price' },
     { value: 'capacity', displayName: 'Capacity' },
-    { value: 'fullPrice', displayName: 'Full Price' },
   ];
 
   const sortOrderItems: DropdownItem[] = [

@@ -1,4 +1,4 @@
-export type SortField = 'year' | 'name' | 'price' | 'fullPrice' | 'capacity';
+export type SortField = 'year' | 'name' | 'price' | 'capacity';
 
 export type SortDirection = 'asc' | 'desc';
 
