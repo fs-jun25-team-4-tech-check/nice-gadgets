@@ -5,13 +5,20 @@ import { IoPhonePortraitOutline } from 'react-icons/io5';
 import { FaTabletAlt } from 'react-icons/fa';
 import { PiCirclesFourLight } from 'react-icons/pi';
 import { CatalogueModalLink } from './catalogueModalLink';
+import { useLocation } from 'react-router-dom';
 
 const CatalogueModal = () => {
+  const location = useLocation();
+
+  const isCatalogPage = location.pathname.startsWith('/catalog');
+
   return (
     <NavigationMenu.Root className={styles.root}>
       <NavigationMenu.List className={styles.menuList}>
         <NavigationMenu.Item className={styles.item}>
-          <NavigationMenu.Trigger className={styles.trigger}>
+          <NavigationMenu.Trigger
+            className={`${styles.trigger} ${isCatalogPage ? styles.activeTrigger : ''}`}
+          >
             <PiCirclesFourLight className={styles.catalogIcon} />
             Catalog
           </NavigationMenu.Trigger>

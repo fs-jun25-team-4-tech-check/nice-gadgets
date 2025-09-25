@@ -8,12 +8,14 @@ type AutocompleteDropdownProps = {
   products: Product[];
   searchQuery: string;
   isFetching?: boolean;
+  onProductClick: () => void;
 };
 
 const AutocompleteDropdown: React.FC<AutocompleteDropdownProps> = ({
   products,
   searchQuery,
   isFetching,
+  onProductClick,
 }) => {
   if (searchQuery.trim() === '') {
     return null;
@@ -44,6 +46,7 @@ const AutocompleteDropdown: React.FC<AutocompleteDropdownProps> = ({
           key={product.id}
           to={`/item/${product.itemId}`}
           className={styles.item}
+          onClick={onProductClick}
         >
           <img
             src={product.image}

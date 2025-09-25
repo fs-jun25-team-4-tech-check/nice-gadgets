@@ -58,9 +58,6 @@
   p {
     @extend .body-text;
     margin-bottom: 16px;
-    &:last-of-type {
-      margin-bottom: 0;
-    }
   }
 
   ul,
