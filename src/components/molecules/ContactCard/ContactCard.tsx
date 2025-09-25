@@ -48,9 +48,13 @@ const ContactCard: React.FC<ContactCardProps> = ({ person }) => {
 
           {person.email && (
             <a
-              href={`mailto:${person.email}`}
+              href={`mailto:${person.email.trim()}`}
               className={styles.iconLink}
               aria-label={`Send an email to ${person.firstName}`}
+              onClick={(e) => {
+                e.preventDefault();
+                window.location.href = `mailto:${person.email.trim()}`;
+              }}
             >
               <BsEnvelopeFill className={styles.icon} />
             </a>
