@@ -4,7 +4,7 @@ import { ControlsBar } from '../../components/molecules/ControlsBar/ControlsBar'
 import { ListItems } from '../../components/organisms/ListItems/ListItems';
 import Pagination from '../../components/molecules/Pagination/Pagination';
 import Breadcrumbs from '../../components/molecules/Breadcrumbs/Breadcrumbs';
-import { useProductsByCategory } from '../../hooks/useProducts';
+import { useProductsByCategory, useProducts } from '../../hooks/useProducts';
 import type { ProductCategory } from '../../services/api';
 import type {
   PaginationOption,
@@ -14,6 +14,7 @@ import type {
 const CatalogPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { category = '' } = useParams();
+  const query = searchParams.get('query') || '';
 
   const getPageTitle = (cat: string) => {
     switch (cat) {
@@ -24,7 +25,7 @@ const CatalogPage = () => {
       case 'accessories':
         return 'Accessories';
       default:
-        return 'Products';
+        return 'Search results';
     }
   };
 
@@ -50,7 +51,9 @@ const CatalogPage = () => {
 
   const { sortBy, sortOrder } = getSortParams(sortOption);
 
-  const { data, isLoading, isError } = useProductsByCategory(
+  const isSearchMode = !!query;
+
+  const categoryQueryResult = useProductsByCategory(
     category as ProductCategory,
     currentPage,
     perPage,
@@ -59,20 +62,32 @@ const CatalogPage = () => {
     sortOrder,
   );
 
+  const searchQueryResult = useProducts(
+    currentPage,
+    perPage,
+    query,
+    sortBy,
+    sortOrder,
+  );
+
+  const { data, isFetching, isLoading, isError } =
+    isSearchMode ? searchQueryResult : categoryQueryResult;
+
   const handlePerPageChange = (items: PaginationOption) => {
-    setSearchParams({
+    setSearchParams((prev) => ({
+      ...Object.fromEntries(prev.entries()),
       page: '1',
       perPage: items.toString(),
-      sort: sortOption,
-    });
+    }));
   };
 
   const handleSortChange = (option: SortOption) => {
-    setSearchParams({
+    setSearchParams((prev) => ({
+      ...Object.fromEntries(prev.entries()),
       page: '1',
       perPage: perPage.toString(),
       sort: option,
-    });
+    }));
   };
 
   const totalProducts = data?.totalItems || 0;
@@ -96,7 +111,11 @@ const CatalogPage = () => {
       }
       productCountSection={<p>{totalProducts} models</p>}
       productListSection={
-        isLoading ? <div>Loading...</div> : <ListItems products={data?.data} />
+        <ListItems
+          products={data?.data}
+          isLoading={isLoading || isFetching}
+          itemsCount={perPage}
+        />
       }
       paginationSection={
         !isLoading &&

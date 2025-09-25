@@ -1,0 +1,34 @@
+@keyframes pulse {
+  0% {
+    background-color: var(--color-surface-1);
+  }
+  50% {
+    background-color: var(--color-surface-2);
+  }
+  100% {
+    background-color: var(--color-surface-1);
+  }
+}
+
+.skeletonItem {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: var(--color-surface-1);
+  border-bottom: 1px solid var(--color-elements);
+}
+
+.skeletonImage {
+  width: 50px;
+  height: 50px;
+  margin-right: 12px;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeletonText {
+  height: 16px;
+  width: 70%;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}

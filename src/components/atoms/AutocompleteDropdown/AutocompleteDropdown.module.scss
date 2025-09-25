@@ -1,0 +1,30 @@
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 38px;
+  z-index: 100;
+  background-color: var(--color-surface-1);
+  border: 1px solid var(--color-elements);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  color: var(--color-dark);
+  text-decoration: none;
+  border: 1px solid var(--color-elements);
+}
+
+.item:hover {
+  background-color: var(--color-surface-2);
+  scale: 1.01;
+}
+
+.itemImage {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin-right: 12px;
+}

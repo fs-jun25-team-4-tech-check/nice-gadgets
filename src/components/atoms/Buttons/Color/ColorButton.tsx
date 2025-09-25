@@ -7,6 +7,7 @@ const ColorButton: React.FC<Props> = ({
   color,
   onClick = () => {},
   className = '',
+  disabled = false,
 }) => {
   return (
     <button
@@ -16,6 +17,7 @@ const ColorButton: React.FC<Props> = ({
         [styles.isSelected]: isSelected,
       })}
       type="button"
+      disabled={disabled}
     ></button>
   );
 };

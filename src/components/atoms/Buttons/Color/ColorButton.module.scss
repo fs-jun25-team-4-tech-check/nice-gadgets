@@ -9,6 +9,12 @@
   cursor: pointer;
 
   @include hover(outline-color, var(--color-secondary));
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    @include hover(outline-color, var(--color-elements));
+  }
 }
 
 .isSelected {
