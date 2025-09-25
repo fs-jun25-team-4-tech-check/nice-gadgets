@@ -218,8 +218,7 @@ export async function getProductCategoryCounts(): Promise<
     throw new Error(tabletsError.message);
   }
 
-  // count: accessories,
-  const { error: accessoriesError } = await supabase
+  const { count: accessories, error: accessoriesError } = await supabase
     .from('products')
     .select('*', { count: 'exact', head: true })
     .eq('category', 'accessories');
@@ -231,7 +230,7 @@ export async function getProductCategoryCounts(): Promise<
   return {
     phones: phones || 0,
     tablets: tablets || 0,
-    accessories: accessoriesError || 0,
+    accessories: accessories || 0,
   };
 }
 
