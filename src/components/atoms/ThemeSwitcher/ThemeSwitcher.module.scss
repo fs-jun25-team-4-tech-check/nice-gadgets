@@ -3,13 +3,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 64px;
-  width: 64px;
   border-left: 1px solid var(--color-elements);
   cursor: pointer;
   background-color: transparent;
+  width: 48px;
 
+  @include header-height;
   @include hover(background-color, var(--color-icons));
+  @include on-lg {
+    width: 64px;
+  }
 
   &:hover .mainButton {
     color: var(--color-secondary);
@@ -23,10 +26,10 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
-  padding: 22px; // !TODO: temporary measure to have icon look more in line with other header buttons (prev value 0)
   color: var(--color-icons);
   height: 100%;
   width: 100%;
+  padding: 0;
 }
 
 .dropdownMenu {
@@ -43,7 +46,6 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 10;
   min-width: 150px;
-  margin-top: 4px;
   margin: 0 5px;
 
   @include on-md {
@@ -76,6 +78,7 @@
 
 .text {
   font-size: 12px;
+
   @include on-md {
     display: inline;
   }
@@ -90,5 +93,6 @@
 .active {
   background-color: var(--color-accent);
   color: var(--color-white);
+
   @include hover(background-color, var(--color-accent));
 }
