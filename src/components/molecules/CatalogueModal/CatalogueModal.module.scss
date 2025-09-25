@@ -66,7 +66,6 @@
 
         &:hover {
           background-color: var(--color-white);
-          transform: translateX(20px);
           .linkName {
             color: var(--color-accent);
           }
@@ -78,8 +77,7 @@
 
       .linkName {
         text-decoration: none;
-        font-size: 17px;
-        padding-bottom: 5px;
+        font-size: 19px;
         font-weight: 400;
         color: var(--color-white);
       }
