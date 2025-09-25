@@ -2,28 +2,41 @@ import React from 'react';
 import { DropdownAtom } from '../../atoms/DropdownAtom/DropdownAtom';
 import styles from './ControlsBar.module.scss';
 import {
-  type SortOption,
+  type SortField,
+  type SortDirection,
   type PaginationOption,
   type DropdownItem,
 } from '../../../types/ControlsBarTypes';
 
 interface ControlsBarProps {
-  sortOption: SortOption;
-  onSortChange: (value: SortOption) => void;
+  sortBy: SortField;
+  onSortByChange: (value: SortField) => void;
+  sortOrder: SortDirection;
+  onSortOrderChange: (value: SortDirection) => void;
+
   perPage: PaginationOption;
   onPerPageChange: (value: PaginationOption) => void;
 }
 
 export const ControlsBar: React.FC<ControlsBarProps> = ({
-  sortOption,
-  onSortChange,
+  sortBy,
+  onSortByChange,
+  sortOrder,
+  onSortOrderChange,
   perPage,
   onPerPageChange,
 }) => {
-  const sortItems: DropdownItem[] = [
-    { value: 'Newest', displayName: 'Newest' },
-    { value: 'Price_ascending', displayName: 'Price ↑' },
-    { value: 'Price_descending', displayName: 'Price ↓' },
+  const sortByItems: DropdownItem[] = [
+    { value: 'year', displayName: 'Release Date' },
+    { value: 'name', displayName: 'Name' },
+    { value: 'price', displayName: 'Price' },
+    { value: 'capacity', displayName: 'Capacity' },
+    { value: 'fullPrice', displayName: 'Full Price' },
+  ];
+
+  const sortOrderItems: DropdownItem[] = [
+    { value: 'asc', displayName: 'Ascending' },
+    { value: 'desc', displayName: 'Descending' },
   ];
 
   const paginationItems: DropdownItem[] = [
@@ -38,10 +51,20 @@ export const ControlsBar: React.FC<ControlsBarProps> = ({
       <div className={styles.controlsBar}>
         <DropdownAtom
           label="Sort by"
-          items={sortItems}
+          items={sortByItems}
           placeholder="Select"
-          value={sortOption}
-          onSelect={(val) => onSortChange(val as SortOption)}
+          value={sortBy}
+          onSelect={(val) => onSortByChange(val as SortField)}
+          variant="sort"
+        />
+      </div>
+      <div className={styles.controlsBar}>
+        <DropdownAtom
+          label="Sort Order"
+          items={sortOrderItems}
+          placeholder="Select"
+          value={sortOrder}
+          onSelect={(val) => onSortOrderChange(val as SortDirection)}
           variant="sort"
         />
       </div>
