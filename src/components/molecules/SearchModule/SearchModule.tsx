@@ -7,7 +7,24 @@ import AutocompleteDropdown from './../../atoms/AutocompleteDropdown/Autocomplet
 import { useProducts } from '../../../hooks/useProducts';
 import { TfiClose as CloseIcon } from 'react-icons/tfi';
 
+function useDebounce<T>(value: T, delay: number): T {
+  const [debouncedValue, setDebouncedValue] = useState<T>(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
+}
+
 const SEARCH_QUERY_PARAM = 'query';
+const DEBOUNCE_TIMER = 500;
 
 const SearchModule = () => {
   const [searchParams] = useSearchParams();
@@ -18,8 +35,9 @@ const SearchModule = () => {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
 
   const overlayRef = useRef<HTMLDivElement>(null);
+  const debouncedQuery = useDebounce(query, DEBOUNCE_TIMER);
 
-  const { data, isFetching } = useProducts(1, 5, query);
+  const { data, isFetching } = useProducts(1, 5, debouncedQuery);
   const suggestions = data?.data || [];
 
   useEffect(() => {
@@ -55,6 +73,7 @@ const SearchModule = () => {
         )}`,
       );
       setIsOverlayOpen(false);
+      setIsInputFocused(false);
     }
   };
 
@@ -67,7 +86,7 @@ const SearchModule = () => {
     setIsOverlayOpen(false);
   };
 
-  const showDropdown = isInputFocused && query.trim() !== '';
+  const showDropdown = isInputFocused && debouncedQuery.trim() !== '';
 
   return (
     <div className={styles.container}>
@@ -85,7 +104,7 @@ const SearchModule = () => {
         {showDropdown && (
           <AutocompleteDropdown
             products={suggestions}
-            searchQuery={query}
+            searchQuery={debouncedQuery}
             isFetching={isFetching}
             onProductClick={handleAutocompleteClick}
           />
@@ -123,7 +142,7 @@ const SearchModule = () => {
             {showDropdown && (
               <AutocompleteDropdown
                 products={suggestions}
-                searchQuery={query}
+                searchQuery={debouncedQuery}
                 isFetching={isFetching}
                 onProductClick={handleAutocompleteClick}
               />
