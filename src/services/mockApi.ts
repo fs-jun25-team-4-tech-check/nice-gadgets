@@ -17,6 +17,7 @@ const endpointMap: Record<ProductCategory, string> = {
 const allCategories: ProductCategory[] = ['phones', 'tablets', 'accessories'];
 
 // #region Utility
+
 function waitDelay(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -58,6 +59,56 @@ function addFullImagePaths<T extends { image?: string; images?: string[] }>(
   });
 
   return Array.isArray(items) ? items.map(transform) : transform(items);
+}
+
+function sortProducts(
+  products: Product[],
+  sortBy: keyof Product,
+  sortOrder: 'asc' | 'desc',
+): Product[] {
+  const sortedProducts = [...products];
+
+  const getNumericValue = (value: unknown): number | null => {
+    if (typeof value === 'number') return value;
+    if (typeof value === 'string') {
+      const match = value.match(/^(\d+)/);
+      return match ? parseFloat(match[1]) : null;
+    }
+    return null;
+  };
+
+  sortedProducts.sort((a, b) => {
+    const aValue = a[sortBy];
+    const bValue = b[sortBy];
+
+    if (
+      sortBy === 'year' ||
+      sortBy === 'capacity' ||
+      sortBy === 'price' ||
+      sortBy === 'fullPrice'
+    ) {
+      const aNum = getNumericValue(aValue);
+      const bNum = getNumericValue(bValue);
+
+      if (aNum !== null && bNum !== null) {
+        const comparison = aNum - bNum;
+        return sortOrder === 'asc' ? comparison : -comparison;
+      }
+    }
+
+    const aStr = String(aValue).toLowerCase();
+    const bStr = String(bValue).toLowerCase();
+
+    if (aStr < bStr) {
+      return sortOrder === 'asc' ? -1 : 1;
+    }
+    if (aStr > bStr) {
+      return sortOrder === 'asc' ? 1 : -1;
+    }
+    return 0;
+  });
+
+  return sortedProducts;
 }
 
 async function fetchJson<T>(endpoint: string): Promise<T> {
@@ -111,22 +162,9 @@ export async function mockGetProducts(
     );
   }
 
-  if (sortBy) {
-    allProducts.sort((a, b) => {
-      const aValue = a[sortBy];
-      const bValue = b[sortBy];
+  const sortedProducts = sortProducts(allProducts, sortBy, sortOrder);
 
-      if (aValue < bValue) {
-        return sortOrder === 'asc' ? -1 : 1;
-      }
-      if (aValue > bValue) {
-        return sortOrder === 'asc' ? 1 : -1;
-      }
-      return 0;
-    });
-  }
-
-  const paginatedProducts = paginateData(allProducts, page, perPage);
+  const paginatedProducts = paginateData(sortedProducts, page, perPage);
 
   paginatedProducts.data = addFullImagePaths(paginatedProducts.data);
 
@@ -155,22 +193,9 @@ export async function mockGetProductsByCategory(
     );
   }
 
-  if (sortBy) {
-    filteredProducts.sort((a, b) => {
-      const aValue = a[sortBy];
-      const bValue = b[sortBy];
+  const sortedProducts = sortProducts(filteredProducts, sortBy, sortOrder);
 
-      if (aValue < bValue) {
-        return sortOrder === 'asc' ? -1 : 1;
-      }
-      if (aValue > bValue) {
-        return sortOrder === 'asc' ? 1 : -1;
-      }
-      return 0;
-    });
-  }
-
-  const paginatedProducts = paginateData(filteredProducts, page, perPage);
+  const paginatedProducts = paginateData(sortedProducts, page, perPage);
 
   paginatedProducts.data = addFullImagePaths(paginatedProducts.data);
 
@@ -227,46 +252,5 @@ export async function mockGetProductCategoryCounts(): Promise<
   );
 
   return counts;
-}
-
-export async function mockGetHotDeals(limit: number): Promise<Product[]> {
-  await waitDelay(mockNetworkDelay);
-
-  const allProducts = await fetchJson<Product[]>(API_ENDPOINTS.PRODUCTS);
-
-  const sortedByDiscount = allProducts.sort((a, b) => {
-    const discountA = a.fullPrice - a.price;
-    const discountB = b.fullPrice - b.price;
-    return discountB - discountA;
-  });
-
-  const hotDeals = sortedByDiscount.slice(0, limit);
-
-  return addFullImagePaths(hotDeals);
-}
-
-export async function mockGetRecommendedProducts(
-  limit: number,
-): Promise<Product[]> {
-  await waitDelay(mockNetworkDelay);
-
-  const allProducts = await fetchJson<Product[]>(API_ENDPOINTS.PRODUCTS);
-
-  const shuffled = allProducts.sort(() => 0.5 - Math.random());
-  const recommended = shuffled.slice(0, limit);
-
-  return addFullImagePaths(recommended);
-}
-
-export async function mockGetBrandNewModels(limit: number): Promise<Product[]> {
-  await waitDelay(mockNetworkDelay);
-
-  const allProducts = await fetchJson<Product[]>(API_ENDPOINTS.PRODUCTS);
-
-  const sortedByYear = allProducts.sort((a, b) => b.year - a.year);
-
-  const brandNewModels = sortedByYear.slice(0, limit);
-
-  return addFullImagePaths(brandNewModels);
 }
 // #endregion
