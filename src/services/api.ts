@@ -59,7 +59,7 @@ export async function getProductsByCategory(
 
 export async function getProductDetails(
   itemId: string,
-): Promise<ProductDetails | undefined> {
+): Promise<ProductDetails | null> {
   return supabaseGetProductDetails(itemId);
 }
 

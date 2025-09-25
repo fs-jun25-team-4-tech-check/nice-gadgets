@@ -153,23 +153,23 @@ export async function getProductsByCategory(
 
 export async function getProductDetails(
   itemId: string,
-): Promise<ProductDetails | undefined> {
+): Promise<ProductDetails | null> {
   const { data, error } = await supabase
     .from('product_details')
     .select('*')
-    .eq('namespace_id', itemId)
+    .eq('id', itemId)
     .maybeSingle();
 
   if (error) {
     if (error.code === 'PGRST116') {
       // PGRST116: "The result contains 0 rows"
-      return undefined;
+      return null;
     }
     throw new Error(error.message);
   }
 
   if (!data) {
-    return undefined;
+    return null;
   }
 
   const productDetails = mapProductDetails(data);
