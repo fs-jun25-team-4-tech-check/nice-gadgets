@@ -1,4 +1,5 @@
 import { useGlobalStore } from '../stores/globalStore';
+import { getItemNameByItemId } from '../utils/string';
 import { useToast } from './useToast';
 
 export const useFavs = () => {
@@ -9,17 +10,20 @@ export const useFavs = () => {
   const showToast = useToast();
 
   const addToFavs = (itemId: string) => {
+    const itemName = getItemNameByItemId(itemId);
     if (favs.find((id) => id === itemId)) {
-      showToast('Product already in favourites', 'error', 'Oops...');
+      showToast('Product already in favourites', 'error', 'Oops...', 2000);
     } else {
       addToFavsStore(itemId);
-      showToast('Added to favourites', 'info', 'Nice!');
+      showToast(`Added to favourites: ${itemName}`, 'info', 'Nice!', 2000);
     }
   };
 
   const removeFromFavs = (itemId: string) => {
+    const itemName = getItemNameByItemId(itemId);
+
     removeFromFavsStore(itemId);
-    showToast('Removed from favourites', 'info', 'Nice!');
+    showToast(`Removed from favourites: ${itemName}`, 'info', 'Nice!', 2000);
   };
 
   const isInFavs = (itemId: string) => {
