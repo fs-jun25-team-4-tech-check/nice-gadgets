@@ -16,7 +16,6 @@ const ItemCardPage = () => {
 
   const fromCard = location.state?.fromCard || false;
 
-  console.log('Requesting product with ID:', productId);
   const {
     simplifiedData,
     detailsData,
