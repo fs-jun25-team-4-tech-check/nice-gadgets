@@ -82,9 +82,19 @@ export async function getProducts(
   }
 
   if (sortBy) {
-    supabaseQuery = supabaseQuery.order(sortBy, {
-      ascending: sortOrder === 'asc',
-    });
+    const isNumericSort = ['year', 'capacity', 'price', 'fullPrice'].includes(
+      sortBy,
+    );
+
+    if (isNumericSort) {
+      supabaseQuery = supabaseQuery.order(sortBy, {
+        ascending: sortOrder === 'asc',
+      });
+    } else {
+      supabaseQuery = supabaseQuery.order(sortBy, {
+        ascending: sortOrder === 'asc',
+      });
+    }
   }
 
   const { data, error, count } = await supabaseQuery.range(from, to);
@@ -127,9 +137,19 @@ export async function getProductsByCategory(
   }
 
   if (sortBy) {
-    supabaseQuery = supabaseQuery.order(sortBy, {
-      ascending: sortOrder === 'asc',
-    });
+    const isNumericSort = ['year', 'capacity', 'price', 'fullPrice'].includes(
+      sortBy,
+    );
+
+    if (isNumericSort) {
+      supabaseQuery = supabaseQuery.order(sortBy, {
+        ascending: sortOrder === 'asc',
+      });
+    } else {
+      supabaseQuery = supabaseQuery.order(sortBy, {
+        ascending: sortOrder === 'asc',
+      });
+    }
   }
 
   const { data, error, count } = await supabaseQuery.range(from, to);
