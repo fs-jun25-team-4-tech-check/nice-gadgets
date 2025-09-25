@@ -2,15 +2,15 @@ import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './GallerySlider.module.scss';
 import type { GallerySliderItem } from '../../../types/GallerySliderItem';
-import { BASE_URL } from '../../../constants';
+import { BASE_URL_IMAGE } from '../../../constants';
 
 interface Props {
   slide: GallerySliderItem;
 }
 
 export const GallerySlide: React.FC<Props> = ({ slide }) => {
-  const videoUrl = `${BASE_URL}/gallery/banners/${slide.videoUrl}`;
-  const imgUrl = `${BASE_URL}/gallery/banners/${slide.imgUrl}`;
+  const videoUrl = `${BASE_URL_IMAGE}/gallery/banners/${slide.videoUrl}`;
+  const imgUrl = `${BASE_URL_IMAGE}/gallery/banners/${slide.imgUrl}`;
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
