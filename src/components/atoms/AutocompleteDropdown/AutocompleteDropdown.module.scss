@@ -6,9 +6,6 @@
   z-index: 100;
   background-color: var(--color-surface-1);
   border: 1px solid var(--color-elements);
-  @include on-lg {
-    right: 38px;
-  }
 }
 
 .item {

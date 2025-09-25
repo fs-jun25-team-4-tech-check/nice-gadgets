@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import styles from './SearchModule.module.scss';
 import SearchBar from './../../atoms/SearchBar/SearchBar';
 import SearchButton from './../../atoms/Buttons/SearchButton/SearchButton';
 import AutocompleteDropdown from './../../atoms/AutocompleteDropdown/AutocompleteDropdown';
 import { useProducts } from '../../../hooks/useProducts';
-import { FiX } from 'react-icons/fi';
+import { TfiClose as CloseIcon } from 'react-icons/tfi';
 
 const SEARCH_QUERY_PARAM = 'query';
 
@@ -17,6 +17,8 @@ const SearchModule = () => {
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
 
+  const overlayRef = useRef<HTMLDivElement>(null);
+
   const { data, isFetching } = useProducts(1, 5, query);
   const suggestions = data?.data || [];
 
@@ -24,13 +26,35 @@ const SearchModule = () => {
     setQuery(initialQuery);
   }, [initialQuery]);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isOverlayOpen &&
+        overlayRef.current &&
+        !overlayRef.current.contains(event.target as Node)
+      ) {
+        setIsOverlayOpen(false);
+      }
+    };
+
+    if (isOverlayOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOverlayOpen]);
+
   const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (query.trim()) {
       navigate(
-        `/catalog/search?${SEARCH_QUERY_PARAM}=${encodeURIComponent(query.trim())}`,
+        `/catalog/search?${SEARCH_QUERY_PARAM}=${encodeURIComponent(
+          query.trim(),
+        )}`,
       );
-      setIsOverlayOpen(false); // Закриваємо оверлей після пошуку
+      setIsOverlayOpen(false);
     }
   };
 
@@ -39,11 +63,14 @@ const SearchModule = () => {
     setTimeout(() => setIsInputFocused(false), 200);
   };
 
+  const handleAutocompleteClick = () => {
+    setIsOverlayOpen(false);
+  };
+
   const showDropdown = isInputFocused && query.trim() !== '';
 
   return (
     <div className={styles.container}>
-      {/* Десктопний варіант */}
       <form
         className={styles.searchModuleDesktop}
         onSubmit={handleSearch}
@@ -60,24 +87,26 @@ const SearchModule = () => {
             products={suggestions}
             searchQuery={query}
             isFetching={isFetching}
+            onProductClick={handleAutocompleteClick}
           />
         )}
       </form>
 
-      {/* Мобільна кнопка */}
       <div className={styles.searchMobileButton}>
         <SearchButton onClick={() => setIsOverlayOpen(true)} />
       </div>
 
-      {/* Оверлей для мобільних */}
       {isOverlayOpen && (
         <div className={styles.overlay}>
-          <div className={styles.overlayContent}>
+          <div
+            ref={overlayRef}
+            className={styles.overlayContent}
+          >
             <button
               className={styles.closeButton}
               onClick={() => setIsOverlayOpen(false)}
             >
-              <FiX size={24} />
+              <CloseIcon size={24} />
             </button>
             <form
               onSubmit={handleSearch}
@@ -96,6 +125,7 @@ const SearchModule = () => {
                 products={suggestions}
                 searchQuery={query}
                 isFetching={isFetching}
+                onProductClick={handleAutocompleteClick}
               />
             )}
           </div>

@@ -3,7 +3,6 @@
   width: 100%;
 }
 
-/* --- Десктопна форма пошуку --- */
 .searchModuleDesktop {
   width: 100%;
   display: none;
@@ -16,7 +15,6 @@
   }
 }
 
-/* --- Мобільна кнопка пошуку --- */
 .searchMobileButton {
   display: flex;
   justify-content: flex-end;
@@ -26,7 +24,6 @@
   }
 }
 
-/* --- Оверлей (мобільний пошук) --- */
 .overlay {
   position: fixed;
   top: 0;
@@ -75,7 +72,6 @@
   }
 }
 
-// Автодоповнення
 .autocompleteDropdown {
   position: absolute;
   top: 100%;
@@ -90,7 +86,6 @@
   z-index: 998;
 }
 
-// Анімації
 @keyframes fadeIn {
   from {
     opacity: 0;
