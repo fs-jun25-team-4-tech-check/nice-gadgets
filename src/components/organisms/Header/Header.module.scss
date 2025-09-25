@@ -5,14 +5,17 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 24px;
+  gap: 10px;
   background-color: var(--color-black);
   border-bottom: 1px solid var(--color-elements);
   @include header-height;
-
+  @include on-sm {
+    gap: 24px;
+  }
   .logo {
     width: 96px;
     padding: 13px 16px;
+    flex-shrink: 0;
 
     @include on-lg {
       width: 128px;
@@ -55,7 +58,7 @@
     &::after {
       content: '';
       position: absolute;
-      bottom: 0;
+      bottom: -23px; // Retaining your unique style for the underline position
       left: 0;
       width: 100%;
       height: 2px;
@@ -65,13 +68,8 @@
 
   .search {
     flex-grow: 1;
-    margin: 48px;
-
-    display: none;
-
-    @include on-lg {
-      display: block;
-    }
+    display: flex;
+    justify-content: flex-end;
   }
 
   .icons {
@@ -80,6 +78,10 @@
     justify-content: flex-end;
     align-items: center;
     gap: 0;
+
+    @include on-lg {
+      flex-grow: 0;
+    }
   }
 
   .iconLink {
