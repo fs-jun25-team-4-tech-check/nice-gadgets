@@ -1,5 +1,5 @@
 .searchButton {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   width: 32px;
@@ -8,7 +8,9 @@
   background-color: var(--surface-1);
   color: var(--color-white);
   cursor: pointer;
-
+  @include on-lg {
+    display: flex;
+  }
   @include hover(background-color, var(--color-icons));
 }
 .icon {

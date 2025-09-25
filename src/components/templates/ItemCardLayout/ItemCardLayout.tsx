@@ -28,6 +28,7 @@ interface ItemCardLayoutProps {
   detailedProduct: ProductDetails | undefined | null;
   isLoading?: boolean;
   isFetching?: boolean;
+  hasDetails?: boolean;
   error?: Error | null;
   onColorChange?: (color: string) => void;
   onCapacityChange?: (capacity: string) => void;
@@ -51,6 +52,8 @@ export const ItemCardLayout = ({
   if (!simplifiedProduct && !detailedProduct && (isLoading || isFetching)) {
     return <ItemCardLayoutSkeleton />;
   }
+
+  const product = detailedProduct || simplifiedProduct;
 
   if (!product) {
     return <ErrorComponent error={new Error('Product not found')} />;

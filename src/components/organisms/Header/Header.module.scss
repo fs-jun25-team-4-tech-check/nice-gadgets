@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 24px;
+  gap: 16px;
   height: 64px;
   background-color: var(--color-surface-1);
   border-bottom: 1px solid var(--color-elements);
@@ -13,7 +13,7 @@
   .logo {
     width: 128px;
     padding: 18px 24px;
-
+    flex-shrink: 0;
     @include hover(transform, scale($image-hover-scale));
   }
 
@@ -23,11 +23,10 @@
     display: none;
     align-items: center;
     gap: 25px;
-    width: 425px;
+    width: 190 px;
 
     @include on-md {
       display: flex;
-
       a {
         position: relative;
         color: var(--color-secondary);
@@ -57,23 +56,14 @@
   }
   .search {
     flex-grow: 1;
-
-    display: none;
-
-    @include on-lg {
-      display: block;
-    }
   }
 
   .icons {
-    flex-grow: 1;
+    flex-grow: 0;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     gap: 0;
-    @include on-lg {
-      flex-grow: 0;
-    }
   }
 
   .iconLink {
