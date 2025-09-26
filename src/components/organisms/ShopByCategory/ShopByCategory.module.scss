@@ -3,6 +3,10 @@
   flex-direction: column;
   gap: 24px;
 
+  h2 {
+    padding: 0;
+  }
+
   .categories {
     @include page-grid;
     row-gap: 32px;
