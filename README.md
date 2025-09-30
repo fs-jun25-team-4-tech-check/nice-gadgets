@@ -1,10 +1,10 @@
 # Nice Gadgets Store Website
 The **Nice Gadgets Store** is a front-end application built to demonstrate a modern, responsive, and user-centric e-commerce experience. The project showcases a clean and intuitive interface where users can navigate a diverse catalog of electronics and accessories.
 
-## Live Demo
+### Live Demo
 Experience the live website: [Nice Gadgets Store Demo](https://fs-jun25-team-4-tech-check.github.io/nice-gadgets/)
 
-## Key features include:
+### Key features include:
 - **Fully Responsive Design:** A seamless experience across all devices, from mobile phones to desktops.
 - **Product Catalog:** Browse a wide range of electronics and accessories with ease.
 - **Search and Sorting Options:** A search bar and various sorting options to find products quickly.
@@ -53,9 +53,8 @@ yarn install
 
 3. Set up environment variables:
 Create a `.env` file in the root of the project and add your Supabase URL and Anon Key. You can find these in your Supabase project dashboard.
-
-VITE_SUPABASE_URL=your-supabase-project-url
-VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
+- VITE_SUPABASE_URL=your-supabase-project-url
+- VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
 
 (or use mock API and data that is present locally)
 
