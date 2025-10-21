@@ -3,7 +3,7 @@ The **Nice Gadgets Store** is a front-end application built to demonstrate a mod
 <img width="2119" height="1285" alt="vivaldi_WyaFgO1zKX" src="https://github.com/user-attachments/assets/02d23ada-a3c4-4b00-8470-5a328d245859" />
 <img width="2118" height="1284" alt="vivaldi_mycsDdShrS" src="https://github.com/user-attachments/assets/0642d716-007b-4590-a824-3c219fe60fd4" />
 <img width="2118" height="1284" alt="vivaldi_anoDaQiKQK" src="https://github.com/user-attachments/assets/8174869b-13e7-465a-a0ca-7333084271dc" />
-<img width="2118" height="1284" alt="vivaldi_anoDaQiKQK" src="https://github.com/user-attachments/assets/2528954f-cd96-4855-84d6-f723558798cd" />
+<img width="2137" height="1285" alt="vivaldi_vAvW6mOzLn" src="https://github.com/user-attachments/assets/345240d9-d2ba-4ad7-a02c-2dbb79fb8e3f" />
 
 ### Live Demo
 Experience the live website: [Nice Gadgets Store Demo](https://fs-jun25-team-4-tech-check.github.io/nice-gadgets/)
